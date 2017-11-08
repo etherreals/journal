@@ -1,23 +1,18 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import configureStore from '../store/configureStore';
 import App from './App';
+import history from '../browserHistory';
 
 const store = configureStore();
 
-store.dispatch({
-  type: 'LOGIN_REQUEST',
-  payload: {
-    isLoading: true,
-  },
-});
-
 const Root = () => (
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
       <App />
-    </Router>
+    </ConnectedRouter>
   </Provider>
 );
 

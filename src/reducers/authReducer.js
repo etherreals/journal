@@ -1,8 +1,8 @@
 import {
-  AuthActionTypes
-} from '../actions/types'
+  AuthActionTypes,
+} from '../actions/types';
 
-const initialState = {}
+const initialState = {};
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
@@ -10,23 +10,23 @@ function authReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: action.payload.isLoading,
-        isLoggedIn: action.payload.isLoggedIn
-      }
+        isLoggedIn: action.payload.isLoggedIn,
+      };
     case AuthActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
         isLoading: action.payload.isLoading,
-        isLoggedIn: action.payload.isLoggedIn
-      }
+        isLoggedIn: action.payload.isLoggedIn,
+      };
     case AuthActionTypes.LOGIN_FAILURE:
       return {
         ...state,
         isLoading: action.payload.isLoading,
         isLoggedIn: action.payload.isLoggedIn,
-        error: action.error
-      }
+        error: action.error,
+      };
     default:
-      return state
+      return state;
   }
 }
 
