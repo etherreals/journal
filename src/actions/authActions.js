@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux';
 import { AuthActionTypes } from './types';
 
 export function login() {
@@ -9,6 +10,7 @@ export function login() {
         isLoggedIn: true,
       },
     });
+    dispatch(push('/'));
   });
 }
 
