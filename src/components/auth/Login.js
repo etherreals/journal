@@ -7,9 +7,13 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import * as actionCreators from '../../actions/authActions';
 
-class Auth extends Component {
+class Login extends Component {
 
-  onButtonClickHandler = () => {
+  constructor() {
+    super();
+    this.onButtonClickHandler = this.onButtonClickHandler.bind(this);
+  }
+  onButtonClickHandler() {
     this.props.actions.login();
   }
 
@@ -52,4 +56,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Auth);
+)(Login);

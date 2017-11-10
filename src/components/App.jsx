@@ -1,38 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import Login from './auth/Login';
 
-
-import Auth from './auth/Auth';
-
-const App = (props) => (
+const App = props => (
   <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
     <h2>App</h2>
-    <Route
-      exact
-      path="/"
-      render={() => (
-        props.auth.isLoggedIn ?
-          <Redirect to="/dashboard" />
-          :
-          <Auth />
-      )}
-    />
+    <button><Link to="/dashboard">to dashboard</Link></button>
+    <Login />
     {
-      props.auth.isLoggedIn ? <div>loggedin</div> : <div>notloggedin</div>
+      props.auth.isLoggedIn && <Route path="/dashboard" component={() => <h1>dashboard</h1>} />
     }
   </Grid>
 );
 
-function mapStateToProps(state) {
-  console.log(state.auth);
+function mapStoreToProps(store) {
   return {
-    auth: state.auth,
+    auth: store.auth,
   };
 }
-
-export default connect(
-  mapStateToProps,
-  null,
+export default compose(
+  connect(
+    mapStoreToProps,
+    null,
+  ),
+  withRouter,
 )(App);
