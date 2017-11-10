@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
 import { Route, Link, Redirect } from 'react-router-dom';
@@ -13,9 +12,10 @@ const App = props => (
       props.auth.isLoggedIn ? 
         <Route path="/" component={() => <h1>Homepage</h1>} />
       :
-        <Redirect to="/login" />
+        [<Redirect to="/login" />,
+        <Route path="/login" component={Login} />]
     }
-    <Route path="/login" component={Login} />
+    
   </Grid>
 );
 
@@ -24,10 +24,4 @@ function mapStoreToProps(store) {
     auth: store.auth,
   };
 }
-export default compose(
-  connect(
-    mapStoreToProps,
-    null,
-  ),
-  withRouter,
-)(App);
+export default withRouter(connect(mapStoreToProps)(App));
