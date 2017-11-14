@@ -8,13 +8,24 @@ import Typography from 'material-ui/Typography';
 import * as actionCreators from '../../actions/authActions';
 
 class Login extends Component {
-
   constructor() {
     super();
-    this.onButtonClickHandler = this.onButtonClickHandler.bind(this);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    this.loginHandler = this.loginHandler.bind(this);
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
-  onButtonClickHandler() {
-    this.props.actions.login();
+  loginHandler() {
+    this.props.actions.login(this.state);
+  }
+
+  inputChangeHandler(event) {
+    const { name, value } = event.target;
+    this.setState(() => ({
+      [name]: value,
+    }));
   }
 
   render() {
@@ -25,26 +36,27 @@ class Login extends Component {
       <Grid item>
         <TextField
           placeholder="email"
+          name="email"
+          value={this.state.email}
+          onChange={this.inputChangeHandler}
         />
       </Grid>,
       <Grid item>
         <TextField
           placeholder="password"
+          name="password"
           type="password"
+          value={this.state.password}
+          onChange={this.inputChangeHandler}
         />
       </Grid>,
       <Grid item>
-        <Button raised color="primary" onClick={this.onButtonClickHandler}>
+        <Button raised color="primary" onClick={this.loginHandler}>
           Login
         </Button>
       </Grid>,
     ];
   }
-}
-function mapStateToProps(state) {
-  return {
-    // todos: state.todosReducer.todos,
-  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -54,6 +66,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Login);

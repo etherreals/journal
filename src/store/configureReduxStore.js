@@ -5,7 +5,6 @@ import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
 import history from '../browserHistory';
 
-
 const router = routerMiddleware(history);
 const logger = createLogger();
 const middlewares = [

@@ -25,6 +25,25 @@ function authReducer(state = initialState, action) {
         isLoggedIn: action.payload.isLoggedIn,
         error: action.error,
       };
+    case AuthActionTypes.LOGOUT_REQUEST:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        isLoggedIn: action.payload.isLoggedIn,
+      };
+    case AuthActionTypes.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        isLoggedIn: action.payload.isLoggedIn,
+      };
+    case AuthActionTypes.LOGOUT_FAILURE:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        isLoggedIn: action.payload.isLoggedIn,
+        error: action.error,
+      };
     default:
       return state;
   }
