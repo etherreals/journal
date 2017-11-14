@@ -1,19 +1,27 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import configureStore from '../store/configureStore';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import Grid from 'material-ui/Grid';
+import { Route, Redirect } from 'react-router-dom';
+import Login from './auth/Login';
 import App from './App';
-import history from '../browserHistory';
 
-const store = configureStore();
-
-const Root = () => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>
+const Root = props => (
+  <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
+    {
+      props.auth.isLoggedIn ? 
+        <Route path="/" component={App} />
+      :
+        [<Redirect to="/login" />,
+        <Route path="/login" component={Login} />]
+    }
+    
+  </Grid>
 );
 
-export default Root;
-
+function mapStoreToProps(store) {
+  return {
+    auth: store.auth,
+  };
+}
+export default withRouter(connect(mapStoreToProps)(Root));
