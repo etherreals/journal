@@ -28,6 +28,17 @@ class Login extends Component {
     }));
   }
 
+  renderAuthError() {
+    if (this.props.auth.error) {
+      const { message } = this.props.auth.error;
+      return (
+        <Grid item>
+          <span>{message}</span>
+        </Grid>
+      );
+    }
+  }
+
   render() {
     return [
       <Typography type="title" gutterBottom>
@@ -55,17 +66,20 @@ class Login extends Component {
           Login
         </Button>
       </Grid>,
+      this.renderAuthError(),
     ];
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actionCreators, dispatch),
-  };
-}
+const mapStoreToProps = store => ({
+  auth: store.auth,
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch),
+});
 
 export default connect(
-  null,
+  mapStoreToProps,
   mapDispatchToProps,
 )(Login);

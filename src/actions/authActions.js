@@ -2,35 +2,41 @@ import { push } from 'react-router-redux';
 import { AuthActionTypes } from './types';
 import firebase from '../store/firebase';
 
+const requestLogin = () => ({
+  type: AuthActionTypes.LOGIN_REQUEST,
+  payload: {
+    isLoading: true,
+    isLoggedIn: false,
+  },
+});
+
+const receiveLoginSuccess = () => ({
+  type: AuthActionTypes.LOGIN_SUCCESS,
+  payload: {
+    isLoading: false,
+    isLoggedIn: true,
+  },
+});
+
+const receiveLoginFailure = error => ({
+  type: AuthActionTypes.LOGIN_FAILURE,
+  payload: {
+    isLoading: false,
+    isLoggedIn: false,
+  },
+  error,
+});
+
 export function login({ email, password }) {
   return ((dispatch) => {
-    dispatch({
-      type: AuthActionTypes.LOGIN_REQUEST,
-      payload: {
-        isLoading: true,
-        isLoggedIn: false,
-      },
-    });
+    dispatch(requestLogin());
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        dispatch({
-          type: AuthActionTypes.LOGIN_SUCCESS,
-          payload: {
-            isLoading: false,
-            isLoggedIn: true,
-          },
-        });
+        dispatch(receiveLoginSuccess());
         dispatch(push('/'));
       })
       .catch((error) => {
-        dispatch({
-          type: AuthActionTypes.LOGIN_FAILURE,
-          payload: {
-            isLoading: false,
-            isLoggedIn: false,
-          },
-          error,
-        });
+        dispatch(receiveLoginFailure(error));
       });
   });
 }
