@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
@@ -6,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import * as actionCreators from '../../actions/authActions';
+
 
 class Login extends Component {
   constructor() {
@@ -29,14 +31,15 @@ class Login extends Component {
   }
 
   renderAuthError() {
-    if (this.props.auth.error) {
-      const { message } = this.props.auth.error;
+    if (this.props.authError) {
+      const { message } = this.props.authError;
       return (
         <Grid item>
           <span>{message}</span>
         </Grid>
       );
     }
+    return '';
   }
 
   render() {
@@ -71,8 +74,17 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+  actions: PropTypes.objectOf(PropTypes.func).isRequired,
+  authError: PropTypes.string,
+};
+
+Login.defaultProps = {
+  authError: '',
+};
+
 const mapStoreToProps = store => ({
-  auth: store.auth,
+  authError: store.auth.error,
 });
 
 const mapDispatchToProps = dispatch => ({

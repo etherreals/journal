@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
@@ -9,19 +10,30 @@ import App from './App';
 const Root = props => (
   <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
     {
-      props.auth.isLoggedIn ? 
+      props.isLoggedIn ?
         <Route path="/" component={App} />
-      :
-        [<Redirect to="/login" />,
-        <Route path="/login" component={Login} />]
+        :
+        [
+          <Redirect to="/login" />,
+          <Route path="/login" component={Login} />,
+        ]
     }
-    
+
   </Grid>
 );
 
+Root.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
+
+Login.defaultProps = {
+  isLoggedIn: false,
+};
+
+
 function mapStoreToProps(store) {
   return {
-    auth: store.auth,
+    isLoggedIn: store.auth.isLoggedIn,
   };
 }
 export default withRouter(connect(mapStoreToProps)(Root));
