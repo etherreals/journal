@@ -6,6 +6,7 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
+import Send from 'material-ui-icons/Send';
 import * as actionCreators from '../../actions/authActions';
 
 
@@ -17,10 +18,15 @@ class Login extends Component {
       password: '',
     };
     this.loginHandler = this.loginHandler.bind(this);
+    this.googleLoginHandler = this.googleLoginHandler.bind(this);
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
   loginHandler() {
-    this.props.actions.login(this.state);
+    this.props.actions.signInWithEmailAndPassword(this.state);
+  }
+
+  googleLoginHandler() {
+    this.props.actions.signInWithGoogle();
   }
 
   inputChangeHandler(event) {
@@ -67,6 +73,12 @@ class Login extends Component {
       <Grid item>
         <Button raised color="primary" onClick={this.loginHandler}>
           Login
+        </Button>
+      </Grid>,
+      <Grid item>
+        <Button raised color="primary" onClick={this.googleLoginHandler}>
+          Sign in with Google
+          <Send />
         </Button>
       </Grid>,
       this.renderAuthError(),

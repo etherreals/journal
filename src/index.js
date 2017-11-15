@@ -21,7 +21,6 @@ const MountPoint = () => (
 
 // firebase.auth().onAuthStateChanged((user) => {
 //   if (user) {
-    
 //   } else {
 //     store.dispatch(logout());
 //   }
