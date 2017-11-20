@@ -14,8 +14,8 @@ const Root = props => (
         <Route path="/" component={App} />
         :
         [
-          <Redirect to="/login" />,
-          <Route path="/login" component={Login} />,
+          <Redirect to="/login" key="1" />,
+          <Route path="/login" component={Login} key="2" />,
         ]
     }
 
