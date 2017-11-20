@@ -3,20 +3,18 @@ import firebase from '../store/firebase';
 const firebaseAuth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-function signInWithEmailAndPassword(email, password) {
+export function signInWithEmailAndPassword(email, password) {
   return firebaseAuth.signInWithEmailAndPassword(email, password);
 }
 
-function signOut() {
+export function signOut() {
   return firebaseAuth.signOut();
 }
 
-function signInWithGoogle() {
+export function signInWithGoogle() {
   return firebaseAuth.signInWithPopup(googleProvider);
 }
 
-export {
-  signInWithEmailAndPassword,
-  signInWithGoogle,
-  signOut,
-};
+export function getCurrentUser() {
+  return firebaseAuth.currentUser;
+}

@@ -56,6 +56,21 @@ const receiveLogoutError = error => ({
   error,
 });
 
+const setToLoggedIn = () => ({
+  type: AuthActionTypes.LOGOUT_SUCCESS,
+  payload: {
+    isLoading: false,
+    isLoggedIn: true,
+  },
+});
+
+export function setToLoggedInAndRedirectToHomepage() {
+  return (async (dispatch) => {
+    dispatch(setToLoggedIn());
+    dispatch(push('/'));
+  });
+}
+
 export function signInWithEmailAndPassword({ email, password }) {
   return (async (dispatch) => {
     dispatch(requestLogin());

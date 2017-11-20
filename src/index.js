@@ -7,7 +7,7 @@ import configureReduxStore from './store/configureReduxStore';
 import Root from './components/Root';
 import history from './browserHistory';
 import firebase from './store/firebase';
-import { logout } from './actions/authActions';
+import { logout, setToLoggedInAndRedirectToHomepage } from './actions/authActions';
 
 const store = configureReduxStore();
 
@@ -19,12 +19,13 @@ const MountPoint = () => (
   </Provider>
 );
 
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//   } else {
-//     store.dispatch(logout());
-//   }
-// });
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch(setToLoggedInAndRedirectToHomepage());
+  } else {
+    store.dispatch(logout());
+  }
+});
 
 /* global document */
 ReactDOM.render(<MountPoint />, document.getElementById('mount-point'));
