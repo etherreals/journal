@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { indigo } from 'material-ui/colors';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import { Link } from 'react-router-dom';
@@ -12,27 +11,7 @@ import ViewComfy from 'material-ui-icons/ViewComfy';
 import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-
-const styles = theme => ({
-  list: {
-    width: '100%',
-    maxWidth: 360,
-    fill: indigo[100],
-  },
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
-  nav: {
-    background: indigo[500],
-    height: 'calc(100% + 16px)',
-  },
-  icon: {
-    fill: indigo[200],
-  },
-  link: {
-    color: indigo[50],
-  },
-});
+import styles from './MainNav.styles';
 
 class MainNav extends Component {
   constructor() {
