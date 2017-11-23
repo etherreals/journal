@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -8,23 +8,32 @@ import Login from './auth/Login';
 import App from './App';
 import MainLoadingSpinner from './Common/MainLoadingSpinner';
 
-const Root = props => (
-  <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
-    {
-      props.isLoggedIn ?
-        <Route path="/" component={App} />
-        :
-        [
-          <Redirect to="/login" key="1" />,
-          <Route path="/login" component={Login} key="2" />,
-        ]
+class Root extends Component {
+  renderAppWithAuthAndLoading() {
+    let app;
+    if (this.props.isLoggedIn && !this.props.isLoading) {
+      app = <Route path="/" component={App} />;
+    } else if (!this.props.isLoggedIn && !this.props.isLoading) {
+      app = [
+        <Redirect to="/login" key="1" />,
+        <Route path="/login" component={Login} key="2" />,
+      ];
+    } else if (!this.props.isLoggedIn && this.props.isLoading) {
+      app = <MainLoadingSpinner />;
     }
-    {
-      props.isLoading && <MainLoadingSpinner />
-    }
+    return app;
+  }
 
-  </Grid>
-);
+  render() {
+    return (
+      <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
+        {
+          this.renderAppWithAuthAndLoading()
+        }
+      </Grid>
+    );
+  }
+}
 
 Root.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
