@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 import authReducer from './authReducer';
 
-const rootReducer = combineReducers({
+const config = { key: 'root', storage };
+const rootReducer = persistCombineReducers(config, {
   auth: authReducer,
   router: routerReducer,
 });

@@ -2,20 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
 import registerServiceWorker from './registerServiceWorker';
 import configureReduxStore from './store/configureReduxStore';
 import Root from './components/Root';
 import history from './browserHistory';
 import firebase from './store/firebase';
 import { logout, setToLoggedInAndRedirectToHomepage } from './actions/authActions';
+import MainLoadingSpinner from './components/Common/MainLoadingSpinner';
 
-const store = configureReduxStore();
+const { store, persistor } = configureReduxStore();
 
 const MountPoint = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Root />
-    </ConnectedRouter>
+    <PersistGate
+      loading={<MainLoadingSpinner />}
+      persistor={persistor}
+    >
+      <ConnectedRouter history={history}>
+        <Root />
+      </ConnectedRouter>
+    </PersistGate>
   </Provider>
 );
 
