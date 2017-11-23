@@ -57,7 +57,7 @@ const receiveLogoutError = error => ({
 });
 
 const setToLoggedIn = () => ({
-  type: AuthActionTypes.LOGOUT_SUCCESS,
+  type: AuthActionTypes.LOGIN_SUCCESS,
   payload: {
     isLoading: false,
     isLoggedIn: true,

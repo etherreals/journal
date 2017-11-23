@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import { Link } from 'react-router-dom';
@@ -12,6 +14,8 @@ import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
+import * as actionCreators from '../../actions/authActions';
+
 
 class MainNav extends Component {
   constructor() {
@@ -27,9 +31,10 @@ class MainNav extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, actions: { logout } } = this.props;
     return (
       <Grid className={classes.nav}>
+        <button onClick={logout}>logout</button>
         <List className={classes.list}>
           <ListItem component={Link} to="/pupils" button className={classes.li} >
             <ListItemIcon>
@@ -79,6 +84,14 @@ class MainNav extends Component {
 
 MainNav.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  actions: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
-export default withStyles(styles)(MainNav);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch),
+});
+
+export default compose(
+  withStyles(styles),
+  connect(null, mapDispatchToProps),
+)(MainNav);
