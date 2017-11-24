@@ -1,6 +1,5 @@
-import firebase from '../store/firebase';
+import { firebase, firebaseAuth } from '../store/firebase';
 
-const firebaseAuth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 export function signInWithEmailAndPassword(email, password) {

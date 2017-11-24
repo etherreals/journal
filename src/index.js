@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import configureReduxStore from './store/configureReduxStore';
 import Root from './components/Root';
 import history from './browserHistory';
-import firebase from './store/firebase';
+import { firebaseAuth } from './store/firebase';
 import { logout, setToLoggedInAndRedirectToHomepage } from './actions/authActions';
 import MainLoadingSpinner from './components/Common/MainLoadingSpinner';
 
@@ -26,7 +26,7 @@ const MountPoint = () => (
   </Provider>
 );
 
-firebase.auth().onAuthStateChanged((user) => {
+firebaseAuth.onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(setToLoggedInAndRedirectToHomepage());
   } else {

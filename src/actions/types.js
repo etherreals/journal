@@ -8,11 +8,11 @@ const AuthActionTypes = {
   LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
 };
 
-const TTActionTypes = {
-  TEST: 'TEST',
+const UsersActionTypes = {
+  GET_ALL_USERS: 'GET_ALL_USERS',
 };
 
 export {
   AuthActionTypes,
-  TTActionTypes,
+  UsersActionTypes,
 };
