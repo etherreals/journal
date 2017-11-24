@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/usersActions';
+import PupilItem from './PupilItem';
 
 
 class PupilsList extends Component {
@@ -13,7 +14,13 @@ class PupilsList extends Component {
     return (
       <div>
         {
-          this.props.pupils.map(pupil => <p>{pupil.fullName}</p>)
+          this.props.pupils.map(pupil => (
+            <PupilItem
+              key={pupil.id}
+              id={pupil.id}
+              fullName={pupil.fullName}
+              dateOfBirth={pupil.dateOfBirth.toLocaleString()}
+            />))
         }
       </div>
     );
