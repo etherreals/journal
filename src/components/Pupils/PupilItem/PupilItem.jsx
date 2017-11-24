@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TableCell, TableRow } from 'material-ui/Table';
 
 const PupilItem = props => (
-  <div>
-    <p>{props.id}</p>
-    <p>{props.fullName}</p>
-    <p>{props.dateOfBirth}</p>
-  </div>
+  <TableRow key={props.id}>
+    <TableCell>{props.id}</TableCell>
+    <TableCell>{props.fullName}</TableCell>
+    <TableCell>{props.dateOfBirth}</TableCell>
+  </TableRow>
 );
 
 PupilItem.propTypes = {
