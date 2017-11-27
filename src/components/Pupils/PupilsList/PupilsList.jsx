@@ -26,18 +26,20 @@ class PupilsList extends Component {
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <PupilsListHeader />
+          {isLoading && <LoadingSpinner />}
           <TableBody>
-            { isLoading ? <LoadingSpinner /> :
+            {
               pupils.map(pupil =>
-              (
-                <PupilItem
-                  key={pupil.id}
-                  id={pupil.id}
-                  fullName={pupil.fullName}
-                  dateOfBirth={pupil.dateOfBirth.toLocaleString()}
-                  grade={pupil.grade}
-                />
-              ))}
+                (
+                  <PupilItem
+                    key={pupil.id}
+                    id={pupil.id}
+                    fullName={pupil.fullName}
+                    dateOfBirth={pupil.dateOfBirth.toLocaleString()}
+                    grade={pupil.grade}
+                  />
+                ))
+            }
           </TableBody>
         </Table>
       </Paper>
