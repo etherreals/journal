@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 import { Route, Redirect } from 'react-router-dom';
 import Login from './auth/Login';
 import App from './App';
-import MainLoadingSpinner from './Common/MainLoadingSpinner';
+import LoadingSpinner from './Common/LoadingSpinner';
 
 class Root extends Component {
   renderAppWithAuthAndLoading() {
@@ -19,7 +19,7 @@ class Root extends Component {
         <Route path="/login" component={Login} key="2" />,
       ];
     } else if (!this.props.isLoggedIn && this.props.isLoading) {
-      app = <MainLoadingSpinner />;
+      app = <LoadingSpinner />;
     }
     return app;
   }

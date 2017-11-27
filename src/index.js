@@ -9,14 +9,14 @@ import Root from './components/Root';
 import history from './browserHistory';
 import { firebaseAuth } from './store/firebase';
 import { logout, setToLoggedInAndRedirectToHomepage } from './actions/authActions';
-import MainLoadingSpinner from './components/Common/MainLoadingSpinner';
+import LoadingSpinner from './components/Common/LoadingSpinner';
 
 const { store, persistor } = configureReduxStore();
 
 const MountPoint = () => (
   <Provider store={store}>
     <PersistGate
-      loading={<MainLoadingSpinner />}
+      loading={<LoadingSpinner />}
       persistor={persistor}
     >
       <ConnectedRouter history={history}>

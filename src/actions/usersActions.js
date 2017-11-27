@@ -1,22 +1,41 @@
 import { UsersActionTypes } from './types';
-import { getAllPupils } from '../services/PupilsService';
+import { firebaseDB } from '../store/firebase';
 
-const getUsers = users => ({
-  type: UsersActionTypes.GET_ALL_USERS,
+const getAllUsersRequest = () => ({
+  type: UsersActionTypes.GET_ALL_USERS_REQUEST,
   payload: {
-    users,
+    isLoading: true,
   },
 });
 
+const getAllUsersSuccess = users => ({
+  type: UsersActionTypes.GET_ALL_USERS_SUCCESS,
+  payload: {
+    users,
+    isLoading: false,
+  },
+});
 
-export function getAllUsersActionCreator() {
-  return (async (dispatch) => {
-    try {
-      const users = await getAllPupils();
-      dispatch(getUsers(users));
-    } catch (error) {
-      throw new Error(error);
-    }
+const getAllUsersFailure = error => ({
+  type: UsersActionTypes.GET_ALL_USERS_FAILURE,
+  payload: {
+    isLoading: false,
+  },
+  error,
+});
+
+export function subscribeToGetAllUsersListener() {
+  return ((dispatch) => {
+    dispatch(getAllUsersRequest());
+    const unsubscribe = firebaseDB.collection('users').onSnapshot((querySnapshot) => {
+      const users = querySnapshot.docs.map((userData) => {
+        const user = userData.data();
+        user.id = userData.id;
+        return user;
+      });
+      dispatch(getAllUsersSuccess(users));
+    });
+    return unsubscribe;
   });
 }
 

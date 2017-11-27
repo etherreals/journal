@@ -7,6 +7,7 @@ const PupilsListHeader = () => (
       <TableCell>ID</TableCell>
       <TableCell>Full name</TableCell>
       <TableCell>Date of birth</TableCell>
+      <TableCell>Grade</TableCell>
     </TableRow>
   </TableHead>
 );

@@ -9,25 +9,33 @@ import * as actionCreators from '../../../actions/usersActions';
 import PupilItem from '../PupilItem/PupilItem';
 import styles from './PupilsList.styles';
 import PupilsListHeader from './PupilsListHeader';
+import LoadingSpinner from '../../Common/LoadingSpinner';
 
 class PupilsList extends Component {
   componentDidMount() {
-    this.props.actions.getAllUsersActionCreator();
+    this.unsubscribe = this.props.actions.subscribeToGetAllUsersListener();
   }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
-    const { classes, pupils } = this.props;
+    const { classes, pupils, isLoading } = this.props;
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <PupilsListHeader />
           <TableBody>
-            {pupils.map(pupil =>
+            { isLoading ? <LoadingSpinner /> :
+              pupils.map(pupil =>
               (
                 <PupilItem
                   key={pupil.id}
                   id={pupil.id}
                   fullName={pupil.fullName}
                   dateOfBirth={pupil.dateOfBirth.toLocaleString()}
+                  grade={pupil.grade}
                 />
               ))}
           </TableBody>
@@ -39,8 +47,9 @@ class PupilsList extends Component {
 
 PupilsList.propTypes = {
   actions: PropTypes.objectOf(PropTypes.func).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   pupils: PropTypes.arrayOf(PropTypes.object),
-  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 PupilsList.defaultProps = {
@@ -49,6 +58,7 @@ PupilsList.defaultProps = {
 
 const mapStoreToProps = store => ({
   pupils: store.users.users,
+  isLoading: store.users.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
