@@ -13,7 +13,7 @@ import LoadingSpinner from '../../Common/LoadingSpinner';
 
 class PupilsList extends Component {
   componentDidMount() {
-    this.unsubscribe = this.props.actions.subscribeToGetAllUsersListener();
+    this.unsubscribe = this.props.actions.subscribeToGetAllPupilsListener();
   }
 
   componentWillUnmount() {
@@ -26,7 +26,6 @@ class PupilsList extends Component {
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <PupilsListHeader />
-          {isLoading && <LoadingSpinner />}
           <TableBody>
             {
               pupils.map(pupil =>
@@ -42,6 +41,7 @@ class PupilsList extends Component {
             }
           </TableBody>
         </Table>
+        {isLoading && <LoadingSpinner />}
       </Paper>
     );
   }

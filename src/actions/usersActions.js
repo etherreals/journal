@@ -16,18 +16,18 @@ const getAllUsersSuccess = users => ({
   },
 });
 
-const getAllUsersFailure = error => ({
-  type: UsersActionTypes.GET_ALL_USERS_FAILURE,
-  payload: {
-    isLoading: false,
-  },
-  error,
-});
+// const getAllUsersFailure = error => ({
+//   type: UsersActionTypes.GET_ALL_USERS_FAILURE,
+//   payload: {
+//     isLoading: false,
+//   },
+//   error,
+// });
 
-export function subscribeToGetAllUsersListener() {
+export function subscribeToGetAllPupilsListener() {
   return ((dispatch) => {
     dispatch(getAllUsersRequest());
-    const unsubscribe = firebaseDB.collection('users').onSnapshot((querySnapshot) => {
+    const unsubscribe = firebaseDB.collection('users').where('type', '==', 'pupil').onSnapshot((querySnapshot) => {
       const users = querySnapshot.docs.map((userData) => {
         const user = userData.data();
         user.id = userData.id;
