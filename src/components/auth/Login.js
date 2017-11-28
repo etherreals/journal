@@ -11,25 +11,29 @@ import * as actionCreators from '../../actions/authActions';
 
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: '',
-    };
-    this.loginHandler = this.loginHandler.bind(this);
-    this.googleLoginHandler = this.googleLoginHandler.bind(this);
-    this.inputChangeHandler = this.inputChangeHandler.bind(this);
-  }
-  loginHandler() {
+  static propTypes = {
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    authError: PropTypes.string,
+  };
+
+  static defaultProps = {
+    authError: '',
+  };
+
+  state = {
+    email: '',
+    password: '',
+  };
+
+  loginHandler = () => {
     this.props.actions.signInWithEmailAndPassword(this.state);
   }
 
-  googleLoginHandler() {
+  googleLoginHandler = () => {
     this.props.actions.signInWithGoogle();
   }
 
-  inputChangeHandler(event) {
+  inputChangeHandler = (event) => {
     const { name, value } = event.target;
     this.setState(() => ({
       [name]: value,
@@ -85,15 +89,6 @@ class Login extends Component {
     ];
   }
 }
-
-Login.propTypes = {
-  actions: PropTypes.objectOf(PropTypes.func).isRequired,
-  authError: PropTypes.string,
-};
-
-Login.defaultProps = {
-  authError: '',
-};
 
 const mapStoreToProps = store => ({
   authError: store.auth.error,

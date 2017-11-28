@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TableCell, TableRow } from 'material-ui/Table';
 
 const PupilItem = props => (
-  <TableRow key={props.id}>
+  <TableRow>
     <TableCell>{props.id}</TableCell>
     <TableCell>{props.fullName}</TableCell>
     <TableCell>{props.dateOfBirth}</TableCell>

@@ -18,15 +18,15 @@ import * as actionCreators from '../../actions/authActions';
 
 
 class MainNav extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isClassesSubmenuOpen: true,
-    };
-    this.handleClassesSubmenuClick = this.handleClassesSubmenuClick.bind(this);
-  }
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+  };
+  state = {
+    isClassesSubmenuOpen: true,
+  };
 
-  handleClassesSubmenuClick() {
+  handleClassesSubmenuClick = () => {
     this.setState({ isClassesSubmenuOpen: !this.state.isClassesSubmenuOpen });
   }
 
@@ -81,11 +81,6 @@ class MainNav extends Component {
     );
   }
 }
-
-MainNav.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  actions: PropTypes.objectOf(PropTypes.func).isRequired,
-};
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch),

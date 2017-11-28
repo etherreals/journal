@@ -18,6 +18,5 @@ LoadingSpinner.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-
 export default withStyles(styles)(LoadingSpinner);
 

@@ -12,6 +12,15 @@ import PupilsListHeader from './PupilsListHeader';
 import LoadingSpinner from '../../Common/LoadingSpinner';
 
 class PupilsList extends Component {
+  static propTypes = {
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    pupils: PropTypes.arrayOf(PropTypes.object),
+    isLoading: PropTypes.bool.isRequired,
+  };
+  static defaultProps = {
+    pupils: [],
+  };
   componentDidMount() {
     this.unsubscribe = this.props.actions.subscribeToGetAllPupilsListener();
   }
@@ -46,17 +55,6 @@ class PupilsList extends Component {
     );
   }
 }
-
-PupilsList.propTypes = {
-  actions: PropTypes.objectOf(PropTypes.func).isRequired,
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  pupils: PropTypes.arrayOf(PropTypes.object),
-  isLoading: PropTypes.bool.isRequired,
-};
-
-PupilsList.defaultProps = {
-  pupils: [],
-};
 
 const mapStoreToProps = store => ({
   pupils: store.users.users,

@@ -9,6 +9,10 @@ import App from './App';
 import LoadingSpinner from './Common/LoadingSpinner';
 
 class Root extends Component {
+  static propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+  };
   renderAppWithAuthAndLoading() {
     let app;
     if (this.props.isLoggedIn && !this.props.isLoading) {
@@ -34,11 +38,6 @@ class Root extends Component {
     );
   }
 }
-
-Root.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-};
 
 function mapStoreToProps(store) {
   return {
