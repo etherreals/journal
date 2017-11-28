@@ -12,6 +12,9 @@ const styles = theme => ({
   nav: {
     background: indigo[500],
     height: 'calc(100% + 16px)',
+    position: 'fixed',
+    maxWidth: 'inherit',
+    width: '100%',
   },
   icon: {
     fill: indigo[200],
