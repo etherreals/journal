@@ -68,9 +68,22 @@ import LoadingSpinner from '../../Common/LoadingSpinner';
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
   counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
+  return {
+    id: counter,
+    name,
+    calories,
+    fat,
+    carbs,
+    protein,
+  };
 }
 class PupilsList extends Component {
+  static propTypes = {
+    // classes, pupils, isLoading
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    pupils: PropTypes.arrayOf(PropTypes.object).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+  }
   constructor(props, context) {
     super(props, context);
 

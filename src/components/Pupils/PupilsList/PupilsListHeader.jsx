@@ -5,16 +5,16 @@ import Tooltip from 'material-ui/Tooltip';
 
 const columnData = [
   {
-    id: 'calories', numeric: true, disablePadding: false, label: 'ID',
+    id: 'calories', disablePadding: false, label: 'ID',
   },
   {
-    id: 'fat', numeric: true, disablePadding: false, label: 'Full name',
+    id: 'fat', disablePadding: false, label: 'Full name',
   },
   {
-    id: 'carbs', numeric: true, disablePadding: false, label: 'Born',
+    id: 'carbs', disablePadding: false, label: 'Born',
   },
   {
-    id: 'protein', numeric: true, disablePadding: false, label: 'Grade',
+    id: 'protein', disablePadding: false, label: 'Grade',
   },
 ];
 class PupilsListHeader extends React.Component {
