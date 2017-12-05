@@ -6,11 +6,6 @@ import { bindActionCreators, compose } from 'redux';
 import { withStyles } from 'material-ui/styles';
 import Table, {
   TableBody,
-  TableCell,
-  TableFooter,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import * as actionCreators from '../../../actions/usersActions';
