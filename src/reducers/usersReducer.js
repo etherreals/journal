@@ -19,11 +19,10 @@ const handleGetAllUsersFailure = (state, action) => ({
   error: action.error,
 });
 
-const handlers = {
-  [UsersActionTypes.GET_ALL_USERS_REQUEST]: handleGetAllUsersRequest,
-  [UsersActionTypes.GET_ALL_USERS_SUCCESS]: handleGetAllUsersSuccess,
-  [UsersActionTypes.GET_ALL_USERS_FAILURE]: handleGetAllUsersFailure,
-};
+const handlers = new Map();
+handlers.set(UsersActionTypes.GET_ALL_USERS_REQUEST, handleGetAllUsersRequest);
+handlers.set(UsersActionTypes.GET_ALL_USERS_SUCCESS, handleGetAllUsersSuccess);
+handlers.set(UsersActionTypes.GET_ALL_USERS_FAILURE, handleGetAllUsersFailure);
 
 function authReducer(state = {}, action) {
   const handler = handlers[action.type];
