@@ -2,42 +2,42 @@ import {
   AuthActionTypes,
 } from '../actions/types';
 
-const handleLoginRequest = (state, action) => ({
+const handleLoginRequestActionCreator = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
   error: null,
 });
 
-const handleLoginSuccess = (state, action) => ({
+const handleLoginSuccessActionCreator = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
   error: null,
 });
 
-const handleLoginFailure = (state, action) => ({
+const handleLoginFailureActionCreator = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
   error: action.error,
 });
 
-const handleLogoutRequest = (state, action) => ({
+const handleLogoutRequestActionCreator = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
   error: null,
 });
 
-const handleLogoutSuccess = (state, action) => ({
+const handleLogoutSuccessActionCreator = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
   error: null,
 });
 
-const handleLogoutFailure = (state, action) => ({
+const handleLogoutFailureActionCreator = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
@@ -45,12 +45,12 @@ const handleLogoutFailure = (state, action) => ({
 });
 
 const handlers = {
-  [AuthActionTypes.LOGIN_REQUEST]: handleLoginRequest,
-  [AuthActionTypes.LOGIN_SUCCESS]: handleLoginSuccess,
-  [AuthActionTypes.LOGIN_FAILURE]: handleLoginFailure,
-  [AuthActionTypes.LOGOUT_REQUEST]: handleLogoutRequest,
-  [AuthActionTypes.LOGOUT_SUCCESS]: handleLogoutSuccess,
-  [AuthActionTypes.LOGOUT_FAILURE]: handleLogoutFailure,
+  [AuthActionTypes.LOGIN_REQUEST]: handleLoginRequestActionCreator,
+  [AuthActionTypes.LOGIN_SUCCESS]: handleLoginSuccessActionCreator,
+  [AuthActionTypes.LOGIN_FAILURE]: handleLoginFailureActionCreator,
+  [AuthActionTypes.LOGOUT_REQUEST]: handleLogoutRequestActionCreator,
+  [AuthActionTypes.LOGOUT_SUCCESS]: handleLogoutSuccessActionCreator,
+  [AuthActionTypes.LOGOUT_FAILURE]: handleLogoutFailureActionCreator,
 };
 
 function authReducer(state = {}, action) {

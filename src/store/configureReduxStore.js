@@ -18,11 +18,15 @@ if (process.env.NODE_ENV !== 'production') {
   middlewares.push(logger);
 }
 
+/* eslint-disable no-underscore-dangle */
+/* global window */
 export default function configureStore() {
   const store = createStore(
     rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(...middlewares),
   );
   const persistor = persistStore(store);
   return { persistor, store };
 }
+/* eslint-enable */

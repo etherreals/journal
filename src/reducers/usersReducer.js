@@ -19,10 +19,17 @@ const handleGetAllUsersFailure = (state, action) => ({
   error: action.error,
 });
 
+const handleSortUsers = (state, action) => ({
+  ...state,
+  users: action.payload.users,
+  isLoading: action.payload.isLoading,
+});
+
 const handlers = {
   [UsersActionTypes.GET_ALL_USERS_REQUEST]: handleGetAllUsersRequest,
   [UsersActionTypes.GET_ALL_USERS_SUCCESS]: handleGetAllUsersSuccess,
   [UsersActionTypes.GET_ALL_USERS_FAILURE]: handleGetAllUsersFailure,
+  [UsersActionTypes.SORT_USERS]: handleSortUsers,
 };
 
 function authReducer(state = {}, action) {

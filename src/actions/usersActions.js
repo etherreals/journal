@@ -1,15 +1,28 @@
-import { UsersActionTypes } from './types';
-import { firebaseDB } from '../store/firebase';
+import orderBy from 'lodash/orderBy';
+import {
+  UsersActionTypes,
+} from './types';
+import {
+  firebaseDB,
+} from '../store/firebase';
 
-const getAllUsersRequest = () => ({
+const getAllUsersRequestActionCreator = () => ({
   type: UsersActionTypes.GET_ALL_USERS_REQUEST,
   payload: {
     isLoading: true,
   },
 });
 
-const getAllUsersSuccess = users => ({
+const getAllUsersSuccessActionCreator = users => ({
   type: UsersActionTypes.GET_ALL_USERS_SUCCESS,
+  payload: {
+    users,
+    isLoading: false,
+  },
+});
+
+const sortUsersActionCreator = users => ({
+  type: UsersActionTypes.SORT_USERS,
   payload: {
     users,
     isLoading: false,
@@ -26,16 +39,26 @@ const getAllUsersSuccess = users => ({
 
 export function subscribeToGetAllPupilsListener() {
   return ((dispatch) => {
-    dispatch(getAllUsersRequest());
+    dispatch(getAllUsersRequestActionCreator());
     const unsubscribe = firebaseDB.collection('users').where('type', '==', 'pupil').onSnapshot((querySnapshot) => {
       const users = querySnapshot.docs.map((userData) => {
         const user = userData.data();
         user.id = userData.id;
         return user;
       });
-      dispatch(getAllUsersSuccess(users));
+      dispatch(getAllUsersSuccessActionCreator(users));
     });
     return unsubscribe;
+  });
+}
+
+export function sortUsers(users, orderingField, order) {
+  return ((dispatch) => {
+    const sortedUsers = orderBy(users, (user) => {
+      if (orderingField === 'grade') return user.grade.name;
+      return user[orderingField];
+    }, [order]);
+    dispatch(sortUsersActionCreator(sortedUsers));
   });
 }
 

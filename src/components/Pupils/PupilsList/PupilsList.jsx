@@ -63,33 +63,24 @@ class PupilsList extends Component {
   static propTypes = {
     // classes, pupils, isLoading
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    pupils: PropTypes.arrayOf(PropTypes.object).isRequired,
+    pupils: PropTypes.arrayOf(PropTypes.object),
     isLoading: PropTypes.bool.isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
   }
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      order: 'asc',
-      orderBy: 'calories',
-      selected: [],
-    };
+  static defaultProps = {
+    pupils: [],
+  }
+  componentDidMount() {
+    this.unsubscribe = this.props.actions.subscribeToGetAllPupilsListener();
   }
 
-  handleRequestSort = (event, property) => {
-    const orderBy = property;
-    let order = 'desc';
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
 
-    if (this.state.orderBy === property && this.state.order === 'desc') {
-      order = 'asc';
-    }
-
-    const data =
-      order === 'desc'
-        ? this.state.data.sort((a, b) => (b[orderBy] < a[orderBy] ? -1 : 1))
-        : this.state.data.sort((a, b) => (a[orderBy] < b[orderBy] ? -1 : 1));
-
-    this.setState({ data, order, orderBy });
+  handleRequestSort = (event, orderingField) => {
+    const { pupils } = this.props;
+    this.props.actions.sortUsers(pupils, orderingField, 'asc');
   };
 
   handleKeyDown = (event, id) => {
@@ -102,20 +93,11 @@ class PupilsList extends Component {
 
   render() {
     const { classes, pupils, isLoading } = this.props;
-    const {
-      order,
-      orderBy,
-      selected,
-    } = this.state;
-
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <PupilsListHeader
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
               onRequestSort={this.handleRequestSort}
             />
             <TableBody>
