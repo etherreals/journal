@@ -8,6 +8,7 @@ import Table, {
   TableBody,
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
+import moment from 'moment';
 import * as actionCreators from '../../../actions/usersActions';
 import PupilItem from '../PupilItem/PupilItem';
 import styles from './PupilsList.styles';
@@ -99,6 +100,8 @@ class PupilsList extends Component {
           <Table className={classes.table}>
             <PupilsListHeader
               onRequestSort={this.handleRequestSort}
+              order="desc"
+              orderBy="fullName"
             />
             <TableBody>
               {pupils.map(pupil => (
@@ -106,7 +109,7 @@ class PupilsList extends Component {
                   key={pupil.id}
                   id={pupil.id}
                   fullName={pupil.fullName}
-                  dateOfBirth={pupil.dateOfBirth.toLocaleString()}
+                  dateOfBirth={moment(pupil.dateOfBirth).format('MMMM Do YYYY')}
                   grade={pupil.grade}
                 />
               ))}

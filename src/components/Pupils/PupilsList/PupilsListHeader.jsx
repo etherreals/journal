@@ -21,6 +21,7 @@ class PupilsListHeader extends React.Component {
   static propTypes = {
     onRequestSort: PropTypes.func.isRequired,
     orderBy: PropTypes.string.isRequired,
+    order: PropTypes.string.isRequired,
   };
 
   createSortHandler = property => (event) => {
@@ -30,6 +31,7 @@ class PupilsListHeader extends React.Component {
   render() {
     const {
       orderBy,
+      order,
     } = this.props;
     return (
       <TableHead>
@@ -41,10 +43,12 @@ class PupilsListHeader extends React.Component {
             >
               <Tooltip
                 title="Sort"
+                placement="bottom-end"
                 enterDelay={300}
               >
                 <TableSortLabel
                   active={orderBy === column.id}
+                  direction={order}
                   onClick={this.createSortHandler(column.id)}
                 >
                   {column.label}
