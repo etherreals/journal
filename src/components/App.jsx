@@ -7,7 +7,7 @@ import Grid from 'material-ui/Grid';
 import MainNav from './Nav/MainNav';
 import TeachersBoard from './Teachers/TeachersBoard';
 import PupilsBoard from './Pupils/PupilsBoard';
-import ClassesBoard from './Classes/ClassesBoard';
+import ScheduleBoard from './Schedule/ScheduleBoard';
 import styles from './App.styles';
 
 const App = props => (
@@ -19,7 +19,7 @@ const App = props => (
       <Switch>
         <Route path="/teachers" component={TeachersBoard} />
         <Route path="/pupils" component={PupilsBoard} />
-        <Route path="/classes" component={ClassesBoard} />
+        <Route path="/schedule" component={ScheduleBoard} />
       </Switch>
     </Grid>
   </Grid>

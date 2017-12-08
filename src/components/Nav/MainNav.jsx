@@ -52,7 +52,7 @@ class MainNav extends Component {
             <ListItemIcon>
               <ViewComfy className={classes.icon} />
             </ListItemIcon>
-            <ListItemText inset primary="Classes" classes={{ text: classes.link }} />
+            <ListItemText inset primary="Schedule" classes={{ text: classes.link }} />
             {this.state.isClassesSubmenuOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse
@@ -62,13 +62,13 @@ class MainNav extends Component {
             unmountOnExit
           >
             <List disablePadding>
-              <ListItem component={Link} to="/classes" button className={classes.nested}>
+              <ListItem component={Link} to="/schedule" button className={classes.nested}>
                 <ListItemIcon>
                   <School className={classes.icon} />
                 </ListItemIcon>
                 <ListItemText inset primary="5A" classes={{ text: classes.link }} />
               </ListItem>
-              <ListItem component={Link} to="/classes" button className={classes.nested}>
+              <ListItem component={Link} to="/schedule" button className={classes.nested}>
                 <ListItemIcon>
                   <School className={classes.icon} />
                 </ListItemIcon>
