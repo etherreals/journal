@@ -21,11 +21,13 @@ const getAllUsersSuccessActionCreator = users => ({
   },
 });
 
-const sortUsersActionCreator = users => ({
+const sortUsersActionCreator = (users, orderingField, order) => ({
   type: UsersActionTypes.SORT_USERS,
   payload: {
     users,
     isLoading: false,
+    orderingField,
+    order,
   },
 });
 
@@ -58,7 +60,7 @@ export function sortUsers(users, orderingField, order) {
       if (orderingField === 'grade') return user.grade.name;
       return user[orderingField];
     }, [order]);
-    dispatch(sortUsersActionCreator(sortedUsers));
+    dispatch(sortUsersActionCreator(sortedUsers, orderingField, order));
   });
 }
 

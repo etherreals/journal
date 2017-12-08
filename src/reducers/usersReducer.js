@@ -22,6 +22,8 @@ const handleGetAllUsersFailure = (state, action) => ({
 const handleSortUsers = (state, action) => ({
   ...state,
   users: action.payload.users,
+  orderBy: action.payload.orderingField,
+  order: action.payload.order,
   isLoading: action.payload.isLoading,
 });
 

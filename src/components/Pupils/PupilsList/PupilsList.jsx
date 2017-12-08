@@ -15,61 +15,19 @@ import styles from './PupilsList.styles';
 import PupilsListHeader from './PupilsListHeader';
 import LoadingSpinner from '../../Common/LoadingSpinner';
 
-// class PupilsList extends Component {
-//   static propTypes = {
-//     actions: PropTypes.objectOf(PropTypes.func).isRequired,
-//     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-//     pupils: PropTypes.arrayOf(PropTypes.object),
-//     isLoading: PropTypes.bool.isRequired,
-//   };
-//   static defaultProps = {
-//     pupils: [],
-//   };
-//   componentDidMount() {
-//     this.unsubscribe = this.props.actions.subscribeToGetAllPupilsListener();
-//   }
-
-//   componentWillUnmount() {
-//     this.unsubscribe();
-//   }
-
-//   render() {
-//     const { classes, pupils, isLoading } = this.props;
-//     return (
-//       <Paper className={classes.root}>
-//         <Table className={classes.table}>
-//           <PupilsListHeader />
-//           <TableBody>
-//             {
-//               pupils.map(pupil =>
-//                 (
-//                   <PupilItem
-//                     key={pupil.id}
-//                     id={pupil.id}
-//                     fullName={pupil.fullName}
-//                     dateOfBirth={pupil.dateOfBirth.toLocaleString()}
-//                     grade={pupil.grade}
-//                   />
-//                 ))
-//             }
-//           </TableBody>
-//         </Table>
-//         {isLoading && <LoadingSpinner />}
-//       </Paper>
-//     );
-//   }
-// }
-
 class PupilsList extends Component {
   static propTypes = {
-    // classes, pupils, isLoading
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     pupils: PropTypes.arrayOf(PropTypes.object),
     isLoading: PropTypes.bool.isRequired,
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    order: PropTypes.string,
+    orderBy: PropTypes.string,
   }
   static defaultProps = {
     pupils: [],
+    order: '',
+    orderBy: '',
   }
   componentDidMount() {
     this.unsubscribe = this.props.actions.subscribeToGetAllPupilsListener();
@@ -80,8 +38,8 @@ class PupilsList extends Component {
   }
 
   handleRequestSort = (event, orderingField) => {
-    const { pupils } = this.props;
-    this.props.actions.sortUsers(pupils, orderingField, 'asc');
+    const { pupils, order } = this.props;
+    this.props.actions.sortUsers(pupils, orderingField, order === 'asc' ? 'desc' : 'asc');
   };
 
   handleKeyDown = (event, id) => {
@@ -93,15 +51,15 @@ class PupilsList extends Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, pupils, isLoading } = this.props;
+    const { classes, pupils, isLoading, order, orderBy } = this.props;
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <PupilsListHeader
               onRequestSort={this.handleRequestSort}
-              order="desc"
-              orderBy="fullName"
+              order={order}
+              orderBy={orderBy}
             />
             <TableBody>
               {pupils.map(pupil => (
@@ -125,6 +83,8 @@ class PupilsList extends Component {
 const mapStoreToProps = store => ({
   pupils: store.users.users,
   isLoading: store.users.isLoading,
+  order: store.users.order,
+  orderBy: store.users.orderBy,
 });
 
 const mapDispatchToProps = dispatch => ({
