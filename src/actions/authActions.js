@@ -1,6 +1,6 @@
 import { push } from 'react-router-redux';
 import { AuthActionTypes } from './types';
-import * as AuthentificationService from '../services/AuthentificationService';
+import * as AuthenticationService from '../services/AuthenticationService';
 
 const requestLogin = () => ({
   type: AuthActionTypes.LOGIN_REQUEST,
@@ -75,7 +75,7 @@ export function signInWithEmailAndPassword({ email, password }) {
   return (async (dispatch) => {
     dispatch(requestLogin());
     try {
-      const userData = await AuthentificationService.signInWithEmailAndPassword(email, password);
+      const userData = await AuthenticationService.signInWithEmailAndPassword(email, password);
       dispatch(receiveLoginSuccess(userData));
       dispatch(push('/'));
     } catch (error) {
@@ -88,7 +88,7 @@ export function signInWithGoogle() {
   return (async (dispatch) => {
     dispatch(requestLogin());
     try {
-      const userData = await AuthentificationService.signInWithGoogle();
+      const userData = await AuthenticationService.signInWithGoogle();
       dispatch(receiveLoginSuccess(userData));
       dispatch(push('/'));
     } catch (error) {
@@ -101,7 +101,7 @@ export function logout() {
   return (async (dispatch) => {
     dispatch(requestLogout());
     try {
-      await AuthentificationService.signOut();
+      await AuthenticationService.signOut();
       dispatch(receiveLogoutSuccess());
       dispatch(push('/login'));
     } catch (error) {
