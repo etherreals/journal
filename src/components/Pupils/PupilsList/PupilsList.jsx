@@ -51,7 +51,13 @@ class PupilsList extends Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, pupils, isLoading, order, orderBy } = this.props;
+    const {
+      classes,
+      pupils,
+      isLoading,
+      order,
+      orderBy,
+    } = this.props;
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
