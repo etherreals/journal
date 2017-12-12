@@ -18,5 +18,14 @@ LoadingSpinner.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
+const withLoadingIndicator = Component => (props) => {
+  return [
+    <Component {...props} />,
+    props.isLoading && <LoadingSpinner {...props} />,
+  ];
+};
+
+export { withLoadingIndicator };
+
 export default withStyles(styles)(LoadingSpinner);
 
