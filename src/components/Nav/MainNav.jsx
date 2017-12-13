@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { withState } from 'recompose';
 import PropTypes from 'prop-types';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -17,76 +18,70 @@ import styles from './MainNav.styles';
 import * as actionCreators from '../../actions/authActions';
 
 
-class MainNav extends Component {
-  static propTypes = {
-    classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    actions: PropTypes.objectOf(PropTypes.func).isRequired,
-  };
-  state = {
-    isClassesSubmenuOpen: true,
-  };
-
-  handleClassesSubmenuClick = () => {
-    this.setState({ isClassesSubmenuOpen: !this.state.isClassesSubmenuOpen });
-  }
-
-  render() {
-    const { classes, actions: { logout } } = this.props;
-    return (
-      <Grid className={classes.nav}>
-        <button onClick={logout}>logout</button>
-        <List className={classes.list}>
-          <ListItem component={Link} to="/pupils" button className={classes.li} >
+const MainNav = ({
+  isGradesSubmenuOpen, toggleGradesSubmenu, classes, actions: { logout },
+}) => (
+  <Grid className={classes.nav}>
+    <button onClick={logout}>logout</button>
+    <List className={classes.list}>
+      <ListItem component={Link} to="/pupils" button className={classes.li} >
+        <ListItemIcon>
+          <Face className={classes.icon} />
+        </ListItemIcon>
+        <ListItemText inset primary="Pupils" classes={{ text: classes.link }} />
+      </ListItem>
+      <ListItem component={Link} to="/teachers" button className={classes.link}>
+        <ListItemIcon>
+          <Group className={classes.icon} />
+        </ListItemIcon>
+        <ListItemText inset primary="Teachers" classes={{ text: classes.link }} />
+      </ListItem>
+      <ListItem button onClick={() => toggleGradesSubmenu(!isGradesSubmenuOpen)}>
+        <ListItemIcon>
+          <ViewComfy className={classes.icon} />
+        </ListItemIcon>
+        <ListItemText inset primary="Schedule" classes={{ text: classes.link }} />
+        {isGradesSubmenuOpen ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse
+        component="li"
+        in={isGradesSubmenuOpen}
+        transitionDuration="auto"
+        unmountOnExit
+      >
+        <List disablePadding>
+          <ListItem component={Link} to="/schedule" button className={classes.nested}>
             <ListItemIcon>
-              <Face className={classes.icon} />
+              <School className={classes.icon} />
             </ListItemIcon>
-            <ListItemText inset primary="Pupils" classes={{ text: classes.link }} />
+            <ListItemText inset primary="5A" classes={{ text: classes.link }} />
           </ListItem>
-          <ListItem component={Link} to="/teachers" button className={classes.link}>
+          <ListItem component={Link} to="/schedule" button className={classes.nested}>
             <ListItemIcon>
-              <Group className={classes.icon} />
+              <School className={classes.icon} />
             </ListItemIcon>
-            <ListItemText inset primary="Teachers" classes={{ text: classes.link }} />
+            <ListItemText inset primary="5B" classes={{ text: classes.link }} />
           </ListItem>
-          <ListItem button onClick={this.handleClassesSubmenuClick}>
-            <ListItemIcon>
-              <ViewComfy className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText inset primary="Schedule" classes={{ text: classes.link }} />
-            {this.state.isClassesSubmenuOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse
-            component="li"
-            in={this.state.isClassesSubmenuOpen}
-            transitionDuration="auto"
-            unmountOnExit
-          >
-            <List disablePadding>
-              <ListItem component={Link} to="/schedule" button className={classes.nested}>
-                <ListItemIcon>
-                  <School className={classes.icon} />
-                </ListItemIcon>
-                <ListItemText inset primary="5A" classes={{ text: classes.link }} />
-              </ListItem>
-              <ListItem component={Link} to="/schedule" button className={classes.nested}>
-                <ListItemIcon>
-                  <School className={classes.icon} />
-                </ListItemIcon>
-                <ListItemText inset primary="5B" classes={{ text: classes.link }} />
-              </ListItem>
-            </List>
-          </Collapse>
         </List>
-      </Grid >
-    );
-  }
-}
+      </Collapse>
+    </List>
+  </Grid >
+);
+
+
+MainNav.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  actions: PropTypes.objectOf(PropTypes.func).isRequired,
+  isGradesSubmenuOpen: PropTypes.bool.isRequired,
+  toggleGradesSubmenu: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch),
 });
 
 export default compose(
+  withState('isGradesSubmenuOpen', 'toggleGradesSubmenu', false),
   withStyles(styles),
   connect(null, mapDispatchToProps),
 )(MainNav);

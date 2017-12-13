@@ -13,7 +13,7 @@ import * as actionCreators from '../../../actions/usersActions';
 import PupilItem from '../PupilItem/PupilItem';
 import styles from './PupilsList.styles';
 import PupilsListHeader from './PupilsListHeader';
-import LoadingSpinner, { withLoadingIndicator } from '../../Common/LoadingSpinner';
+import LoadingSpinner from '../../Common/LoadingSpinner';
 
 class PupilsList extends Component {
   static propTypes = {
@@ -56,6 +56,7 @@ class PupilsList extends Component {
       pupils,
       order,
       orderBy,
+      isLoading,
     } = this.props;
     return (
       <Paper className={classes.root}>
@@ -79,6 +80,7 @@ class PupilsList extends Component {
             </TableBody>
           </Table>
         </div>
+        {isLoading && <LoadingSpinner text="Updating Pupils List" />}
       </Paper>
     );
   }
@@ -98,5 +100,4 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   withStyles(styles),
   connect(mapStoreToProps, mapDispatchToProps),
-  withLoadingIndicator,
 )(PupilsList);

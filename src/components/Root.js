@@ -23,7 +23,7 @@ class Root extends Component {
         <Route path="/login" component={Login} key="2" />,
       ];
     } else if (!this.props.isLoggedIn && this.props.isLoading) {
-      app = <LoadingSpinner />;
+      app = <LoadingSpinner text="Logging In" />;
     }
     return app;
   }

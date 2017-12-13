@@ -3,7 +3,14 @@ const styles = theme => ({
     margin: `0 ${theme.spacing.unit * 2}px`,
     position: 'absolute',
     left: '50%',
-    top: '50%',
+    top: '38vh',
+    transform: 'translate(-50%, -50%)',
+  },
+  progressText: {
+    margin: `0 ${theme.spacing.unit * 2}px`,
+    position: 'absolute',
+    left: '50%',
+    top: '42vh',
     transform: 'translate(-50%, -50%)',
   },
   progressWrapper: {
