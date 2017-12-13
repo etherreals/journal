@@ -10,12 +10,12 @@ import PupilsBoard from './Pupils/PupilsBoard';
 import ScheduleBoard from './Schedule/ScheduleBoard';
 import styles from './App.styles';
 
-const App = props => (
-  <Grid container spacing={0} className={props.classes.root}>
-    <Grid item lg={2}>
+const App = ({ classes }) => (
+  <Grid container spacing={0} className={classes.root}>
+    <Grid item md={2} className={classes.nav}>
       <MainNav />
     </Grid>
-    <Grid item lg={10}>
+    <Grid item md={10} className={classes.board}>
       <Switch>
         <Route path="/teachers" component={TeachersBoard} />
         <Route path="/pupils" component={PupilsBoard} />
