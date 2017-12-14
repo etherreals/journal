@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import keycode from 'keycode';
 import PropTypes from 'prop-types';
+import keycode from 'keycode';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withStyles } from 'material-ui/styles';

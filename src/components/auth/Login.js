@@ -9,7 +9,6 @@ import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
 import * as actionCreators from '../../actions/authActions';
 
-
 class Login extends Component {
   static propTypes = {
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
