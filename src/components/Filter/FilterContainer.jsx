@@ -18,6 +18,8 @@ const mockGrades = [
 class FilterContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    pupils: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   state = {
