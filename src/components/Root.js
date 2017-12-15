@@ -1,43 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
-import { Route, Redirect } from 'react-router-dom';
-import Login from './auth/Login';
-import App from './App';
-import LoadingSpinner from './Common/LoadingSpinner';
+import renderAppWithAuthAndLoading from './HOCs/renderWithAuthAndLoading';
 
-class Root extends Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-  };
-  renderAppWithAuthAndLoading() {
-    let app;
-    if (this.props.isLoggedIn && !this.props.isLoading) {
-      app = <Route path="/" component={App} />;
-    } else if (!this.props.isLoggedIn && !this.props.isLoading) {
-      app = [
-        <Redirect to="/login" key="1" />,
-        <Route path="/login" component={Login} key="2" />,
-      ];
-    } else if (!this.props.isLoggedIn && this.props.isLoading) {
-      app = <LoadingSpinner text="Logging In" />;
-    }
-    return app;
-  }
+const Root = props => (
+  <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
+    { props.renderAppWithAuthAndLoading() }
+  </Grid>
+);
 
-  render() {
-    return (
-      <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
-        {
-          this.renderAppWithAuthAndLoading()
-        }
-      </Grid>
-    );
-  }
-}
+Root.propTypes = {
+  renderAppWithAuthAndLoading: PropTypes.func.isRequired,
+};
 
 function mapStoreToProps(store) {
   return {
@@ -45,4 +22,10 @@ function mapStoreToProps(store) {
     isLoading: store.auth.isLoading,
   };
 }
-export default withRouter(connect(mapStoreToProps)(Root));
+
+export default compose(
+  withRouter,
+  connect(mapStoreToProps),
+  renderAppWithAuthAndLoading,
+)(Root);
+
