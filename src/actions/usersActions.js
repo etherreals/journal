@@ -31,6 +31,13 @@ const sortUsersActionCreator = (users, orderingField, order) => ({
   },
 });
 
+const filterUsersByGradeActionCreator = users => ({
+  type: UsersActionTypes.FILTER_USERS_BY_GRADE,
+  payload: {
+    users,
+  },
+});
+
 // const getAllUsersFailure = error => ({
 //   type: UsersActionTypes.GET_ALL_USERS_FAILURE,
 //   payload: {
@@ -64,6 +71,9 @@ export function sortUsers(users, orderingField, order) {
   });
 }
 
-export function somethign() {
-  return 'somethign';
+export function filterUsersByGrade(users, field) {
+  return ((dispatch) => {
+    const filteredUsers = users.filter(user => user.grade.name === field);
+    dispatch(filterUsersByGradeActionCreator(filteredUsers));
+  });
 }

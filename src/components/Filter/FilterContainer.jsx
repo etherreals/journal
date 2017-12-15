@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { withStyles } from 'material-ui';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
-import TextField from 'material-ui/TextField';
 import Input, { InputLabel } from 'material-ui/Input';
 import styles from './FilterContainer.styles';
+import * as actionCreators from '../../actions/usersActions';
 
 const mockGrades = [
   '5A',
   '5B',
-  '6C',
+  '6A',
 ];
 
 class FilterContainer extends Component {
   static propTypes = {
-    classes: PropTypes.objectOf(PropTypes.object).isRequired,
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
   };
 
   state = {
@@ -26,6 +28,9 @@ class FilterContainer extends Component {
 
   handleChange = type => (event) => {
     this.setState({ [type]: event.target.value });
+    if (type === 'gradeField') {
+      this.props.actions.filterUsersByGrade(this.props.pupils, event.target.value);
+    }
   }
 
   render() {
@@ -76,4 +81,15 @@ class FilterContainer extends Component {
   }
 }
 
-export default withStyles(styles)(FilterContainer);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch),
+});
+
+const mapStoreToProps = store => ({
+  pupils: store.users.users,
+});
+
+export default compose(
+  withStyles(styles),
+  connect(mapStoreToProps, mapDispatchToProps),
+)(FilterContainer);

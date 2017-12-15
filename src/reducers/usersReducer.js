@@ -27,11 +27,17 @@ const handleSortUsers = (state, action) => ({
   isLoading: action.payload.isLoading,
 });
 
+const handleFilterUsersByGrade = (state, action) => ({
+  ...state,
+  users: action.payload.users,
+});
+
 const handlers = {
   [UsersActionTypes.GET_ALL_USERS_REQUEST]: handleGetAllUsersRequest,
   [UsersActionTypes.GET_ALL_USERS_SUCCESS]: handleGetAllUsersSuccess,
   [UsersActionTypes.GET_ALL_USERS_FAILURE]: handleGetAllUsersFailure,
   [UsersActionTypes.SORT_USERS]: handleSortUsers,
+  [UsersActionTypes.FILTER_USERS_BY_GRADE]: handleFilterUsersByGrade,
 };
 
 function authReducer(state = {}, action) {
