@@ -24,7 +24,7 @@ const PupilsBoard = ({ classes }) => (
 );
 
 PupilsBoard.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(PupilsBoard);
