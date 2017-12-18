@@ -7,7 +7,7 @@ import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import styles from './FilterContainer.styles';
-import * as actionCreators from '../../actions/usersActions';
+import * as actionCreators from '../Users/store/usersActions';
 
 const mockGrades = [
   'All',

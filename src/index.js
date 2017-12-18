@@ -8,7 +8,7 @@ import configureReduxStore from './store/configureReduxStore';
 import Root from './components/Root';
 import history from './browserHistory';
 import { firebaseAuth } from './store/firebase';
-import { logout, setToLoggedInAndRedirectToHomepage } from './actions/authActions';
+import { logout, setToLoggedInAndRedirectToHomepage } from './components/auth/store/authActions';
 import LoadingSpinner from './components/Common/LoadingSpinner';
 
 const { store, persistor } = configureReduxStore();

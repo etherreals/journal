@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
-import * as actionCreators from '../../actions/authActions';
+import * as actionCreators from './store/authActions';
 
 class Login extends Component {
   static propTypes = {

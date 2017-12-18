@@ -1,6 +1,6 @@
 import {
   AuthActionTypes,
-} from '../actions/types';
+} from '../../../actions/types';
 
 const handleLoginRequestActionCreator = (state, action) => ({
   ...state,

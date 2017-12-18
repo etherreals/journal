@@ -12,7 +12,7 @@ const genderFilterSelector = store =>
 const getUsers = store =>
   store.users.users;
 
-const getVisiblePupils = createSelector(
+const getVisibleUsers = createSelector(
   [getUsers, gradeFilterSelector, namesFilterSelector, genderFilterSelector],
   (users, gradeFilter, fullNameFilter, genderFilter) => {
     const filteredUsers = users.filter((user) => {
@@ -28,4 +28,4 @@ const getVisiblePupils = createSelector(
   },
 );
 
-export default getVisiblePupils;
+export default getVisibleUsers;

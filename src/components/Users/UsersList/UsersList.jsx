@@ -9,12 +9,12 @@ import Table, {
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import moment from 'moment';
-import * as actionCreators from '../../../actions/usersActions';
+import * as actionCreators from '../store/usersActions';
 import UserItem from '../UserItem/UserItem';
 import styles from './UsersList.styles';
 import UsersListHeader from './UsersListHeader';
 import LoadingSpinner from '../../Common/LoadingSpinner';
-import getVisiblePupils from '../selectors';
+import getVisibleUsers from '../store/usersSelectors';
 
 class PupilsList extends Component {
   static propTypes = {
@@ -88,7 +88,7 @@ class PupilsList extends Component {
 }
 
 const mapStoreToProps = store => ({
-  pupils: getVisiblePupils(store),
+  pupils: getVisibleUsers(store),
   isLoading: store.users.isLoading,
   order: store.users.order,
   orderBy: store.users.orderBy,

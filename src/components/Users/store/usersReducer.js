@@ -1,6 +1,6 @@
 import {
   UsersActionTypes,
-} from '../actions/types';
+} from '../../../actions/types';
 
 const handleGetAllUsersRequest = (state, action) => ({
   ...state,

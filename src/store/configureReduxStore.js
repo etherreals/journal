@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
 import { persistStore } from 'redux-persist';
 
-import rootReducer from '../reducers';
+import rootReducer from './rootReducer';
 import history from '../browserHistory';
 
 const router = routerMiddleware(history);
