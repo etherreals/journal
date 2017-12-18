@@ -16,6 +16,9 @@ const columnData = [
   {
     id: 'grade', disablePadding: false, label: 'Grade',
   },
+  {
+    id: 'gender', disablePadding: false, label: 'Gender',
+  },
 ];
 class UsersListHeader extends React.Component {
   static propTypes = {

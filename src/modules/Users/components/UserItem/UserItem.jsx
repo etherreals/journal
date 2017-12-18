@@ -8,6 +8,7 @@ const UserItem = props => (
     <TableCell>{props.fullName}</TableCell>
     <TableCell>{props.dateOfBirth}</TableCell>
     <TableCell>{props.grade.name}</TableCell>
+    <TableCell>{props.gender}</TableCell>
   </TableRow>
 );
 
@@ -16,6 +17,7 @@ UserItem.propTypes = {
   fullName: PropTypes.string.isRequired,
   dateOfBirth: PropTypes.string.isRequired,
   grade: PropTypes.objectOf(PropTypes.string).isRequired,
+  gender: PropTypes.string.isRequired,
 };
 
 export default UserItem;

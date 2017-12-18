@@ -76,6 +76,7 @@ class PupilsList extends Component {
                   fullName={pupil.fullName}
                   dateOfBirth={moment(pupil.dateOfBirth).format('MMMM Do YYYY')}
                   grade={pupil.grade}
+                  gender={pupil.gender}
                 />
               ))}
             </TableBody>
