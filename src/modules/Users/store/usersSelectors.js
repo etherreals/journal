@@ -1,23 +1,12 @@
 import { createSelector } from 'reselect';
 import orderBy from 'lodash/orderBy';
 
-const gradeFilterSelector = store =>
-  store.users.gradeFilter;
-
-const namesFilterSelector = store =>
-  store.users.fullNameFilter;
-
-const genderFilterSelector = store =>
-  store.users.genderFilter;
-
-const orderBySelector = store =>
-  store.users.orderBy;
-
-const orderSelector = store =>
-  store.users.order;
-
-const getUsers = store =>
-  store.users.users;
+const gradeFilterSelector = store => store.users.gradeFilter;
+const namesFilterSelector = store => store.users.fullNameFilter;
+const genderFilterSelector = store => store.users.genderFilter;
+const orderBySelector = store => store.users.orderBy;
+const orderSelector = store => store.users.order;
+const getUsers = store => store.users.users;
 
 const getVisibleUsers = createSelector(
   [
