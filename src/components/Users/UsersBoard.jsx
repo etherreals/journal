@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui';
-import PupilsList from './PupilsList/PupilsList';
+import UsersList from './UsersList/UsersList';
 import FilterContainer from '../Filter/FilterContainer';
-import styles from './PupilsBoard.styles';
+import styles from './UsersBoard.styles';
 
 const PupilsBoard = ({ classes }) => (
   <Grid
@@ -18,7 +18,7 @@ const PupilsBoard = ({ classes }) => (
       <FilterContainer />
     </Grid>
     <Grid item md={10} className={classes.board}>
-      <PupilsList />
+      <UsersList />
     </Grid>
   </Grid>
 );

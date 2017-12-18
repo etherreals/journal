@@ -17,7 +17,7 @@ const columnData = [
     id: 'grade', disablePadding: false, label: 'Grade',
   },
 ];
-class PupilsListHeader extends React.Component {
+class UsersListHeader extends React.Component {
   static propTypes = {
     onRequestSort: PropTypes.func.isRequired,
     orderBy: PropTypes.string.isRequired,
@@ -62,4 +62,4 @@ class PupilsListHeader extends React.Component {
   }
 }
 
-export default PupilsListHeader;
+export default UsersListHeader;

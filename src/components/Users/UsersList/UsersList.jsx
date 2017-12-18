@@ -10,9 +10,9 @@ import Table, {
 import Paper from 'material-ui/Paper';
 import moment from 'moment';
 import * as actionCreators from '../../../actions/usersActions';
-import PupilItem from '../PupilItem/PupilItem';
-import styles from './PupilsList.styles';
-import PupilsListHeader from './PupilsListHeader';
+import UserItem from '../UserItem/UserItem';
+import styles from './UsersList.styles';
+import UsersListHeader from './UsersListHeader';
 import LoadingSpinner from '../../Common/LoadingSpinner';
 import getVisiblePupils from '../selectors';
 
@@ -63,14 +63,14 @@ class PupilsList extends Component {
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
-            <PupilsListHeader
+            <UsersListHeader
               onRequestSort={this.handleRequestSort}
               order={order}
               orderBy={orderBy}
             />
             <TableBody>
               {pupils.map(pupil => (
-                <PupilItem
+                <UserItem
                   key={pupil.id}
                   id={pupil.id}
                   fullName={pupil.fullName}

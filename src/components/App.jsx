@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import MainNav from './Nav/MainNav';
 import TeachersBoard from './Teachers/TeachersBoard';
-import PupilsBoard from './Pupils/PupilsBoard';
+import UsersBoard from './Users/UsersBoard';
 import ScheduleBoard from './Schedule/ScheduleBoard';
 import styles from './App.styles';
 
@@ -18,7 +18,7 @@ const App = ({ classes }) => (
     <Grid item md={10} className={classes.board}>
       <Switch>
         <Route path="/teachers" component={TeachersBoard} />
-        <Route path="/pupils" component={PupilsBoard} />
+        <Route path="/pupils" component={UsersBoard} />
         <Route path="/schedule" component={ScheduleBoard} />
       </Switch>
     </Grid>
