@@ -5,11 +5,11 @@ import { ConnectedRouter } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import registerServiceWorker from './registerServiceWorker';
 import configureReduxStore from './store/configureReduxStore';
-import Root from './components/Root';
+import Root from './modules/Root';
 import history from './browserHistory';
 import { firebaseAuth } from './store/firebase';
-import { logout, setToLoggedInAndRedirectToHomepage } from './components/auth/store/authActions';
-import LoadingSpinner from './components/Common/LoadingSpinner';
+import { logout, setToLoggedInAndRedirectToHomepage } from './modules/Auth/store/authActions';
+import LoadingSpinner from './modules/Common/LoadingSpinner';
 
 const { store, persistor } = configureReduxStore();
 

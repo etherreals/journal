@@ -1,6 +1,15 @@
-import {
-  UsersActionTypes,
-} from '../../../actions/types';
+import UsersActionTypes from './userActionTypes';
+
+const initialState = {
+  isLoading: false,
+  users: [],
+  error: null,
+  orderBy: '',
+  order: '',
+  gradeFilter: '',
+  fullNameFilter: '',
+  genderFilter: '',
+};
 
 const handleGetAllUsersRequest = (state, action) => ({
   ...state,
@@ -52,7 +61,7 @@ const handlers = {
   [UsersActionTypes.FILTER_USERS_BY_GENDER]: handleFilterUsersByGender,
 };
 
-function authReducer(state = {}, action) {
+function authReducer(state = initialState, action) {
   const handler = handlers[action.type];
   return handler ? handler(state, action) : state;
 }

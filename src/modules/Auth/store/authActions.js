@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import { AuthActionTypes } from '../../../actions/types';
+import AuthActionTypes from './authActionTypes';
 import * as AuthenticationService from '../../../services/AuthenticationService';
 
 const requestLogin = () => ({

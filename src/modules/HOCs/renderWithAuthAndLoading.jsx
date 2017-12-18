@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import App from '../App';
-import Login from '../auth/Login';
+import Login from '../Auth/Login';
 
 const Enhance = ComposedComponent => class C extends Component {
   static propTypes = {

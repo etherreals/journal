@@ -1,13 +1,3 @@
-const AuthActionTypes = {
-  LOGIN_REQUEST: 'LOGIN_REQUEST',
-  LOGIN_FAILURE: 'LOGIN_FAILURE',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  SET_TO_LOGGED_IN: 'SET_TO_LOGGED_IN',
-  LOGOUT_REQUEST: 'LOGOUT_REQUEST',
-  LOGOUT_FAILURE: 'LOGOUT_FAILURE',
-  LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
-};
-
 const UsersActionTypes = {
   GET_ALL_USERS_REQUEST: 'GET_ALL_USERS_REQUEST',
   GET_ALL_USERS_SUCCESS: 'GET_ALL_USERS_SUCCESS',
@@ -18,7 +8,5 @@ const UsersActionTypes = {
   FILTER_USERS_BY_GENDER: 'FILTER_USERS_BY_GENDER',
 };
 
-export {
-  AuthActionTypes,
-  UsersActionTypes,
-};
+export default UsersActionTypes;
+

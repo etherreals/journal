@@ -15,7 +15,7 @@ import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
-import * as actionCreators from '../auth/store/authActions';
+import * as actionCreators from '../Auth/store/authActions';
 
 
 const MainNav = ({

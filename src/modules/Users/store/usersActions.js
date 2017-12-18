@@ -1,10 +1,6 @@
 import orderBy from 'lodash/orderBy';
-import {
-  UsersActionTypes,
-} from '../../../actions/types';
-import {
-  firebaseDB,
-} from '../../../store/firebase';
+import UsersActionTypes from './userActionTypes';
+import { firebaseDB } from '../../../store/firebase';
 
 const getAllUsersRequestActionCreator = () => ({
   type: UsersActionTypes.GET_ALL_USERS_REQUEST,
