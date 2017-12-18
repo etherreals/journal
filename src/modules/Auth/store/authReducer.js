@@ -1,4 +1,6 @@
+/* eslint-disable */
 import AuthActionTypes from './authActionTypes';
+/* eslint-enable */
 
 const handleLoginRequestActionCreator = (state, action) => ({
   ...state,

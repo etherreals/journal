@@ -39,8 +39,8 @@ class PupilsList extends Component {
   }
 
   handleRequestSort = (event, orderingField) => {
-    const { pupils, order } = this.props;
-    this.props.actions.sortUsers(pupils, orderingField, order === 'asc' ? 'desc' : 'asc');
+    const { order } = this.props;
+    this.props.actions.sortUsers(orderingField, order === 'asc' ? 'desc' : 'asc');
   };
 
   handleKeyDown = (event, id) => {

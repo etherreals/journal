@@ -1,4 +1,3 @@
-import orderBy from 'lodash/orderBy';
 import UsersActionTypes from './userActionTypes';
 import { firebaseDB } from '../../../store/firebase';
 
@@ -17,11 +16,9 @@ const getAllUsersSuccessActionCreator = users => ({
   },
 });
 
-const sortUsersActionCreator = (users, orderingField, order) => ({
+export const sortUsers = (orderingField, order) => ({
   type: UsersActionTypes.SORT_USERS,
   payload: {
-    users,
-    isLoading: false,
     orderingField,
     order,
   },
@@ -64,12 +61,3 @@ export function subscribeToGetAllPupilsListener() {
   });
 }
 
-export function sortUsers(users, orderingField, order) {
-  return ((dispatch) => {
-    const sortedUsers = orderBy(users, (user) => {
-      if (orderingField === 'grade') return user.grade.name;
-      return user[orderingField];
-    }, [order]);
-    dispatch(sortUsersActionCreator(sortedUsers, orderingField, order));
-  });
-}
