@@ -9,4 +9,3 @@ const AuthActionTypes = {
 };
 
 export default AuthActionTypes;
-

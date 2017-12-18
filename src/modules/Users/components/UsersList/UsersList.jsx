@@ -9,12 +9,12 @@ import Table, {
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import moment from 'moment';
-import * as actionCreators from '../store/usersActions';
+import * as actionCreators from '../../store/usersActions';
 import UserItem from '../UserItem/UserItem';
 import styles from './UsersList.styles';
-import UsersListHeader from './UsersListHeader';
-import LoadingSpinner from '../../Common/LoadingSpinner';
-import getVisibleUsers from '../store/usersSelectors';
+import UsersListHeader from '../UsersListHeader/UsersListHeader';
+import LoadingSpinner from '../../../Common/LoadingSpinner';
+import getVisibleUsers from '../../store/usersSelectors';
 
 class PupilsList extends Component {
   static propTypes = {

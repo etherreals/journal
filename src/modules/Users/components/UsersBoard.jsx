@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui';
 import UsersList from './UsersList/UsersList';
-import FilterContainer from '../Filter/FilterContainer';
+import FilterContainer from '../../Filter/FilterContainer';
 import styles from './UsersBoard.styles';
 
-const PupilsBoard = ({ classes }) => (
+const UsersBoard = ({ classes }) => (
   <Grid
     container
     spacing={0}
@@ -23,8 +23,8 @@ const PupilsBoard = ({ classes }) => (
   </Grid>
 );
 
-PupilsBoard.propTypes = {
+UsersBoard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(PupilsBoard);
+export default withStyles(styles)(UsersBoard);

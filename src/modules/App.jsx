@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import MainNav from './Nav/MainNav';
 import TeachersBoard from './Teachers/TeachersBoard';
-import UsersBoard from './Users/UsersBoard';
+import UsersBoard from './Users/components/UsersBoard';
 import ScheduleBoard from './Schedule/ScheduleBoard';
 import styles from './App.styles';
 
