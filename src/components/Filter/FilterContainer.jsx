@@ -11,7 +11,6 @@ import * as actionCreators from '../../actions/usersActions';
 
 const mockGrades = [
   '5A',
-  '5B',
   '6A',
 ];
 
@@ -28,9 +27,13 @@ class FilterContainer extends Component {
   }
 
   handleChange = type => (event) => {
-    this.setState({ [type]: event.target.value });
+    const { value } = event.target;
+    this.setState({ [type]: value });
     if (type === 'gradesField') {
-      this.props.actions.filterUsersByGrade(event.target.value);
+      this.props.actions.filterUsersByGrade(value);
+    }
+    if (type === 'searchField') {
+      this.props.actions.filterUsersByFullName(event.target.value);
     }
   }
 
@@ -70,7 +73,7 @@ class FilterContainer extends Component {
             onChange={this.handleChange('gradesField')}
             input={<Input id="Grade" />}
           >
-            <option value="" />
+            <option value="All" />
             {
               mockGrades.map(grade => <option key={grade} value={grade}>{grade}</option>)
             }

@@ -38,6 +38,13 @@ export const filterUsersByGrade = gradesFilter => ({
   },
 });
 
+export const filterUsersByFullName = fullNamesFilter => ({
+  type: UsersActionTypes.FILTER_USERS_BY_FULL_NAME,
+  payload: {
+    fullNamesFilter,
+  },
+});
+
 export function subscribeToGetAllPupilsListener() {
   return ((dispatch) => {
     dispatch(getAllUsersRequestActionCreator());

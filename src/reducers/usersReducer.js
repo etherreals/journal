@@ -32,12 +32,18 @@ const handleFilterUsersByGrade = (state, action) => ({
   gradesFilter: action.payload.gradesFilter,
 });
 
+const handleFilterUsersByFullName = (state, action) => ({
+  ...state,
+  fullNamesFilter: action.payload.fullNamesFilter,
+});
+
 const handlers = {
   [UsersActionTypes.GET_ALL_USERS_REQUEST]: handleGetAllUsersRequest,
   [UsersActionTypes.GET_ALL_USERS_SUCCESS]: handleGetAllUsersSuccess,
   [UsersActionTypes.GET_ALL_USERS_FAILURE]: handleGetAllUsersFailure,
   [UsersActionTypes.SORT_USERS]: handleSortUsers,
   [UsersActionTypes.FILTER_USERS_BY_GRADE]: handleFilterUsersByGrade,
+  [UsersActionTypes.FILTER_USERS_BY_FULL_NAME]: handleFilterUsersByFullName,
 };
 
 function authReducer(state = {}, action) {
