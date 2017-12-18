@@ -19,25 +19,24 @@ class FilterContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
-    pupils: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   state = {
     searchField: '',
     genderField: '',
-    gradeField: '',
+    gradesField: '',
   }
 
   handleChange = type => (event) => {
     this.setState({ [type]: event.target.value });
-    if (type === 'gradeField') {
-      this.props.actions.filterUsersByGrade(this.props.pupils, event.target.value);
+    if (type === 'gradesField') {
+      this.props.actions.filterUsersByGrade(event.target.value);
     }
   }
 
   render() {
     const { classes } = this.props;
-    const { searchField, genderField, gradeField } = this.state;
+    const { searchField, genderField, gradesField } = this.state;
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
@@ -67,8 +66,8 @@ class FilterContainer extends Component {
           <InputLabel htmlFor="Grade">Grade</InputLabel>
           <Select
             native
-            value={gradeField}
-            onChange={this.handleChange('gradeField')}
+            value={gradesField}
+            onChange={this.handleChange('gradesField')}
             input={<Input id="Grade" />}
           >
             <option value="" />

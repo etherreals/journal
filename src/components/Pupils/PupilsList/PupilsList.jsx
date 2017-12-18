@@ -14,6 +14,7 @@ import PupilItem from '../PupilItem/PupilItem';
 import styles from './PupilsList.styles';
 import PupilsListHeader from './PupilsListHeader';
 import LoadingSpinner from '../../Common/LoadingSpinner';
+import getVisiblePupils from '../selectors';
 
 class PupilsList extends Component {
   static propTypes = {
@@ -87,7 +88,7 @@ class PupilsList extends Component {
 }
 
 const mapStoreToProps = store => ({
-  pupils: store.users.users,
+  pupils: getVisiblePupils(store),
   isLoading: store.users.isLoading,
   order: store.users.order,
   orderBy: store.users.orderBy,

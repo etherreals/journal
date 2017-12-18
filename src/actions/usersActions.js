@@ -31,20 +31,12 @@ const sortUsersActionCreator = (users, orderingField, order) => ({
   },
 });
 
-const filterUsersByGradeActionCreator = users => ({
+export const filterUsersByGrade = gradesFilter => ({
   type: UsersActionTypes.FILTER_USERS_BY_GRADE,
   payload: {
-    users,
+    gradesFilter,
   },
 });
-
-// const getAllUsersFailure = error => ({
-//   type: UsersActionTypes.GET_ALL_USERS_FAILURE,
-//   payload: {
-//     isLoading: false,
-//   },
-//   error,
-// });
 
 export function subscribeToGetAllPupilsListener() {
   return ((dispatch) => {
@@ -68,12 +60,5 @@ export function sortUsers(users, orderingField, order) {
       return user[orderingField];
     }, [order]);
     dispatch(sortUsersActionCreator(sortedUsers, orderingField, order));
-  });
-}
-
-export function filterUsersByGrade(users, field) {
-  return ((dispatch) => {
-    const filteredUsers = users.filter(user => user.grade.name === field);
-    dispatch(filterUsersByGradeActionCreator(filteredUsers));
   });
 }

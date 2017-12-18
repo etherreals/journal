@@ -29,7 +29,7 @@ const handleSortUsers = (state, action) => ({
 
 const handleFilterUsersByGrade = (state, action) => ({
   ...state,
-  users: action.payload.users,
+  gradesFilter: action.payload.gradesFilter,
 });
 
 const handlers = {
