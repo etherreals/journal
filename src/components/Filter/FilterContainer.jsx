@@ -10,6 +10,7 @@ import styles from './FilterContainer.styles';
 import * as actionCreators from '../../actions/usersActions';
 
 const mockGrades = [
+  'All',
   '5A',
   '6A',
 ];
@@ -23,23 +24,26 @@ class FilterContainer extends Component {
   state = {
     searchField: '',
     genderField: '',
-    gradesField: '',
+    gradeField: '',
   }
 
   handleChange = type => (event) => {
     const { value } = event.target;
     this.setState({ [type]: value });
-    if (type === 'gradesField') {
+    if (type === 'gradeField') {
       this.props.actions.filterUsersByGrade(value);
     }
     if (type === 'searchField') {
-      this.props.actions.filterUsersByFullName(event.target.value);
+      this.props.actions.filterUsersByFullName(value);
+    }
+    if (type === 'genderField') {
+      this.props.actions.filterUsersByGender(value);
     }
   }
 
   render() {
     const { classes } = this.props;
-    const { searchField, genderField, gradesField } = this.state;
+    const { searchField, genderField, gradeField } = this.state;
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
@@ -61,19 +65,20 @@ class FilterContainer extends Component {
             input={<Input id="Gender" />}
           >
             <option value="" />
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="All">All</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="Grade">Grade</InputLabel>
           <Select
             native
-            value={gradesField}
-            onChange={this.handleChange('gradesField')}
+            value={gradeField}
+            onChange={this.handleChange('gradeField')}
             input={<Input id="Grade" />}
           >
-            <option value="All" />
+            <option value="" />
             {
               mockGrades.map(grade => <option key={grade} value={grade}>{grade}</option>)
             }

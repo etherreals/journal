@@ -29,12 +29,17 @@ const handleSortUsers = (state, action) => ({
 
 const handleFilterUsersByGrade = (state, action) => ({
   ...state,
-  gradesFilter: action.payload.gradesFilter,
+  gradeFilter: action.payload.gradeFilter,
 });
 
 const handleFilterUsersByFullName = (state, action) => ({
   ...state,
-  fullNamesFilter: action.payload.fullNamesFilter,
+  fullNameFilter: action.payload.fullNameFilter,
+});
+
+const handleFilterUsersByGender = (state, action) => ({
+  ...state,
+  genderFilter: action.payload.genderFilter,
 });
 
 const handlers = {
@@ -44,6 +49,7 @@ const handlers = {
   [UsersActionTypes.SORT_USERS]: handleSortUsers,
   [UsersActionTypes.FILTER_USERS_BY_GRADE]: handleFilterUsersByGrade,
   [UsersActionTypes.FILTER_USERS_BY_FULL_NAME]: handleFilterUsersByFullName,
+  [UsersActionTypes.FILTER_USERS_BY_GENDER]: handleFilterUsersByGender,
 };
 
 function authReducer(state = {}, action) {

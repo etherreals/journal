@@ -1,30 +1,31 @@
 import { createSelector } from 'reselect';
 
-const gradesFilterSelector = store =>
-  store.users.gradesFilter;
+const gradeFilterSelector = store =>
+  store.users.gradeFilter;
 
 const namesFilterSelector = store =>
-  store.users.fullNamesFilter;
+  store.users.fullNameFilter;
+
+const genderFilterSelector = store =>
+  store.users.genderFilter;
 
 const getUsers = store =>
   store.users.users;
 
 const getVisiblePupils = createSelector(
-  [getUsers, gradesFilterSelector, namesFilterSelector],
-  (users, gradesFilter, fullNamesFilter) => {
+  [getUsers, gradeFilterSelector, namesFilterSelector, genderFilterSelector],
+  (users, gradeFilter, fullNameFilter, genderFilter) => {
     const filteredUsers = users.filter((user) => {
-      if (gradesFilter === 'All') {
-        return user.fullName.indexOf(fullNamesFilter) !== -1;
-      }
-      if (fullNamesFilter === '') {
-        return user.grade.name === gradesFilter;
-      }
-      return user.grade.name === gradesFilter &&
-      user.fullName.indexOf(fullNamesFilter) !== -1;
+      const grade = ['All', ''].includes(gradeFilter) ? user.grade.name : gradeFilter;
+      const fullName = fullNameFilter.toLowerCase();
+      const gender = ['All', ''].includes(genderFilter) ? user.gender : genderFilter;
+
+      return user.grade.name === grade &&
+        user.fullName.toLowerCase().indexOf(fullName) !== -1 &&
+        user.gender === gender;
     });
     return filteredUsers;
   },
 );
 
 export default getVisiblePupils;
-

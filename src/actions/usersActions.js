@@ -31,19 +31,27 @@ const sortUsersActionCreator = (users, orderingField, order) => ({
   },
 });
 
-export const filterUsersByGrade = gradesFilter => ({
+export const filterUsersByGrade = gradeFilter => ({
   type: UsersActionTypes.FILTER_USERS_BY_GRADE,
   payload: {
-    gradesFilter,
+    gradeFilter,
   },
 });
 
-export const filterUsersByFullName = fullNamesFilter => ({
+export const filterUsersByFullName = fullNameFilter => ({
   type: UsersActionTypes.FILTER_USERS_BY_FULL_NAME,
   payload: {
-    fullNamesFilter,
+    fullNameFilter,
   },
 });
+
+export const filterUsersByGender = genderFilter => ({
+  type: UsersActionTypes.FILTER_USERS_BY_GENDER,
+  payload: {
+    genderFilter,
+  },
+});
+
 
 export function subscribeToGetAllPupilsListener() {
   return ((dispatch) => {
