@@ -4,9 +4,11 @@ import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui';
 import { FormControl } from 'material-ui/Form';
+import Button from 'material-ui/Button';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
-import { Field, reduxForm } from 'redux-form'
+import Clear from 'material-ui-icons/Clear';
+import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';
 import * as actionCreators from '../Users/store/usersActions';
 
@@ -19,9 +21,45 @@ const mockGrades = [
 class FilterContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    reset: PropTypes.func.isRequired,
   };
 
-  handleChange = () => 'fdf'
+  resetForm = () => {
+    this.props.reset();
+  }
+
+  renderTextInput = ({
+    input,
+    label,
+    meta: { touched, error },
+    ...custom
+  }) => (
+    <Input
+      hintText={label}
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      {...custom}
+    />
+  )
+
+  renderSelectField = ({
+    input,
+    label,
+    meta: { touched, error },
+    children,
+    ...custom
+  }) => (
+    <Select
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      onChange={(event, index, value) => input.onChange(value)}
+      {...custom}
+    >
+      {children}
+    </Select>
+  )
 
   render() {
     const { classes } = this.props;
@@ -31,18 +69,17 @@ class FilterContainer extends Component {
           <InputLabel htmlFor="Search">Search</InputLabel>
           <Field
             id="Search"
-            component="input"
+            defaultValue=""
+            component={this.renderTextInput}
             placeholder="Search"
             name="searchField"
-            value="er"
           />
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="Gender">Gender</InputLabel>
           <Field
-            value=""
             name="genderField"
-            component="select"
+            component={this.renderSelectField}
           >
             <option value="" />
             <option value="All">All</option>
@@ -53,9 +90,8 @@ class FilterContainer extends Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="Grade">Grade</InputLabel>
           <Field
-            value=""
             name="gradeField"
-            component="select"
+            component={this.renderSelectField}
           >
             <option value="" />
             {
@@ -63,7 +99,12 @@ class FilterContainer extends Component {
             }
           </Field>
         </FormControl>
-
+        <FormControl>
+          <Button className={classes.button} raised dense onClick={this.resetForm}>
+            Clear form
+            <Clear className={classes.rightIcon} />
+          </Button>
+        </FormControl>
       </div>
     );
   }
