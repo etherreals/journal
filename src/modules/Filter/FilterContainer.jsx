@@ -6,6 +6,7 @@ import { withStyles } from 'material-ui';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
+import { Field, reduxForm } from 'redux-form'
 import styles from './FilterContainer.styles';
 import * as actionCreators from '../Users/store/usersActions';
 
@@ -18,71 +19,49 @@ const mockGrades = [
 class FilterContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    actions: PropTypes.objectOf(PropTypes.func).isRequired,
   };
 
-  state = {
-    searchField: '',
-    genderField: '',
-    gradeField: '',
-  }
-
-  handleChange = type => (event) => {
-    const { value } = event.target;
-    this.setState({ [type]: value });
-    if (type === 'gradeField') {
-      this.props.actions.filterUsersByGrade(value);
-    }
-    if (type === 'searchField') {
-      this.props.actions.filterUsersByFullName(value);
-    }
-    if (type === 'genderField') {
-      this.props.actions.filterUsersByGender(value);
-    }
-  }
+  handleChange = () => 'fdf'
 
   render() {
     const { classes } = this.props;
-    const { searchField, genderField, gradeField } = this.state;
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="Search">Search</InputLabel>
-          <Input
+          <Field
             id="Search"
+            component="input"
             placeholder="Search"
-            name="search"
-            value={searchField}
-            onChange={this.handleChange('searchField')}
+            name="searchField"
+            value="er"
           />
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="Gender">Gender</InputLabel>
-          <Select
-            native
-            value={genderField}
-            onChange={this.handleChange('genderField')}
-            input={<Input id="Gender" />}
+          <Field
+            value=""
+            name="genderField"
+            component="select"
           >
             <option value="" />
             <option value="All">All</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </Select>
+          </Field>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="Grade">Grade</InputLabel>
-          <Select
-            native
-            value={gradeField}
-            onChange={this.handleChange('gradeField')}
-            input={<Input id="Grade" />}
+          <Field
+            value=""
+            name="gradeField"
+            component="select"
           >
             <option value="" />
             {
               mockGrades.map(grade => <option key={grade} value={grade}>{grade}</option>)
             }
-          </Select>
+          </Field>
         </FormControl>
 
       </div>
@@ -101,4 +80,5 @@ const mapStoreToProps = store => ({
 export default compose(
   withStyles(styles),
   connect(mapStoreToProps, mapDispatchToProps),
+  reduxForm({ form: 'usersFilters' }),
 )(FilterContainer);

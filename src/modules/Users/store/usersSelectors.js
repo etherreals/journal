@@ -1,9 +1,18 @@
 import { createSelector } from 'reselect';
 import orderBy from 'lodash/orderBy';
+import { formValueSelector } from 'redux-form';
 
-const gradeFilterSelector = store => store.users.gradeFilter;
-const namesFilterSelector = store => store.users.fullNameFilter;
-const genderFilterSelector = store => store.users.genderFilter;
+const formSelector = formValueSelector('usersFilters');
+
+const gradeFilterSelector = store => (
+  formSelector(store, 'gradeField') ? formSelector(store, 'gradeField') : ''
+);
+const namesFilterSelector = store => (
+  formSelector(store, 'searchField') ? formSelector(store, 'searchField') : ''
+);
+const genderFilterSelector = store => (
+  formSelector(store, 'genderField') ? formSelector(store, 'genderField') : ''
+);
 const orderBySelector = store => store.users.orderBy;
 const orderSelector = store => store.users.order;
 const getUsers = store => store.users.users;
