@@ -17,7 +17,7 @@ const getGenderFilter = store => (
 export const getOrder = store => store.users.order;
 export const getOrderBy = store => store.users.orderBy;
 export const getUsers = store => store.users.users;
-export const getIsLoading = store => store.users.isLoading;
+export const isLoading = store => store.users.isLoading;
 export const getVisibleUsers = createSelector(
   [
     getUsers,

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
 import renderAppWithAuthAndLoading from './HOCs/renderWithAuthAndLoading';
-import { getIsLoggedIn, getIsLoading } from './Auth/store/authSelectors';
+import { isLoggedIn, isLoading } from './Auth/store/authSelectors';
 
 const Root = props => (
   <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
@@ -18,8 +18,8 @@ Root.propTypes = {
 };
 
 const mapStoreToProps = store => ({
-  isLoggedIn: getIsLoggedIn(store),
-  isLoading: getIsLoading(store),
+  isLoggedIn: isLoggedIn(store),
+  isLoading: isLoading(store),
 });
 
 export default compose(

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { Route, withRouter, Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { getIsLoggedIn } from '../Auth/store/authSelectors';
+import { isLoggedIn } from '../Auth/store/authSelectors';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -32,7 +32,7 @@ PrivateRoute.propTypes = {
 };
 
 const mapStoreToProps = store => ({
-  isLoggedIn: getIsLoggedIn(store),
+  isLoggedIn: isLoggedIn(store),
 });
 
 export default compose(
