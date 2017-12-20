@@ -8,6 +8,7 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
 import * as actionCreators from './store/authActions';
+import { getAuthError } from './store/authSelectors';
 
 class Login extends Component {
   static propTypes = {
@@ -90,7 +91,7 @@ class Login extends Component {
 }
 
 const mapStoreToProps = store => ({
-  authError: store.auth.error,
+  authError: getAuthError(store),
 });
 
 const mapDispatchToProps = dispatch => ({

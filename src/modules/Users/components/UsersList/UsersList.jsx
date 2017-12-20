@@ -14,7 +14,7 @@ import UserItem from '../UserItem/UserItem';
 import styles from './UsersList.styles';
 import UsersListHeader from '../UsersListHeader/UsersListHeader';
 import LoadingSpinner from '../../../Common/LoadingSpinner';
-import getVisibleUsers from '../../store/usersSelectors';
+import { getVisibleUsers, getOrder, getOrderBy } from '../../store/usersSelectors';
 
 class PupilsList extends Component {
   static propTypes = {
@@ -91,9 +91,12 @@ class PupilsList extends Component {
 const mapStoreToProps = store => ({
   pupils: getVisibleUsers(store),
   isLoading: store.users.isLoading,
-  order: store.users.order,
-  orderBy: store.users.orderBy,
+  order: getOrder(store),
+  orderBy: getOrderBy(store),
 });
+
+// order: store.users.order,
+// orderBy: store.users.orderBy,
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch),

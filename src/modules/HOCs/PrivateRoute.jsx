@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { Route, withRouter, Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import { getIsLoggedIn } from '../Auth/store/authSelectors';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -30,11 +31,9 @@ PrivateRoute.propTypes = {
   location: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
-function mapStoreToProps(store) {
-  return {
-    isLoggedIn: store.auth.isLoggedIn,
-  };
-}
+const mapStoreToProps = store => ({
+  isLoggedIn: getIsLoggedIn(store),
+});
 
 export default compose(
   withRouter,

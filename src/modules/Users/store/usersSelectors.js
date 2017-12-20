@@ -4,27 +4,28 @@ import { formValueSelector } from 'redux-form';
 
 const formSelector = formValueSelector('usersFilters');
 
-const gradeFilterSelector = store => (
+const getGradeFilter = store => (
   formSelector(store, 'gradeField') ? formSelector(store, 'gradeField') : ''
 );
-const namesFilterSelector = store => (
+const getNameFilter = store => (
   formSelector(store, 'searchField') ? formSelector(store, 'searchField') : ''
 );
-const genderFilterSelector = store => (
+const getGenderFilter = store => (
   formSelector(store, 'genderField') ? formSelector(store, 'genderField') : ''
 );
-const orderBySelector = store => store.users.orderBy;
-const orderSelector = store => store.users.order;
-const getUsers = store => store.users.users;
 
-const getVisibleUsers = createSelector(
+export const getOrder = store => store.users.order;
+export const getOrderBy = store => store.users.orderBy;
+export const getUsers = store => store.users.users;
+export const getIsLoading = store => store.users.isLoading;
+export const getVisibleUsers = createSelector(
   [
     getUsers,
-    gradeFilterSelector,
-    namesFilterSelector,
-    genderFilterSelector,
-    orderBySelector,
-    orderSelector,
+    getGradeFilter,
+    getNameFilter,
+    getGenderFilter,
+    getOrderBy,
+    getOrder,
   ],
   (
     users,
@@ -52,4 +53,3 @@ const getVisibleUsers = createSelector(
   },
 );
 
-export default getVisibleUsers;

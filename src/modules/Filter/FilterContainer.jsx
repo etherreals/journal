@@ -11,6 +11,7 @@ import Clear from 'material-ui-icons/Clear';
 import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';
 import * as actionCreators from '../Users/store/usersActions';
+import { getUsers } from '../Users/store/usersSelectors';
 
 const mockGrades = [
   'All',
@@ -115,7 +116,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStoreToProps = store => ({
-  pupils: store.users.users,
+  pupils: getUsers(store),
 });
 
 export default compose(
