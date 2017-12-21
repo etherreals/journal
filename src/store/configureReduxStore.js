@@ -21,12 +21,20 @@ if (process.env.NODE_ENV !== 'production') {
 /* eslint-disable no-underscore-dangle */
 /* global window */
 export default function configureStore() {
+  // singleton
+  if (configureStore.instance) {
+    return configureStore.instance;
+  }
   const store = createStore(
     rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(...middlewares),
   );
   const persistor = persistStore(store);
+  configureStore.instance = {
+    persistor,
+    store,
+  };
   return { persistor, store };
 }
 /* eslint-enable */

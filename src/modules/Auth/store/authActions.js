@@ -103,7 +103,7 @@ export function logout() {
     try {
       await AuthenticationService.signOut();
       dispatch(receiveLogoutSuccess());
-      dispatch(push('/login'));
+      // dispatch(push('/login'));
     } catch (error) {
       dispatch(receiveLogoutError(error));
     }

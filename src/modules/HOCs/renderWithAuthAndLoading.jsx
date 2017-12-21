@@ -25,10 +25,12 @@ const Enhance = ComposedComponent => class C extends Component {
 
   renderAppWithAuthAndLoading = () => {
     if (this.beforeLoggingState()) {
-      return [
-        <Redirect to="/login" key="1" />,
-        <Route path="/login" component={Login} key="2" />,
-      ];
+      return (
+        <div>
+          <Redirect to="/login" />
+          <Route path="/login" component={Login} />
+        </div>
+      );
     }
     if (this.loggingState()) {
       return <LoadingSpinner text="Logging In" />;

@@ -8,7 +8,7 @@ import renderAppWithAuthAndLoading from './HOCs/renderWithAuthAndLoading';
 import { isLoggedIn, isLoading } from './Auth/store/authSelectors';
 
 const Root = props => (
-  <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }}>
+  <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }} >
     { props.renderAppWithAuthAndLoading() }
   </Grid>
 );

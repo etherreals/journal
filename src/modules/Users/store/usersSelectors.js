@@ -19,14 +19,12 @@ export const getOrderBy = store => store.users.orderBy;
 export const getUsers = store => store.users.users;
 export const isLoading = store => store.users.isLoading;
 export const getVisibleUsers = createSelector(
-  [
-    getUsers,
-    getGradeFilter,
-    getNameFilter,
-    getGenderFilter,
-    getOrderBy,
-    getOrder,
-  ],
+  getUsers,
+  getGradeFilter,
+  getNameFilter,
+  getGenderFilter,
+  getOrderBy,
+  getOrder,
   (
     users,
     gradeFilter,

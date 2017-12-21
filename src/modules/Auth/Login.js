@@ -53,40 +53,42 @@ class Login extends Component {
   }
 
   render() {
-    return [
-      <Typography type="title" gutterBottom>
-        Login
-      </Typography>,
-      <Grid item>
-        <TextField
-          placeholder="email"
-          name="email"
-          value={this.state.email}
-          onChange={this.inputChangeHandler}
-        />
-      </Grid>,
-      <Grid item>
-        <TextField
-          placeholder="password"
-          name="password"
-          type="password"
-          value={this.state.password}
-          onChange={this.inputChangeHandler}
-        />
-      </Grid>,
-      <Grid item>
-        <Button raised color="accent" onClick={this.loginHandler}>
+    return (
+      <Grid container alignItems="center" justify="center" direction="column">
+        <Typography type="title" gutterBottom>
           Login
-        </Button>
-      </Grid>,
-      <Grid item>
-        <Button raised color="primary" onClick={this.googleLoginHandler}>
-          Sign in with Google
-          <Send />
-        </Button>
-      </Grid>,
-      this.renderAuthError(),
-    ];
+        </Typography>
+        <Grid item>
+          <TextField
+            placeholder="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.inputChangeHandler}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            placeholder="password"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.inputChangeHandler}
+          />
+        </Grid>
+        <Grid item>
+          <Button raised color="accent" onClick={this.loginHandler}>
+            Login
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button raised color="primary" onClick={this.googleLoginHandler}>
+            Sign in with Google
+            <Send />
+          </Button>
+        </Grid>
+        {this.renderAuthError()}
+      </Grid>
+    );
   }
 }
 
