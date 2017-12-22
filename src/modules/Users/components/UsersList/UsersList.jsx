@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators, compose } from 'redux';
 import { withStyles } from 'material-ui/styles';
 import Table, {
@@ -14,7 +15,7 @@ import UserItem from '../UserItem/UserItem';
 import styles from './UsersList.styles';
 import UsersListHeader from '../UsersListHeader/UsersListHeader';
 import LoadingSpinner from '../../../Common/LoadingSpinner';
-import { getVisibleUsers, getOrder, getOrderBy, isLoading } from '../../store/usersSelectors';
+import { getVisibleUsers, getOrder, getOrderBy, isLoading as isLoadingSelector } from '../../store/usersSelectors';
 
 class PupilsList extends Component {
   static propTypes = {
@@ -24,6 +25,7 @@ class PupilsList extends Component {
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
     order: PropTypes.string,
     orderBy: PropTypes.string,
+    history: PropTypes.objectOf(PropTypes.string).isRequired,
   }
   static defaultProps = {
     pupils: [],
@@ -48,6 +50,10 @@ class PupilsList extends Component {
       this.handleClick(event, id);
     }
   };
+
+  handleOnClick = id => () => {
+    this.props.history.push(`/pupils/${id}`);
+  }
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
@@ -77,6 +83,7 @@ class PupilsList extends Component {
                   dateOfBirth={moment(pupil.dateOfBirth).format('MMMM Do YYYY')}
                   grade={pupil.grade}
                   gender={pupil.gender}
+                  handleOnClick={this.handleOnClick}
                 />
               ))}
             </TableBody>
@@ -90,7 +97,7 @@ class PupilsList extends Component {
 
 const mapStoreToProps = store => ({
   pupils: getVisibleUsers(store),
-  isLoading: isLoading(store),
+  isLoading: isLoadingSelector(store),
   order: getOrder(store),
   orderBy: getOrderBy(store),
 });
@@ -101,5 +108,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   withStyles(styles),
+  withRouter,
   connect(mapStoreToProps, mapDispatchToProps),
 )(PupilsList);

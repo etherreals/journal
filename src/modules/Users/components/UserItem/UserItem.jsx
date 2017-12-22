@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui';
 import { TableCell, TableRow } from 'material-ui/Table';
+import styles from './UserItem.styles';
 
 const UserItem = props => (
-  <TableRow>
+  <TableRow
+    onClick={props.handleOnClick(props.id)}
+    className={props.classes.tr}
+  >
     <TableCell>{props.id}</TableCell>
     <TableCell>{props.fullName}</TableCell>
     <TableCell>{props.dateOfBirth}</TableCell>
@@ -18,6 +23,8 @@ UserItem.propTypes = {
   dateOfBirth: PropTypes.string.isRequired,
   grade: PropTypes.objectOf(PropTypes.string).isRequired,
   gender: PropTypes.string.isRequired,
+  handleOnClick: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default UserItem;
+export default withStyles(styles)(UserItem);
