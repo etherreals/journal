@@ -24,7 +24,8 @@ function* loginWithGoogle() {
   }
 }
 
-function* loginWithEmailAndPassword({ payload: { email, password } }) {
+function* loginWithEmailAndPassword(action) {
+  const { email, password } = action.payload.credentials;
   try {
     const userData = yield AuthenticationService.signInWithEmailAndPassword(email, password);
     yield put(loginSuccess(userData));

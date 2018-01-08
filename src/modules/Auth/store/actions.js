@@ -8,6 +8,20 @@ const AuthActionsTypes = {
   LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
 };
 
+export const googleLoginRequest = () => ({
+  type: AuthActionsTypes.GOOGLE_LOGIN_REQUEST,
+  payload: {
+    isLoading: true,
+  },
+});
+
+export const emailAndPasswordLoginRequest = () => ({
+  type: AuthActionsTypes.EMAIL_AND_PASSWORD_LOGIN_REQUEST,
+  payload: {
+    isLoading: true,
+  },
+});
+
 export const loginSuccess = user => ({
   type: AuthActionsTypes.LOGIN_SUCCESS,
   payload: {
@@ -32,6 +46,14 @@ export const logoutSuccess = () => ({
     isLoading: false,
     isLoggedIn: false,
     user: null,
+  },
+});
+
+export const loginWithEmailAndPasswordRequest = credentials => ({
+  type: AuthActionsTypes.EMAIL_AND_PASSWORD_LOGIN_REQUEST,
+  payload: {
+    isLoading: true,
+    credentials,
   },
 });
 

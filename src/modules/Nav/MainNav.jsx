@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from 'recompose';
+import { withState, withHandlers } from 'recompose';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -22,10 +22,10 @@ const MainNav = ({
   isGradesSubmenuOpen,
   toggleGradesSubmenu,
   classes,
-  dispatch,
+  onLogoutClickHandler,
 }) => (
   <Grid className={classes.nav}>
-    <button onClick={dispatch.bind(null, { type: AuthActionsTypes.LOGOUT_REQUEST })}>logout</button>
+    <button onClick={onLogoutClickHandler}>logout</button>
     <List className={classes.list}>
       <ListItem component={Link} to="/pupils" button className={classes.li} >
         <ListItemIcon>
@@ -76,11 +76,17 @@ MainNav.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   isGradesSubmenuOpen: PropTypes.bool.isRequired,
   toggleGradesSubmenu: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  onLogoutClickHandler: PropTypes.func.isRequired,
 };
 
 export default compose(
-  withState('isGradesSubmenuOpen', 'toggleGradesSubmenu', false),
   withStyles(styles),
   connect(null),
+  withState('isGradesSubmenuOpen', 'toggleGradesSubmenu', false),
+  withHandlers({
+    onLogoutClickHandler: props => (event) => {
+      event.preventDefault();
+      props.dispatch({ type: AuthActionsTypes.LOGOUT_REQUEST });
+    },
+  }),
 )(MainNav);

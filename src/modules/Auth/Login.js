@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
-import AuthActionsTypes from './store/actions';
+import { loginWithEmailAndPasswordRequest, googleLoginRequest } from './store/actions';
 import { getAuthError } from './store/selectors';
 
 class Login extends Component {
@@ -25,14 +25,11 @@ class Login extends Component {
   };
 
   loginHandler = () => {
-    this.props.dispatch({
-      type: AuthActionsTypes.EMAIL_AND_PASSWORD_LOGIN_REQUEST,
-      payload: this.state,
-    });
+    this.props.dispatch(loginWithEmailAndPasswordRequest(this.state));
   }
 
   googleLoginHandler = () => {
-    this.props.dispatch({ type: AuthActionsTypes.GOOGLE_LOGIN_REQUEST });
+    this.props.dispatch(googleLoginRequest());
   }
 
   inputChangeHandler = (event) => {
