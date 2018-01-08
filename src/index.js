@@ -10,7 +10,7 @@ import history from './browserHistory';
 // import { firebaseAuth } from './store/firebase';
 // import { logout, setToLoggedInAndRedirectToHomepage } from './modules/Auth/store/authActions';
 import LoadingSpinner from './modules/Common/LoadingSpinner';
-import AuthActionTypes from './modules/Auth/store/types';
+import AuthActionsTypes from './modules/Auth/store/actions';
 
 const { store, persistor } = configureReduxStore();
 
@@ -27,7 +27,7 @@ const MountPoint = () => (
   </Provider>
 );
 
-store.dispatch({ type: AuthActionTypes.AUTH_FLOW_START });
+store.dispatch({ type: AuthActionsTypes.AUTH_FLOW_START });
 
 // firebaseAuth.onAuthStateChanged((user) => {
 //   if (user) {

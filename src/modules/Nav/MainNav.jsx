@@ -15,7 +15,7 @@ import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
-import AuthActionTypes from '../Auth/store/types';
+import AuthActionsTypes from '../Auth/store/actions';
 
 
 const MainNav = ({
@@ -25,7 +25,7 @@ const MainNav = ({
   dispatch,
 }) => (
   <Grid className={classes.nav}>
-    <button onClick={dispatch.bind(null, { type: AuthActionTypes.LOGOUT_REQUEST })}>logout</button>
+    <button onClick={dispatch.bind(null, { type: AuthActionsTypes.LOGOUT_REQUEST })}>logout</button>
     <List className={classes.list}>
       <ListItem component={Link} to="/pupils" button className={classes.li} >
         <ListItemIcon>

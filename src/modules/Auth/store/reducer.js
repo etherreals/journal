@@ -1,4 +1,4 @@
-import AuthActionTypes from './types';
+import AuthActionsTypes from './actions';
 
 const handleLoginRequestActionCreator = (state, action) => ({
   ...state,
@@ -30,10 +30,10 @@ const handleLogoutSuccessActionCreator = (state, action) => ({
 
 
 const handlers = {
-  [AuthActionTypes.LOGIN_REQUEST]: handleLoginRequestActionCreator,
-  [AuthActionTypes.LOGIN_SUCCESS]: handleLoginSuccessActionCreator,
-  [AuthActionTypes.LOGIN_FAILURE]: handleLoginFailureActionCreator,
-  [AuthActionTypes.LOGOUT_SUCCESS]: handleLogoutSuccessActionCreator,
+  [AuthActionsTypes.LOGIN_REQUEST]: handleLoginRequestActionCreator,
+  [AuthActionsTypes.LOGIN_SUCCESS]: handleLoginSuccessActionCreator,
+  [AuthActionsTypes.LOGIN_FAILURE]: handleLoginFailureActionCreator,
+  [AuthActionsTypes.LOGOUT_SUCCESS]: handleLogoutSuccessActionCreator,
 };
 
 function authReducer(state = {}, action) {
