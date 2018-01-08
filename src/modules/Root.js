@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
 import renderAppWithAuthAndLoading from './HOCs/renderWithAuthAndLoading';
-import { isLoggedIn, isLoading } from './Auth/store/authSelectors';
+import { isLoggedIn, isLoading } from './Auth/store/selectors';
 
 const Root = props => (
   <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }} >

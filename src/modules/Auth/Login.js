@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
-import * as actionCreators from './store/authActions';
-import { getAuthError } from './store/authSelectors';
+import AuthActionTypes from './store/authActionTypes';
+import { getAuthError } from './store/selectors';
 
 class Login extends Component {
   static propTypes = {
-    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    dispatch: PropTypes.func.isRequired,
     authError: PropTypes.string,
   };
 
@@ -26,11 +25,14 @@ class Login extends Component {
   };
 
   loginHandler = () => {
-    this.props.actions.signInWithEmailAndPassword(this.state);
+    this.props.dispatch({
+      type: AuthActionTypes.EMAIL_AND_PASSWORD_LOGIN_REQUEST,
+      payload: this.state,
+    });
   }
 
   googleLoginHandler = () => {
-    this.props.actions.signInWithGoogle();
+    this.props.dispatch({ type: AuthActionTypes.GOOGLE_LOGIN_REQUEST });
   }
 
   inputChangeHandler = (event) => {
@@ -96,11 +98,4 @@ const mapStoreToProps = store => ({
   authError: getAuthError(store),
 });
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch),
-});
-
-export default connect(
-  mapStoreToProps,
-  mapDispatchToProps,
-)(Login);
+export default connect(mapStoreToProps)(Login);

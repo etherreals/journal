@@ -34,17 +34,17 @@ export const getVisibleUsers = createSelector(
     order,
   ) => {
     const filteredUsers = users.filter((user) => {
-      const grade = ['All', ''].includes(gradeFilter) ? user.grade.name : gradeFilter;
+      // const grade = ['All', ''].includes(gradeFilter) ? user.grade.name : gradeFilter;
       const fullName = fullNameFilter.toLowerCase();
       const gender = ['All', ''].includes(genderFilter) ? user.gender : genderFilter;
 
-      return user.grade.name === grade &&
+      return /* user.grade.name === grade && */
         user.fullName.toLowerCase().indexOf(fullName) !== -1 &&
         user.gender === gender;
     });
 
     const sortedUsers = orderBy(filteredUsers, (user) => {
-      if (orderByField === 'grade') return user.grade.name;
+      // if (orderByField === 'grade') return user.grade.name;
       return user[orderByField];
     }, [order]);
     return sortedUsers;

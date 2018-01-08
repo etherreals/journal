@@ -15,7 +15,7 @@ import UserItem from '../UserItem/UserItem';
 import styles from './UsersList.styles';
 import UsersListHeader from '../UsersListHeader/UsersListHeader';
 import LoadingSpinner from '../../../Common/LoadingSpinner';
-import { getVisibleUsers, getOrder, getOrderBy, isLoading as isLoadingSelector } from '../../store/usersSelectors';
+import { getVisibleUsers, getOrder, getOrderBy, isLoading as isLoadingSelector } from '../../store/selectors';
 
 class PupilsList extends Component {
   static propTypes = {

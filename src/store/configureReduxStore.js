@@ -1,22 +1,26 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
 import { persistStore } from 'redux-persist';
 
 import rootReducer from './rootReducer';
 import history from '../browserHistory';
+import sagas from '../modules/Auth/store/sagas';
 
-const router = routerMiddleware(history);
-const logger = createLogger();
+const sagaMiddleware = createSagaMiddleware();
+
 const middlewares = [
-  router,
+  routerMiddleware(history),
+  sagaMiddleware,
   thunk,
 ];
 
 if (process.env.NODE_ENV !== 'production') {
-  middlewares.push(logger);
+  middlewares.push(createLogger());
 }
+
 
 /* eslint-disable no-underscore-dangle */
 /* global window */
@@ -35,6 +39,7 @@ export default function configureStore() {
     persistor,
     store,
   };
+  sagaMiddleware.run(sagas);
   return { persistor, store };
 }
 /* eslint-enable */

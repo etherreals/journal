@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui';
 import UsersList from './UsersList/UsersList';
-import UserDetail from './UserDetail/UserDetail';
 import FilterContainer from '../../Filter/FilterContainer';
 import styles from './UsersBoard.styles';
 

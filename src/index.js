@@ -7,9 +7,10 @@ import registerServiceWorker from './registerServiceWorker';
 import configureReduxStore from './store/configureReduxStore';
 import Root from './modules/Root';
 import history from './browserHistory';
-import { firebaseAuth } from './store/firebase';
-import { logout, setToLoggedInAndRedirectToHomepage } from './modules/Auth/store/authActions';
+// import { firebaseAuth } from './store/firebase';
+// import { logout, setToLoggedInAndRedirectToHomepage } from './modules/Auth/store/authActions';
 import LoadingSpinner from './modules/Common/LoadingSpinner';
+import authActionTypes from './modules/Auth/store/authActionTypes';
 
 const { store, persistor } = configureReduxStore();
 
@@ -26,13 +27,14 @@ const MountPoint = () => (
   </Provider>
 );
 
-firebaseAuth.onAuthStateChanged((user) => {
-  if (user) {
-    store.dispatch(setToLoggedInAndRedirectToHomepage());
-  } else {
-    store.dispatch(logout());
-  }
-});
+store.dispatch({ type: authActionTypes.AUTH_FLOW_START });
+
+// firebaseAuth.onAuthStateChanged((user) => {
+//   if (user) {
+//   } else {
+//     store.dispatch(logout());
+//   }
+// });
 
 /* global document */
 ReactDOM.render(<MountPoint />, document.getElementById('mount-point'));

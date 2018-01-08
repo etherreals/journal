@@ -15,14 +15,14 @@ import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
-import * as actionCreators from '../Auth/store/authActions';
+import AuthActionTypes from '../Auth/store/authActionTypes';
 
 
 const MainNav = ({
-  isGradesSubmenuOpen, toggleGradesSubmenu, classes, actions: { logout },
+  isGradesSubmenuOpen, toggleGradesSubmenu, classes, dispatch,
 }) => (
   <Grid className={classes.nav}>
-    <button onClick={logout}>logout</button>
+    <button onClick={dispatch.bind(null, { type: AuthActionTypes.LOGOUT_REQUEST })}>logout</button>
     <List className={classes.list}>
       <ListItem component={Link} to="/pupils" button className={classes.li} >
         <ListItemIcon>
@@ -71,17 +71,12 @@ const MainNav = ({
 
 MainNav.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  actions: PropTypes.objectOf(PropTypes.func).isRequired,
   isGradesSubmenuOpen: PropTypes.bool.isRequired,
   toggleGradesSubmenu: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch),
-});
-
 export default compose(
   withState('isGradesSubmenuOpen', 'toggleGradesSubmenu', false),
   withStyles(styles),
-  connect(null, mapDispatchToProps),
+  connect(null),
 )(MainNav);
