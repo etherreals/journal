@@ -1,7 +1,7 @@
 import React from 'react';
 import { withState } from 'recompose';
 import PropTypes from 'prop-types';
-import { compose, bindActionCreators } from 'redux';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
@@ -15,11 +15,14 @@ import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
-import AuthActionTypes from '../Auth/store/authActionTypes';
+import AuthActionTypes from '../Auth/store/types';
 
 
 const MainNav = ({
-  isGradesSubmenuOpen, toggleGradesSubmenu, classes, dispatch,
+  isGradesSubmenuOpen,
+  toggleGradesSubmenu,
+  classes,
+  dispatch,
 }) => (
   <Grid className={classes.nav}>
     <button onClick={dispatch.bind(null, { type: AuthActionTypes.LOGOUT_REQUEST })}>logout</button>
@@ -73,6 +76,7 @@ MainNav.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   isGradesSubmenuOpen: PropTypes.bool.isRequired,
   toggleGradesSubmenu: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default compose(

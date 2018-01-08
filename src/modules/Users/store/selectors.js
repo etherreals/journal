@@ -37,9 +37,8 @@ export const getVisibleUsers = createSelector(
       // const grade = ['All', ''].includes(gradeFilter) ? user.grade.name : gradeFilter;
       const fullName = fullNameFilter.toLowerCase();
       const gender = ['All', ''].includes(genderFilter) ? user.gender : genderFilter;
-
-      return /* user.grade.name === grade && */
-        user.fullName.toLowerCase().indexOf(fullName) !== -1 &&
+      /* user.grade.name === grade && */
+      return user.fullName.toLowerCase().indexOf(fullName) !== -1 &&
         user.gender === gender;
     });
 

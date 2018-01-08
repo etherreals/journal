@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
-import AuthActionTypes from './store/authActionTypes';
+import AuthActionTypes from './store/types';
 import { getAuthError } from './store/selectors';
 
 class Login extends Component {
