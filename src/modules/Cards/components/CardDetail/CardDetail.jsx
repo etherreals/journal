@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const UserDetail = ({ match }) => (
+const CardDetail = ({ match }) => (
   <div>
     <h3>ID: {match.params.id}</h3>
   </div>
 );
 
-UserDetail.propTypes = {
+CardDetail.propTypes = {
   match: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 
-export default UserDetail;
+export default CardDetail;

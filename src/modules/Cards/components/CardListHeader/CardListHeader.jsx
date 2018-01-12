@@ -5,22 +5,16 @@ import Tooltip from 'material-ui/Tooltip';
 
 const columnData = [
   {
-    id: 'id', disablePadding: false, label: 'ID',
+    id: 'title', disablePadding: false, label: 'Title',
   },
   {
-    id: 'fullName', disablePadding: false, label: 'Full name',
+    id: 'description', disablePadding: false, label: 'Description',
   },
   {
-    id: 'dateOfBirth', disablePadding: false, label: 'Born',
-  },
-  {
-    id: 'grade', disablePadding: false, label: 'Grade',
-  },
-  {
-    id: 'gender', disablePadding: false, label: 'Gender',
+    id: 'difficulty', disablePadding: false, label: 'Difficulty',
   },
 ];
-class UsersListHeader extends React.Component {
+class CardListHeader extends React.Component {
   static propTypes = {
     onRequestSort: PropTypes.func.isRequired,
     orderBy: PropTypes.string.isRequired,
@@ -65,4 +59,4 @@ class UsersListHeader extends React.Component {
   }
 }
 
-export default UsersListHeader;
+export default CardListHeader;

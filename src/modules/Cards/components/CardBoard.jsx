@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui';
-import UsersList from './UsersList/UsersList';
+import CardList from './CardList/CardList';
 import FilterContainer from '../../Filter/FilterContainer';
-import styles from './UsersBoard.styles';
+import styles from './CardBoard.styles';
 
-const UsersBoard = ({ classes }) => (
+const CardBoard = ({ classes }) => (
   <Grid
     container
     spacing={0}
@@ -18,13 +18,13 @@ const UsersBoard = ({ classes }) => (
       <FilterContainer />
     </Grid>
     <Grid item md={10} className={classes.board}>
-      <UsersList />
+      <CardList />
     </Grid>
   </Grid>
 );
 
-UsersBoard.propTypes = {
+CardBoard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(UsersBoard);
+export default withStyles(styles)(CardBoard);

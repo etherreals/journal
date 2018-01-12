@@ -7,7 +7,7 @@ import { persistStore } from 'redux-persist';
 
 import rootReducer from './rootReducer';
 import history from '../browserHistory';
-import sagas from '../modules/Auth/store/sagas';
+import rootSaga from '../rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -39,7 +39,7 @@ export default function configureStore() {
     persistor,
     store,
   };
-  sagaMiddleware.run(sagas);
+  sagaMiddleware.run(rootSaga);
   return { persistor, store };
 }
 /* eslint-enable */

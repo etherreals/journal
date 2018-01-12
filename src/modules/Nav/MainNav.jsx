@@ -27,11 +27,11 @@ const MainNav = ({
   <Grid className={classes.nav}>
     <button onClick={onLogoutClickHandler}>logout</button>
     <List className={classes.list}>
-      <ListItem component={Link} to="/pupils" button className={classes.li} >
+      <ListItem component={Link} to="/cards" button className={classes.li} >
         <ListItemIcon>
           <Face className={classes.icon} />
         </ListItemIcon>
-        <ListItemText inset primary="Pupils" classes={{ text: classes.link }} />
+        <ListItemText inset primary="Cards" classes={{ text: classes.link }} />
       </ListItem>
       <ListItem component={Link} to="/teachers" button className={classes.link}>
         <ListItemIcon>

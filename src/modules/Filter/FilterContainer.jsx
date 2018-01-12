@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compose, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withStyles } from 'material-ui';
 import { FormControl } from 'material-ui/Form';
 import Button from 'material-ui/Button';
@@ -10,14 +9,12 @@ import Input, { InputLabel } from 'material-ui/Input';
 import Clear from 'material-ui-icons/Clear';
 import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';
-import * as actionCreators from '../Users/store/usersActions';
-import { getUsers } from '../Users/store/selectors';
 
-const mockGrades = [
-  'All',
-  '5A',
-  '6A',
-];
+// const mockGrades = [
+//   'All',
+//   '5A',
+//   '6A',
+// ];
 
 class FilterContainer extends Component {
   static propTypes = {
@@ -67,37 +64,26 @@ class FilterContainer extends Component {
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="Search">Search</InputLabel>
+          <InputLabel htmlFor="descriptionFilter">Search</InputLabel>
           <Field
             id="Search"
             defaultValue=""
             component={this.renderTextInput}
             placeholder="Search"
-            name="searchField"
+            name="descriptionFilter"
           />
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="Gender">Gender</InputLabel>
+          <InputLabel htmlFor="difficultyFilter">Difficulty</InputLabel>
           <Field
-            name="genderField"
+            name="difficultyFilter"
             component={this.renderSelectField}
           >
             <option value="" />
-            <option value="All">All</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </Field>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="Grade">Grade</InputLabel>
-          <Field
-            name="gradeField"
-            component={this.renderSelectField}
-          >
-            <option value="" />
-            {
-              mockGrades.map(grade => <option key={grade} value={grade}>{grade}</option>)
-            }
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
           </Field>
         </FormControl>
         <FormControl>
@@ -111,16 +97,8 @@ class FilterContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch),
-});
-
-const mapStoreToProps = store => ({
-  pupils: getUsers(store),
-});
 
 export default compose(
   withStyles(styles),
-  connect(mapStoreToProps, mapDispatchToProps),
-  reduxForm({ form: 'usersFilters' }),
+  reduxForm({ form: 'cardsFilters' }),
 )(FilterContainer);

@@ -3,13 +3,13 @@ import { persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { reducer as formReducer } from 'redux-form';
 import authReducer from '../modules/Auth/store/reducer';
-import usersReducer from '../modules/Users/store/usersReducer';
+import cardsReducer from '../modules/Cards/store/reducer';
 
 const config = { key: 'root', storage };
 const rootReducer = persistCombineReducers(config, {
   auth: authReducer,
   router: routerReducer,
-  users: usersReducer,
+  cards: cardsReducer,
   form: formReducer,
 });
 

@@ -3,46 +3,44 @@ import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators, compose } from 'redux';
+import { compose } from 'redux';
 import { withStyles } from 'material-ui/styles';
 import Table, {
   TableBody,
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import moment from 'moment';
-import * as actionCreators from '../../store/usersActions';
-import UserItem from '../UserItem/UserItem';
-import styles from './UsersList.styles';
-import UsersListHeader from '../UsersListHeader/UsersListHeader';
+import CardItem from '../CardItem/CardItem';
+import styles from './CardList.styles';
+import CardListHeader from '../CardListHeader/CardListHeader';
 import LoadingSpinner from '../../../Common/LoadingSpinner';
-import { getVisibleUsers, getOrder, getOrderBy, isLoading as isLoadingSelector } from '../../store/selectors';
+import { visibleCardsSelector, orderSelector, orderBySelector, isLoadingSelector } from '../../store/selectors';
+import { getAllCardsRequest, sortCards } from '../../store/actions';
 
-class PupilsList extends Component {
+class CardList extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    pupils: PropTypes.arrayOf(PropTypes.object),
+    cards: PropTypes.arrayOf(PropTypes.object),
     isLoading: PropTypes.bool.isRequired,
-    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    dispatch: PropTypes.func.isRequired,
     order: PropTypes.string,
     orderBy: PropTypes.string,
-    history: PropTypes.objectOf(PropTypes.string).isRequired,
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   }
   static defaultProps = {
-    pupils: [],
+    cards: [],
     order: '',
     orderBy: '',
   }
   componentDidMount() {
-    this.unsubscribe = this.props.actions.subscribeToGetAllPupilsListener();
+    this.props.dispatch(getAllCardsRequest());
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
   }
 
   handleRequestSort = (event, orderingField) => {
     const { order } = this.props;
-    this.props.actions.sortUsers(orderingField, order === 'asc' ? 'desc' : 'asc');
+    this.props.dispatch(sortCards(orderingField, order === 'asc' ? 'desc' : 'asc'));
   };
 
   handleKeyDown = (event, id) => {
@@ -52,7 +50,7 @@ class PupilsList extends Component {
   };
 
   handleOnClick = id => () => {
-    this.props.history.push(`/pupils/${id}`);
+    this.props.history.push(`/cards/${id}`);
   }
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
@@ -60,7 +58,7 @@ class PupilsList extends Component {
   render() {
     const {
       classes,
-      pupils,
+      cards,
       order,
       orderBy,
       isLoading,
@@ -69,20 +67,19 @@ class PupilsList extends Component {
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
-            <UsersListHeader
+            <CardListHeader
               onRequestSort={this.handleRequestSort}
               order={order}
               orderBy={orderBy}
             />
             <TableBody>
-              {pupils.map(pupil => (
-                <UserItem
-                  key={pupil.id}
-                  id={pupil.id}
-                  fullName={pupil.fullName}
-                  dateOfBirth={moment(pupil.dateOfBirth).format('MMMM Do YYYY')}
-                  grade={pupil.grade}
-                  gender={pupil.gender}
+              {cards.map(card => (
+                <CardItem
+                  key={card.id}
+                  id={card.id}
+                  title={card.title}
+                  description={card.description}
+                  difficulty={card.difficulty}
                   handleOnClick={this.handleOnClick}
                 />
               ))}
@@ -96,18 +93,14 @@ class PupilsList extends Component {
 }
 
 const mapStoreToProps = store => ({
-  pupils: getVisibleUsers(store),
+  cards: visibleCardsSelector(store),
   isLoading: isLoadingSelector(store),
-  order: getOrder(store),
-  orderBy: getOrderBy(store),
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch),
+  order: orderSelector(store),
+  orderBy: orderBySelector(store),
 });
 
 export default compose(
   withStyles(styles),
   withRouter,
-  connect(mapStoreToProps, mapDispatchToProps),
-)(PupilsList);
+  connect(mapStoreToProps),
+)(CardList);
