@@ -14,10 +14,7 @@ const styles = theme => ({
     height: 'calc(100% + 16px)',
     width: '100%',
   },
-  icon: {
-    fill: indigo[200],
-  },
-  link: {
+  root: {
     color: indigo[50],
   },
 });

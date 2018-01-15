@@ -24,26 +24,33 @@ const MainNav = ({
   classes,
   onLogoutClickHandler,
 }) => (
-  <Grid className={classes.nav}>
+  <Grid classes={classes.nav}>
     <button onClick={onLogoutClickHandler}>logout</button>
-    <List className={classes.list}>
-      <ListItem component={Link} to="/cards" button className={classes.li} >
-        <ListItemIcon>
-          <Grain className={classes.icon} />
+    <List classes={classes.list}>
+      <ListItem
+        component={Link}
+        to="/cards"
+        button
+        classes={{
+          root: classes.root,
+        }}
+      >
+        <ListItemIcon classes={{ root: classes.root }} >
+          <Grain />
         </ListItemIcon>
-        <ListItemText inset primary="Cards" classes={{ text: classes.link }} />
+        <ListItemText inset primary="Cards" classes={{ subheading: classes.root }} />
       </ListItem>
-      <ListItem component={Link} to="/teachers" button className={classes.link}>
-        <ListItemIcon>
-          <Group className={classes.icon} />
+      <ListItem component={Link} to="/teachers" button>
+        <ListItemIcon classes={{ root: classes.root }}>
+          <Group />
         </ListItemIcon>
-        <ListItemText inset primary="Teachers" classes={{ text: classes.link }} />
+        <ListItemText inset primary="Teachers" />
       </ListItem>
       <ListItem button onClick={() => toggleGradesSubmenu(!isGradesSubmenuOpen)}>
-        <ListItemIcon>
-          <ViewComfy className={classes.icon} />
+        <ListItemIcon classes={{ root: classes.root }}>
+          <ViewComfy />
         </ListItemIcon>
-        <ListItemText inset primary="Schedule" classes={{ text: classes.link }} />
+        <ListItemText inset primary="Schedule" />
         {isGradesSubmenuOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse
@@ -53,17 +60,17 @@ const MainNav = ({
         unmountOnExit
       >
         <List disablePadding>
-          <ListItem component={Link} to="/schedule" button className={classes.nested}>
-            <ListItemIcon>
-              <School className={classes.icon} />
+          <ListItem component={Link} to="/schedule" button classes={classes.nested}>
+            <ListItemIcon classes={{ root: classes.root }}>
+              <School />
             </ListItemIcon>
-            <ListItemText inset primary="5A" classes={{ text: classes.link }} />
+            <ListItemText inset primary="5A" />
           </ListItem>
-          <ListItem component={Link} to="/schedule" button className={classes.nested}>
-            <ListItemIcon>
-              <School className={classes.icon} />
+          <ListItem component={Link} to="/schedule" button classes={classes.nested}>
+            <ListItemIcon classes={{ root: classes.root }}>
+              <School />
             </ListItemIcon>
-            <ListItemText inset primary="5B" classes={{ text: classes.link }} />
+            <ListItemText inset primary="5B" />
           </ListItem>
         </List>
       </Collapse>

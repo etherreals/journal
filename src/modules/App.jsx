@@ -11,11 +11,15 @@ import ScheduleBoard from './Schedule/ScheduleBoard';
 import CardDetail from './Cards/components/CardDetail/CardDetail';
 import styles from './App.styles';
 
+import AddCard from './Cards/components/AddCard/AddCard';
+
+
 const App = ({ classes }) => (
   <Grid container spacing={0} className={classes.root}>
     <Grid item md={2} className={classes.nav}>
       <MainNav />
     </Grid>
+
     <Grid item md={10} className={classes.board}>
       <Switch>
         <Route path="/teachers" component={TeachersBoard} />
