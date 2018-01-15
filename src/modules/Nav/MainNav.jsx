@@ -8,14 +8,14 @@ import { withStyles } from 'material-ui/styles';
 import { Link } from 'react-router-dom';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
-import Face from 'material-ui-icons/Face';
+import Grain from 'material-ui-icons/Grain';
 import Group from 'material-ui-icons/Group';
 import ViewComfy from 'material-ui-icons/ViewComfy';
 import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
-import AuthActionsTypes from '../Auth/store/actions';
+import { logoutRequest } from '../Auth/store/actions';
 
 
 const MainNav = ({
@@ -29,7 +29,7 @@ const MainNav = ({
     <List className={classes.list}>
       <ListItem component={Link} to="/cards" button className={classes.li} >
         <ListItemIcon>
-          <Face className={classes.icon} />
+          <Grain className={classes.icon} />
         </ListItemIcon>
         <ListItemText inset primary="Cards" classes={{ text: classes.link }} />
       </ListItem>
@@ -86,7 +86,7 @@ export default compose(
   withHandlers({
     onLogoutClickHandler: props => (event) => {
       event.preventDefault();
-      props.dispatch({ type: AuthActionsTypes.LOGOUT_REQUEST });
+      props.dispatch(logoutRequest());
     },
   }),
 )(MainNav);

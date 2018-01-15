@@ -40,6 +40,10 @@ export const loginFailure = error => ({
   error,
 });
 
+export const logoutRequest = () => ({
+  type: AuthActionsTypes.LOGOUT_REQUEST,
+});
+
 export const logoutSuccess = () => ({
   type: AuthActionsTypes.LOGOUT_SUCCESS,
   payload: {

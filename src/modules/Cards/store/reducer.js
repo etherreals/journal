@@ -1,4 +1,4 @@
-import CardsActionTypes from './types';
+import CardsActionTypes from './actions';
 
 const initialState = {
   isLoading: false,
