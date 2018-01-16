@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { withStyles } from 'material-ui/styles';
-import { Button, Select, Input, FormControl } from 'material-ui';
+import { Button, Select, Input, FormControl, withStyles } from 'material-ui';
 import { InputLabel } from 'material-ui/Input';
 import Clear from 'material-ui-icons/Clear';
 import { Field, reduxForm } from 'redux-form';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withHandlers } from 'recompose';
-import { withStyles, Grid } from 'material-ui';
+import { Grid, withStyles } from 'material-ui';
 import CardList from './CardList/CardList';
 import FilterContainer from '../../Filter/FilterContainer';
 import styles from './CardBoard.styles';
