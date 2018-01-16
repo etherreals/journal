@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AddIcon from 'material-ui-icons/Add';
-import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
+import { Button, Tooltip } from 'material-ui';
 import styles from './AddCardButton.styles';
 
 const AddCardButton = ({ classes, toggleAddCardModal }) => (

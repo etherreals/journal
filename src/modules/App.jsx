@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import { Grid } from 'material-ui';
 import MainNav from './Nav/MainNav';
 import TeachersBoard from './Teachers/TeachersBoard';
 import CardBoard from './Cards/components/CardBoard';

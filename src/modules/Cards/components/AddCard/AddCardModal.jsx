@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
-import Typography from 'material-ui/Typography';
-import Modal from 'material-ui/Modal';
+import { withStyles } from 'material-ui/styles';
+import { Modal } from 'material-ui';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { closeAddCardModal } from '../../store/actions';
 import styles from './AddCardModal.styles';
 import { isAddCardModalShownSelector } from '../../store/selectors';
+import AddCardForm from './AddCardForm';
 
 const AddCardModal = ({ isOpen, handleClose, classes }) => (
   <div>
@@ -18,12 +18,7 @@ const AddCardModal = ({ isOpen, handleClose, classes }) => (
       onClose={handleClose}
     >
       <div className={classes.modal}>
-        <Typography type="title" id="modal-title">
-          Text in a modal
-        </Typography>
-        <Typography type="subheading" id="simple-modal-description">
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
+        <AddCardForm />
       </div>
     </Modal>
   </div>

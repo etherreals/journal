@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { withStyles } from 'material-ui/styles';
-import Table, {
-  TableBody,
-} from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
+import Table, { TableBody } from 'material-ui/Table';
+import { Paper } from 'material-ui';
 import CardItem from '../CardItem/CardItem';
 import styles from './CardList.styles';
 import CardListHeader from '../CardListHeader/CardListHeader';

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { withStyles } from 'material-ui';
-import { FormControl } from 'material-ui/Form';
-import Button from 'material-ui/Button';
-import Select from 'material-ui/Select';
-import Input, { InputLabel } from 'material-ui/Input';
+import { withStyles } from 'material-ui/styles';
+import { Button, Select, Input, FormControl } from 'material-ui';
+import { InputLabel } from 'material-ui/Input';
 import Clear from 'material-ui-icons/Clear';
 import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { Route, withRouter, Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { isLoggedIn } from '../Auth/store/authSelectors';
+import { isLoggedIn } from '../Auth/store/selectors';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
