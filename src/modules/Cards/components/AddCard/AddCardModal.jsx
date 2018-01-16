@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { closeAddCardModal } from '../../store/actions';
 import styles from './AddCardModal.styles';
+import { isAddCardModalShownSelector } from '../../store/selectors';
 
 const AddCardModal = ({ isOpen, handleClose, classes }) => (
   <div>
@@ -35,7 +36,7 @@ AddCardModal.propTypes = {
 };
 
 const mapStoreToProps = store => ({
-  isOpen: store.cards.isAddCardModalShown,
+  isOpen: isAddCardModalShownSelector(store),
 });
 
 const mapDispatchToProps = dispatch => ({

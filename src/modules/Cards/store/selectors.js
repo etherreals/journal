@@ -15,6 +15,7 @@ export const orderSelector = store => store.cards.order;
 export const orderBySelector = store => store.cards.orderBy;
 export const cardsSelector = store => store.cards.cards;
 export const isLoadingSelector = store => store.cards.isLoading;
+export const isAddCardModalShownSelector = store => store.cards.isAddCardModalShown;
 export const visibleCardsSelector = createSelector(
   cardsSelector,
   descriptionSelector,
