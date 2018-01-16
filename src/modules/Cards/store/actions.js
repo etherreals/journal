@@ -6,6 +6,7 @@ const CardsActionTypes = {
   ADD_CARD_REQUEST: 'ADD_CARD_REQUEST',
   ADD_CARD_SUCCESS: 'ADD_CARD_SUCCESS',
   ADD_CARD_FAILURE: 'ADD_CARD_FAILURE',
+  TOGGLE_ADD_CARD_MODAL: 'TOGGLE_ADD_CARD_MODAL',
 };
 
 export const getAllCardsRequest = () => ({
@@ -46,6 +47,20 @@ export const addCardFailure = error => ({
   type: CardsActionTypes.ADD_CARD_FAILURE,
   payload: {
     error,
+  },
+});
+
+export const openAddCardModal = () => ({
+  type: CardsActionTypes.TOGGLE_ADD_CARD_MODAL,
+  payload: {
+    isAddCardModalShown: true,
+  },
+});
+
+export const closeAddCardModal = () => ({
+  type: CardsActionTypes.TOGGLE_ADD_CARD_MODAL,
+  payload: {
+    isAddCardModalShown: false,
   },
 });
 

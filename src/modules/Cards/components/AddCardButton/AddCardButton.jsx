@@ -6,13 +6,13 @@ import Button from 'material-ui/Button';
 import Tooltip from 'material-ui/Tooltip';
 import styles from './AddCardButton.styles';
 
-const AddCardButton = ({ classes, addCardHandler }) => (
+const AddCardButton = ({ classes, toggleAddCardModal }) => (
   <Tooltip title="Add new card">
     <Button
       fab
       className={classes.absolute}
       color="primary"
-      onClick={addCardHandler}
+      onClick={toggleAddCardModal}
     >
       <AddIcon />
     </Button>
@@ -21,7 +21,7 @@ const AddCardButton = ({ classes, addCardHandler }) => (
 
 AddCardButton.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  addCardHandler: PropTypes.func.isRequired,
+  toggleAddCardModal: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AddCardButton);

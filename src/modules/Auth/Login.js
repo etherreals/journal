@@ -61,6 +61,7 @@ class Login extends Component {
           <TextField
             placeholder="email"
             name="email"
+            type="email"
             value={this.state.email}
             onChange={this.inputChangeHandler}
           />

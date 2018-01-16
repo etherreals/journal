@@ -24,34 +24,35 @@ const MainNav = ({
   classes,
   onLogoutClickHandler,
 }) => (
-  <Grid classes={classes.nav}>
+  <Grid>
     <button onClick={onLogoutClickHandler}>logout</button>
-    <List classes={classes.list}>
+    <List>
       <ListItem
         component={Link}
         to="/cards"
         button
-        classes={{
-          root: classes.root,
-        }}
       >
-        <ListItemIcon classes={{ root: classes.root }} >
+        <ListItemIcon className={classes.icon}>
           <Grain />
         </ListItemIcon>
-        <ListItemText inset primary="Cards" classes={{ subheading: classes.root }} />
+        <ListItemText inset primary="Cards" />
       </ListItem>
       <ListItem component={Link} to="/teachers" button>
-        <ListItemIcon classes={{ root: classes.root }}>
+        <ListItemIcon className={classes.icon}>
           <Group />
         </ListItemIcon>
         <ListItemText inset primary="Teachers" />
       </ListItem>
       <ListItem button onClick={() => toggleGradesSubmenu(!isGradesSubmenuOpen)}>
-        <ListItemIcon classes={{ root: classes.root }}>
+        <ListItemIcon className={classes.icon}>
           <ViewComfy />
         </ListItemIcon>
         <ListItemText inset primary="Schedule" />
-        {isGradesSubmenuOpen ? <ExpandLess /> : <ExpandMore />}
+        {
+          isGradesSubmenuOpen ?
+            <ExpandLess className={classes.icon} /> :
+            <ExpandMore className={classes.icon} />
+        }
       </ListItem>
       <Collapse
         component="li"
@@ -60,14 +61,14 @@ const MainNav = ({
         unmountOnExit
       >
         <List disablePadding>
-          <ListItem component={Link} to="/schedule" button classes={classes.nested}>
-            <ListItemIcon classes={{ root: classes.root }}>
+          <ListItem component={Link} to="/schedule" button className={classes.nested}>
+            <ListItemIcon className={classes.icon}>
               <School />
             </ListItemIcon>
             <ListItemText inset primary="5A" />
           </ListItem>
-          <ListItem component={Link} to="/schedule" button classes={classes.nested}>
-            <ListItemIcon classes={{ root: classes.root }}>
+          <ListItem component={Link} to="/schedule" button className={classes.nested}>
+            <ListItemIcon className={classes.icon}>
               <School />
             </ListItemIcon>
             <ListItemText inset primary="5B" />

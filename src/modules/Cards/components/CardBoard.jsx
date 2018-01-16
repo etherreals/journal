@@ -9,9 +9,10 @@ import CardList from './CardList/CardList';
 import FilterContainer from '../../Filter/FilterContainer';
 import styles from './CardBoard.styles';
 import AddCardButton from './AddCardButton/AddCardButton';
-import { addCardRequest } from '../store/actions';
+import { openAddCardModal } from '../store/actions';
+import AddCardModal from './AddCard/AddCardModal';
 
-const CardBoard = ({ classes, addCard }) => (
+const CardBoard = ({ classes, toggleAddCardModal }) => (
   <Grid
     container
     spacing={0}
@@ -25,27 +26,22 @@ const CardBoard = ({ classes, addCard }) => (
     <Grid item md={10} className={classes.board}>
       <CardList />
     </Grid>
-    <AddCardButton addCardHandler={addCard} />
+    <AddCardModal />
+    <AddCardButton toggleAddCardModal={toggleAddCardModal} />
   </Grid>
 );
 
 CardBoard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  addCard: PropTypes.func.isRequired,
+  toggleAddCardModal: PropTypes.func.isRequired,
 };
 
 export default compose(
   connect(null),
   withHandlers({
-    addCard: props => (event) => {
+    toggleAddCardModal: props => (event) => {
       event.preventDefault();
-      props.dispatch(addCardRequest({
-        title: 'Do it again',
-        description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni',
-        difficulty: 100,
-        done: false,
-        categories: ['1', '3'],
-      }));
+      props.dispatch(openAddCardModal());
     },
   }),
   withStyles(styles),

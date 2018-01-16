@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   orderBy: '',
   order: '',
+  isAddCardModalShown: false,
 };
 
 const handleGetAllCardsRequest = (state, action) => ({
@@ -31,11 +32,17 @@ const handleSortCards = (state, action) => ({
   order: action.payload.order,
 });
 
+const handleToggleAddCardModal = (state, action) => ({
+  ...state,
+  isAddCardModalShown: action.payload.isAddCardModalShown,
+});
+
 const handlers = {
   [CardsActionTypes.GET_ALL_CARDS_REQUEST]: handleGetAllCardsRequest,
   [CardsActionTypes.GET_ALL_CARDS_SUCCESS]: handleGetAllCardsSuccess,
   [CardsActionTypes.GET_ALL_CARDS_FAILURE]: handleGetAllCardsFailure,
   [CardsActionTypes.SORT_CARDS]: handleSortCards,
+  [CardsActionTypes.TOGGLE_ADD_CARD_MODAL]: handleToggleAddCardModal,
 };
 
 function authReducer(state = initialState, action) {

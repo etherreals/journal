@@ -6,14 +6,14 @@ import { CircularProgress } from 'material-ui/Progress';
 import { purple } from 'material-ui/colors';
 import styles from './LoadingSpinner.styles';
 
-const LoadingSpinner = props => (
-  <div className={props.classes.progressWrapper}>
+const LoadingSpinner = ({ classes, text }) => (
+  <div className={classes.progressWrapper}>
     <CircularProgress
-      className={props.classes.progress}
+      className={classes.progress}
       style={{ color: purple[500] }}
     />
-    <Typography type="body2" gutterBottom align="center" className={props.classes.progressText}>
-      {props.text}
+    <Typography type="body2" gutterBottom align="center" className={classes.progressText}>
+      {text}
     </Typography>
   </div>
 );

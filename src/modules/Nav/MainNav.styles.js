@@ -1,20 +1,10 @@
 import { indigo } from 'material-ui/colors';
 
 const styles = theme => ({
-  list: {
-    width: '100%',
-    maxWidth: 360,
-    fill: indigo[100],
-  },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
-  nav: {
-    background: indigo[500],
-    height: 'calc(100% + 16px)',
-    width: '100%',
-  },
-  root: {
+  icon: {
     color: indigo[50],
   },
 });
