@@ -1,7 +1,13 @@
 import { firebaseDB } from '../store/firebase';
 
+/* eslint no-param-reassign: "error" */
+const addDefaultPropsToCard = card => ({
+  ...card,
+  done: false,
+});
+
 export function addCard(card) {
-  return firebaseDB.collection('cards').add(card).then(response => response.get());
+  return firebaseDB.collection('cards').add(addDefaultPropsToCard(card)).then(response => response.get());
 }
 
 export function updateCard() {
