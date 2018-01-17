@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, TextField, Grid, Typography } from 'material-ui';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
 import Send from 'material-ui-icons/Send';
 import { loginWithEmailAndPasswordRequest, googleLoginRequest } from './store/actions';
 import { getAuthError } from './store/selectors';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
+import { withStyles } from 'material-ui/styles';
 import { TableCell, TableRow } from 'material-ui/Table';
 import styles from './CardItem.styles';
 

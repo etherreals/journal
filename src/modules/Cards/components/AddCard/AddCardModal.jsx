@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, withStyles } from 'material-ui';
+import { withStyles } from 'material-ui/styles';
+import Modal from 'material-ui/Modal';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { closeAddCardModal } from '../../store/actions';

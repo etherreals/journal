@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Typography } from 'material-ui';
+import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
 import { purple } from 'material-ui/colors';
 import styles from './LoadingSpinner.styles';
