@@ -36,20 +36,21 @@ class AddCardForm extends Component {
     },
   }
 
-  inputChangeHandler = (event, checked) => {
-    const { name, value, type } = event.target;
-    if (type === 'checkbox') {
-      this.setState(() => ({
-        categories: {
-          ...this.state.categories,
-          [name]: checked,
-        },
-      }));
-    } else {
-      this.setState(() => ({
-        [name]: value,
-      }));
-    }
+  inputChangeHandler = (event) => {
+    const { name, value } = event.target;
+    this.setState(() => ({
+      [name]: value,
+    }));
+  }
+
+  selectChangeHandler = (event, checked) => {
+    const { name } = event.target;
+    this.setState(() => ({
+      categories: {
+        ...this.state.categories,
+        [name]: checked,
+      },
+    }));
   }
 
   isValid = () => {
@@ -117,7 +118,7 @@ class AddCardForm extends Component {
                   <Checkbox
                     checked={this.state.categories.category1}
                     name="category1"
-                    onChange={this.inputChangeHandler}
+                    onChange={this.selectChangeHandler}
                     value={this.state.categories.category1}
                   />
                 }
@@ -128,7 +129,7 @@ class AddCardForm extends Component {
                   <Checkbox
                     checked={this.state.categories.category2}
                     name="category2"
-                    onChange={this.inputChangeHandler}
+                    onChange={this.selectChangeHandler}
                     value={this.state.categories.category2}
                   />
                 }
@@ -139,7 +140,7 @@ class AddCardForm extends Component {
                   <Checkbox
                     checked={this.state.categories.category3}
                     name="category3"
-                    onChange={this.inputChangeHandler}
+                    onChange={this.selectChangeHandler}
                     value={this.state.categories.category3}
                   />
                 }
@@ -150,7 +151,7 @@ class AddCardForm extends Component {
                   <Checkbox
                     checked={this.state.categories.category4}
                     name="category4"
-                    onChange={this.inputChangeHandler}
+                    onChange={this.selectChangeHandler}
                     value={this.state.categories.category4}
                   />
                 }

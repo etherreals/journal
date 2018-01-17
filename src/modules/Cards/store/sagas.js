@@ -1,5 +1,5 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
-import CardsActionTypes, { getAllCardsSuccess, addCardSuccess, addCardFailure } from './actions';
+import CardsActionTypes, { getAllCardsSuccess, addCardSuccess, addCardFailure, closeAddCardModal } from './actions';
 import { firebaseDB } from '../../../store/firebase';
 import * as CardService from '../../../services/CardService';
 
@@ -16,6 +16,7 @@ function* getCards() {
 
 function* addCard(action) {
   try {
+    yield put(closeAddCardModal());
     yield call(CardService.addCard, action.payload.card);
     yield put(addCardSuccess());
   } catch (error) {
