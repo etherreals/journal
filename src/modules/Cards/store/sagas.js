@@ -1,4 +1,4 @@
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { put, takeEvery, call, all } from 'redux-saga/effects';
 import CardsActionTypes, { getAllCardsSuccess, addCardSuccess, addCardFailure, closeAddCardModal } from './actions';
 import { openInfoTipModal } from '../../InfoTips/store/actions';
 import { firebaseDB } from '../../../store/firebase';
@@ -7,11 +7,11 @@ import * as CardService from '../../../services/CardService';
 
 function* getCards() {
   const querySnapshot = yield firebaseDB.collection('cards').get();
-  const cards = yield querySnapshot.docs.map((cardData) => {
+  const cards = yield all(querySnapshot.docs.map((cardData) => {
     const card = cardData.data();
     card.id = cardData.id;
     return card;
-  });
+  }));
   yield put(getAllCardsSuccess(cards));
 }
 

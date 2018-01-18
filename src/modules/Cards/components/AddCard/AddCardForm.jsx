@@ -119,7 +119,6 @@ class AddCardForm extends Component {
                     checked={this.state.categories.category1}
                     name="category1"
                     onChange={this.selectChangeHandler}
-                    value={this.state.categories.category1}
                   />
                 }
                 label="category1"
@@ -130,7 +129,6 @@ class AddCardForm extends Component {
                     checked={this.state.categories.category2}
                     name="category2"
                     onChange={this.selectChangeHandler}
-                    value={this.state.categories.category2}
                   />
                 }
                 label="category2"
@@ -141,7 +139,6 @@ class AddCardForm extends Component {
                     checked={this.state.categories.category3}
                     name="category3"
                     onChange={this.selectChangeHandler}
-                    value={this.state.categories.category3}
                   />
                 }
                 label="category3"
@@ -152,7 +149,6 @@ class AddCardForm extends Component {
                     checked={this.state.categories.category4}
                     name="category4"
                     onChange={this.selectChangeHandler}
-                    value={this.state.categories.category4}
                   />
                 }
                 label="category4"

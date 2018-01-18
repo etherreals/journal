@@ -14,7 +14,7 @@ export const openInfoTipModal = message => ({
 export const closeInfoTipModal = () => ({
   type: InfoTipsActionTypes.CLOSE_INFO_TIP,
   payload: {
-    isAddCardModalShown: false,
+    isInfoTipShown: false,
   },
 });
 

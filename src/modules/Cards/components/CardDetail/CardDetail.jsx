@@ -8,7 +8,11 @@ const CardDetail = ({ match }) => (
 );
 
 CardDetail.propTypes = {
-  match: PropTypes.objectOf(PropTypes.string).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
 };
 
 
