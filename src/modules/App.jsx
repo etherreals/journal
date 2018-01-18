@@ -10,6 +10,7 @@ import CardBoard from './Cards/components/CardBoard';
 import ScheduleBoard from './Schedule/ScheduleBoard';
 import CardDetail from './Cards/components/CardDetail/CardDetail';
 import styles from './App.styles';
+import InfoTip from './InfoTips/components/InfoTip';
 
 const App = ({ classes }) => (
   <Grid container spacing={0} className={classes.root}>
@@ -24,6 +25,7 @@ const App = ({ classes }) => (
         <Route path="/schedule" component={ScheduleBoard} />
       </Switch>
     </Grid>
+    <InfoTip />
   </Grid>
 );
 
