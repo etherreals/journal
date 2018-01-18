@@ -14,7 +14,6 @@ import ViewComfy from 'material-ui-icons/ViewComfy';
 import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-import Typography from 'material-ui/Typography';
 import styles from './MainNav.styles';
 import { logoutRequest } from '../Auth/store/actions';
 

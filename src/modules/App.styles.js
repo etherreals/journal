@@ -5,6 +5,7 @@ const styles = () => ({
     height: 'calc(100vh - 16px)',
   },
   nav: {
+    height: '100vh',
     flexGrow: 1,
     backgroundColor: indigo[400],
   },

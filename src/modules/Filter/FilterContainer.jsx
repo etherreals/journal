@@ -7,6 +7,7 @@ import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import Clear from 'material-ui-icons/Clear';
+import { MenuItem } from 'material-ui/Menu';
 import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';
 
@@ -33,9 +34,8 @@ class FilterContainer extends Component {
     ...custom
   }) => (
     <Input
-      hintText={label}
-      floatingLabelText={label}
-      errorText={touched && error}
+      label={label}
+      error={touched && error}
       {...input}
       {...custom}
     />
@@ -49,8 +49,8 @@ class FilterContainer extends Component {
     ...custom
   }) => (
     <Select
-      floatingLabelText={label}
-      errorText={touched && error}
+      label={label}
+      error={touched && error}
       {...input}
       onChange={(event, index, value) => input.onChange(value)}
       {...custom}
@@ -67,7 +67,6 @@ class FilterContainer extends Component {
           <InputLabel htmlFor="descriptionFilter">Search</InputLabel>
           <Field
             id="Search"
-            defaultValue=""
             component={this.renderTextInput}
             placeholder="Search"
             name="descriptionFilter"
@@ -79,11 +78,13 @@ class FilterContainer extends Component {
             name="difficultyFilter"
             component={this.renderSelectField}
           >
-            <option value="" />
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
           </Field>
         </FormControl>
         <FormControl>
