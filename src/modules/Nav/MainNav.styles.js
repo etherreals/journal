@@ -1,11 +1,12 @@
-import { indigo } from 'material-ui/colors';
-
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
   icon: {
-    color: indigo[50],
+    color: theme.palette.primary.contrastText,
+  },
+  text: {
+    color: theme.palette.primary.contrastText,
   },
 });
 

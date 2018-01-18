@@ -18,6 +18,7 @@ function* getCards() {
 function* addCard(action) {
   try {
     yield put(closeAddCardModal());
+    yield put(openInfoTipModal('Adding'));
     yield call(CardService.addCard, action.payload.card);
     yield put(addCardSuccess());
     yield put(openInfoTipModal('Card was successfully added'));

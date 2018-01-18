@@ -14,6 +14,7 @@ import ViewComfy from 'material-ui-icons/ViewComfy';
 import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
+import Typography from 'material-ui/Typography';
 import styles from './MainNav.styles';
 import { logoutRequest } from '../Auth/store/actions';
 
@@ -35,19 +36,31 @@ const MainNav = ({
         <ListItemIcon className={classes.icon}>
           <Grain />
         </ListItemIcon>
-        <ListItemText inset primary="Cards" />
+        <ListItemText
+          inset
+          classes={{ primary: classes.text }}
+          primary="Cards"
+        />
       </ListItem>
       <ListItem component={Link} to="/teachers" button>
         <ListItemIcon className={classes.icon}>
           <Group />
         </ListItemIcon>
-        <ListItemText inset primary="Teachers" />
+        <ListItemText
+          inset
+          classes={{ primary: classes.text }}
+          primary="Something"
+        />
       </ListItem>
       <ListItem button onClick={() => toggleGradesSubmenu(!isGradesSubmenuOpen)}>
         <ListItemIcon className={classes.icon}>
           <ViewComfy />
         </ListItemIcon>
-        <ListItemText inset primary="Schedule" />
+        <ListItemText
+          inset
+          classes={{ primary: classes.text }}
+          primary="Something"
+        />
         {
           isGradesSubmenuOpen ?
             <ExpandLess className={classes.icon} /> :
@@ -65,13 +78,21 @@ const MainNav = ({
             <ListItemIcon className={classes.icon}>
               <School />
             </ListItemIcon>
-            <ListItemText inset primary="5A" />
+            <ListItemText
+              inset
+              classes={{ primary: classes.text }}
+              primary="Something"
+            />
           </ListItem>
           <ListItem component={Link} to="/schedule" button className={classes.nested}>
             <ListItemIcon className={classes.icon}>
               <School />
             </ListItemIcon>
-            <ListItemText inset primary="5B" />
+            <ListItemText
+              inset
+              classes={{ primary: classes.text }}
+              primary="Something"
+            />
           </ListItem>
         </List>
       </Collapse>
