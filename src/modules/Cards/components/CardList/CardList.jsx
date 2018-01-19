@@ -33,9 +33,6 @@ class CardList extends Component {
     this.props.dispatch(getAllCardsRequest());
   }
 
-  componentWillUnmount() {
-  }
-
   handleRequestSort = (event, orderingField) => {
     const { order } = this.props;
     this.props.dispatch(sortCards(orderingField, order === 'asc' ? 'desc' : 'asc'));
