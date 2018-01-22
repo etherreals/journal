@@ -22,8 +22,11 @@ class CardList extends Component {
     dispatch: PropTypes.func.isRequired,
     order: PropTypes.string,
     orderBy: PropTypes.string,
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
   }
+
   static defaultProps = {
     cards: [],
     order: '',

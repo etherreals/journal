@@ -14,13 +14,13 @@ const handleGetAllCardsRequest = (state, action) => ({
   isLoading: action.payload.isLoading,
 });
 
-const handleGetAllCardsSuccess = (state, action) => ({
+const handleAllCardsUpdatedSuccess = (state, action) => ({
   ...state,
   cards: action.payload.cards,
   isLoading: action.payload.isLoading,
 });
 
-const handleGetAllCardsFailure = (state, action) => ({
+const handleAllUpdatedFailure = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   error: action.error,
@@ -39,8 +39,8 @@ const handleToggleAddCardModal = (state, action) => ({
 
 const handlers = {
   [CardsActionTypes.GET_ALL_CARDS_REQUEST]: handleGetAllCardsRequest,
-  [CardsActionTypes.GET_ALL_CARDS_SUCCESS]: handleGetAllCardsSuccess,
-  [CardsActionTypes.GET_ALL_CARDS_FAILURE]: handleGetAllCardsFailure,
+  [CardsActionTypes.ALL_CARDS_UPDATED_SUCCESS]: handleAllCardsUpdatedSuccess,
+  [CardsActionTypes.ALL_CARDS_UPDATED_FAILURE]: handleAllUpdatedFailure,
   [CardsActionTypes.SORT_CARDS]: handleSortCards,
   [CardsActionTypes.TOGGLE_ADD_CARD_MODAL]: handleToggleAddCardModal,
 };

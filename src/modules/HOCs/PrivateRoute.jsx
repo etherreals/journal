@@ -39,3 +39,4 @@ export default compose(
   withRouter,
   connect(mapStoreToProps),
 )(PrivateRoute);
+
