@@ -18,7 +18,7 @@ function* loginWithGoogle() {
   try {
     const userData = yield call(AuthenticationService.signInWithGoogle);
     yield put(loginSuccess(userData));
-    yield put(push('/'));
+    yield put(push('/cards'));
   } catch (error) {
     yield put(loginFailure(error));
   }
@@ -29,7 +29,7 @@ function* loginWithEmailAndPassword(action) {
   try {
     const userData = yield AuthenticationService.signInWithEmailAndPassword(email, password);
     yield put(loginSuccess(userData));
-    yield put(push('/'));
+    yield put(push('/cards'));
   } catch (error) {
     yield put(loginFailure(error));
   }

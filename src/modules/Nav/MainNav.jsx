@@ -7,6 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import { Link, withRouter } from 'react-router-dom';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 import Grain from 'material-ui-icons/Grain';
 import Group from 'material-ui-icons/Group';
@@ -97,15 +98,15 @@ const MainNav = ({
           </ListItem>
         </List>
       </Collapse>
-      <ListItem button onClick={onGameStartedClickHandler}>
-        <ListItemIcon className={classes.icon}>
-          <Group />
-        </ListItemIcon>
-        <ListItemText
-          inset
-          classes={{ primary: classes.text }}
-          primary="Play in mixed mode"
-        />
+      <ListItem>
+        <Button
+          raised
+          color="default"
+          className={classes.playButton}
+          onClick={onGameStartedClickHandler}
+        >
+          Play in mixed mode
+        </Button>
       </ListItem>
     </List>
   </Grid >

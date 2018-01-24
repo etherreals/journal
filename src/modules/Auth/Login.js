@@ -76,7 +76,7 @@ class Login extends Component {
           />
         </Grid>
         <Grid item>
-          <Button raised color="accent" onClick={this.loginHandler}>
+          <Button raised color="secondary" onClick={this.loginHandler}>
             Login
           </Button>
         </Grid>

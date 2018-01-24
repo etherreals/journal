@@ -4,18 +4,18 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
-import renderAppWithAuthAndLoading from './HOCs/renderWithAuthAndLoading';
+import renderApp from './HOCs/renderApp';
 import { isLoggedInSelector, isLoadingSelector } from './Auth/store/selectors';
 import { isGameStartedSelector } from './Game/store/selectors';
 
 const Root = props => (
   <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }} >
-    { props.renderAppWithAuthAndLoading() }
+    { props.renderApp() }
   </Grid>
 );
 
 Root.propTypes = {
-  renderAppWithAuthAndLoading: PropTypes.func.isRequired,
+  renderApp: PropTypes.func.isRequired,
 };
 
 const mapStoreToProps = store => ({
@@ -27,6 +27,6 @@ const mapStoreToProps = store => ({
 export default compose(
   withRouter,
   connect(mapStoreToProps),
-  renderAppWithAuthAndLoading,
+  renderApp,
 )(Root);
 

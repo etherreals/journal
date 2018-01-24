@@ -25,7 +25,7 @@ const Enhance = ComposedComponent => class C extends Component {
     return this.props.isLoggedIn && !this.props.isLoading && !this.props.isGameStarted;
   }
 
-  renderAppWithAuthAndLoading = () => {
+  renderApp = () => {
     if (this.beforeLoggingState()) {
       return (
         <div>
@@ -50,7 +50,7 @@ const Enhance = ComposedComponent => class C extends Component {
     return (
       <ComposedComponent
         {...this.props}
-        renderAppWithAuthAndLoading={this.renderAppWithAuthAndLoading}
+        renderApp={this.renderApp}
       />
     );
   }

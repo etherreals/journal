@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavigationPrompt from 'react-router-navigation-prompt';
@@ -20,6 +21,7 @@ class GameBoard extends Component {
 
   onLeave = () => {
     this.props.dispatch(cancelGame());
+    this.props.dispatch(push('/cards'));
   }
 
   render() {
