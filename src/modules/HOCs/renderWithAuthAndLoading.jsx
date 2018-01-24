@@ -4,23 +4,25 @@ import { Route, Redirect } from 'react-router';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import App from '../App';
 import Login from '../Auth/Login';
+import GameBoard from '../Game/components/GameBoard';
 
 const Enhance = ComposedComponent => class C extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    isGameStarted: PropTypes.bool.isRequired,
   };
 
   beforeLoggingState() {
-    return !this.props.isLoggedIn && !this.props.isLoading;
+    return !this.props.isLoggedIn && !this.props.isLoading && !this.props.isGameStarted;
   }
 
   loggingState() {
-    return !this.props.isLoggedIn && this.props.isLoading;
+    return !this.props.isLoggedIn && this.props.isLoading && !this.props.isGameStarted;
   }
 
   afterLoggingState() {
-    return this.props.isLoggedIn && !this.props.isLoading;
+    return this.props.isLoggedIn && !this.props.isLoading && !this.props.isGameStarted;
   }
 
   renderAppWithAuthAndLoading = () => {
@@ -37,6 +39,9 @@ const Enhance = ComposedComponent => class C extends Component {
     }
     if (this.afterLoggingState()) {
       return <Route path="/" component={App} />;
+    }
+    if (this.props.isGameStarted) {
+      return <Route exact path="/game" component={GameBoard} />;
     }
     return null;
   }

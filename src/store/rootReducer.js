@@ -5,6 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 import authReducer from '../modules/Auth/store/reducer';
 import cardsReducer from '../modules/Cards/store/reducer';
 import infoTipsReducer from '../modules/InfoTips/store/reducers';
+import gameReducer from '../modules/Game/store/reducers';
 
 const config = { key: 'root', storage };
 const rootReducer = persistCombineReducers(config, {
@@ -13,6 +14,7 @@ const rootReducer = persistCombineReducers(config, {
   cards: cardsReducer,
   form: formReducer,
   infotips: infoTipsReducer,
+  game: gameReducer,
 });
 
 export default rootReducer;

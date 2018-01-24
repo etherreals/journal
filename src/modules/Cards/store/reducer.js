@@ -45,9 +45,9 @@ const handlers = {
   [CardsActionTypes.TOGGLE_ADD_CARD_MODAL]: handleToggleAddCardModal,
 };
 
-function authReducer(state = initialState, action) {
+function cardsReducer(state = initialState, action) {
   const handler = handlers[action.type];
   return handler ? handler(state, action) : state;
 }
 
-export default authReducer;
+export default cardsReducer;

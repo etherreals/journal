@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 import Grain from 'material-ui-icons/Grain';
@@ -16,6 +16,7 @@ import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
 import { logoutRequest } from '../Auth/store/actions';
+import { startGame } from '../Game/store/actions';
 
 
 const MainNav = ({
@@ -23,6 +24,7 @@ const MainNav = ({
   toggleGradesSubmenu,
   classes,
   onLogoutClickHandler,
+  onGameStartedClickHandler,
 }) => (
   <Grid>
     <button onClick={onLogoutClickHandler}>logout</button>
@@ -95,6 +97,16 @@ const MainNav = ({
           </ListItem>
         </List>
       </Collapse>
+      <ListItem button onClick={onGameStartedClickHandler}>
+        <ListItemIcon className={classes.icon}>
+          <Group />
+        </ListItemIcon>
+        <ListItemText
+          inset
+          classes={{ primary: classes.text }}
+          primary="Play in mixed mode"
+        />
+      </ListItem>
     </List>
   </Grid >
 );
@@ -105,16 +117,22 @@ MainNav.propTypes = {
   isGradesSubmenuOpen: PropTypes.bool.isRequired,
   toggleGradesSubmenu: PropTypes.func.isRequired,
   onLogoutClickHandler: PropTypes.func.isRequired,
+  onGameStartedClickHandler: PropTypes.func.isRequired,
 };
 
 export default compose(
   withStyles(styles),
   connect(null),
+  withRouter,
   withState('isGradesSubmenuOpen', 'toggleGradesSubmenu', false),
   withHandlers({
     onLogoutClickHandler: props => (event) => {
       event.preventDefault();
       props.dispatch(logoutRequest());
+    },
+    onGameStartedClickHandler: props => () => {
+      props.dispatch(startGame());
+      props.history.push('/game');
     },
   }),
 )(MainNav);

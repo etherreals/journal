@@ -28,7 +28,7 @@ function* getCards() {
       yield put(allCardsUpdatedSuccess(cards));
     }
   } catch (error) {
-    console.ward(error);
+    throw new Error(error);
   }
 }
 
@@ -42,6 +42,7 @@ function* addCard(action) {
   } catch (error) {
     yield put(addCardFailure(error));
     yield put(openInfoTipModal('Error, card was\'t added'));
+    throw new Error(error);
   }
 }
 

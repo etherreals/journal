@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Grid from 'material-ui/Grid';
 import renderAppWithAuthAndLoading from './HOCs/renderWithAuthAndLoading';
-import { isLoggedIn, isLoading } from './Auth/store/selectors';
+import { isLoggedInSelector, isLoadingSelector } from './Auth/store/selectors';
+import { isGameStartedSelector } from './Game/store/selectors';
 
 const Root = props => (
   <Grid container alignItems="center" justify="center" direction="column" style={{ height: 'calc(100vh - 16px)' }} >
@@ -18,8 +19,9 @@ Root.propTypes = {
 };
 
 const mapStoreToProps = store => ({
-  isLoggedIn: isLoggedIn(store),
-  isLoading: isLoading(store),
+  isLoggedIn: isLoggedInSelector(store),
+  isLoading: isLoadingSelector(store),
+  isGameStarted: isGameStartedSelector(store),
 });
 
 export default compose(
