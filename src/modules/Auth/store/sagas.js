@@ -14,11 +14,23 @@ function* logout() {
   }
 }
 
+function* saveUser(userData) {
+  const isUserExistsInDb = yield call(AuthenticationService.checkIfUserExistInDb, userData.uid);
+  if (!isUserExistsInDb) {
+    const user = {
+      id: userData.uid,
+      email: userData.email,
+    };
+    AuthenticationService.saveUserToDb(user);
+  }
+  yield put(loginSuccess(userData));
+  yield put(push('/cards'));
+}
+
 function* loginWithGoogle() {
   try {
     const userData = yield call(AuthenticationService.signInWithGoogle);
-    yield put(loginSuccess(userData));
-    yield put(push('/cards'));
+    yield call(saveUser, userData.user);
   } catch (error) {
     yield put(loginFailure(error));
   }
@@ -28,8 +40,7 @@ function* loginWithEmailAndPassword(action) {
   const { email, password } = action.payload.credentials;
   try {
     const userData = yield AuthenticationService.signInWithEmailAndPassword(email, password);
-    yield put(loginSuccess(userData));
-    yield put(push('/cards'));
+    yield call(saveUser, userData);
   } catch (error) {
     yield put(loginFailure(error));
   }

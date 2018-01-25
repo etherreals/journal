@@ -72,7 +72,7 @@ const MainNav = ({
       <Collapse
         component="li"
         in={isGradesSubmenuOpen}
-        transitionDuration="auto"
+        timeout="auto"
         unmountOnExit
       >
         <List disablePadding>

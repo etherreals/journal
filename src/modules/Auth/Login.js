@@ -12,11 +12,15 @@ import { getAuthError } from './store/selectors';
 class Login extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    authError: PropTypes.string,
+    authError: PropTypes.shape({
+      message: PropTypes.string,
+    }),
   };
 
   static defaultProps = {
-    authError: '',
+    authError: {
+      message: '',
+    },
   };
 
   state = {

@@ -1,4 +1,4 @@
-import { firebase, firebaseAuth } from '../store/firebase';
+import { firebase, firebaseAuth, firebaseDB } from '../store/firebase';
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
@@ -16,4 +16,12 @@ export function signInWithGoogle() {
 
 export function getCurrentUser() {
   return firebaseAuth.currentUser;
+}
+
+export function checkIfUserExistInDb(id) {
+  return firebaseDB.collection('users').doc(id).get().then(doc => doc.exists);
+}
+
+export function saveUserToDb(currentUser) {
+  return firebaseDB.collection('users').doc(currentUser.id).set(currentUser);
 }

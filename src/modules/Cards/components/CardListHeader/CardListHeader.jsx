@@ -22,7 +22,7 @@ class CardListHeader extends React.Component {
   };
 
   static defaultProps = {
-    order: null,
+    order: 'desc',
   }
 
   createSortHandler = property => (event) => {
