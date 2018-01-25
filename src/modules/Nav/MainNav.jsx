@@ -17,7 +17,7 @@ import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
 import { logoutRequest } from '../Auth/store/actions';
-import { startGame } from '../Game/store/actions';
+import { startGameSaga } from '../Game/store/actions';
 
 
 const MainNav = ({
@@ -132,8 +132,7 @@ export default compose(
       props.dispatch(logoutRequest());
     },
     onGameStartedClickHandler: props => () => {
-      props.dispatch(startGame());
-      props.history.push('/game');
+      props.dispatch(startGameSaga());
     },
   }),
 )(MainNav);

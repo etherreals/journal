@@ -1,5 +1,11 @@
 import AuthActionsTypes from './actions';
 
+const initialState = {
+  isLoading: false,
+  isLoggedIn: false,
+  error: null,
+};
+
 const handleGoogleLoginRequest = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
@@ -49,7 +55,7 @@ const handlers = {
   [AuthActionsTypes.LOGOUT_SUCCESS]: handleLogoutSuccess,
 };
 
-function authReducer(state = {}, action) {
+function authReducer(state = initialState, action) {
   const handler = handlers[action.type];
   return handler ? handler(state, action) : state;
 }

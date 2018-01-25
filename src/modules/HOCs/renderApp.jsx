@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import App from '../App';
 import Login from '../Auth/Login';
@@ -11,6 +11,12 @@ const Enhance = ComposedComponent => class C extends Component {
     isLoggedIn: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
     isGameStarted: PropTypes.bool.isRequired,
+    match: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   beforeLoggingState() {
@@ -27,9 +33,10 @@ const Enhance = ComposedComponent => class C extends Component {
 
   renderApp = () => {
     if (this.beforeLoggingState()) {
+      const shouldRedirect = this.props.location.pathname !== '/login';
       return (
         <div>
-          <Redirect to="/login" />
+          {shouldRedirect && <Redirect to="/login" />}
           <Route path="/login" component={Login} />
         </div>
       );
@@ -41,7 +48,7 @@ const Enhance = ComposedComponent => class C extends Component {
       return <Route path="/" component={App} />;
     }
     if (this.props.isGameStarted) {
-      return <Route exact path="/game" component={GameBoard} />;
+      return <Route path="/game" component={GameBoard} />;
     }
     return null;
   }

@@ -18,8 +18,12 @@ class CardListHeader extends React.Component {
   static propTypes = {
     onRequestSort: PropTypes.func.isRequired,
     orderBy: PropTypes.string.isRequired,
-    order: PropTypes.string.isRequired,
+    order: PropTypes.string,
   };
+
+  static defaultProps = {
+    order: null,
+  }
 
   createSortHandler = property => (event) => {
     this.props.onRequestSort(event, property);

@@ -1,5 +1,6 @@
 const GameActionTypes = {
   GAME_STARTED: 'GAME_STARTED',
+  GAME_SAGA_STARTED: 'GAME_SAGA_STARTED',
   GAME_CANCELED: 'GAME_CANCELED',
 };
 
@@ -8,6 +9,10 @@ export const startGame = () => ({
   payload: {
     isGameStarted: true,
   },
+});
+
+export const startGameSaga = () => ({
+  type: GameActionTypes.GAME_SAGA_STARTED,
 });
 
 export const cancelGame = () => ({

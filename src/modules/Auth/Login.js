@@ -20,8 +20,8 @@ class Login extends Component {
   };
 
   state = {
-    email: '',
-    password: '',
+    email: 'email@email.com',
+    password: '123456',
   };
 
   loginHandler = () => {

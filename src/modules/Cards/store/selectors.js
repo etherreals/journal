@@ -31,7 +31,7 @@ export const visibleCardsSelector = createSelector(
   ) => {
     const filteredCards = cards.filter((card) => {
       const difficulty = ['All', ''].includes(difficultyFilter) ? card.difficulty : Number(difficultyFilter);
-      return card.description.toLowerCase().indexOf(descriptionFilter) !== -1
+      return card.description.toLowerCase().indexOf(descriptionFilter.toLowerCase()) !== -1
       && card.difficulty === difficulty;
     });
     const sortedCards = _orderBy(filteredCards, card => card[orderBy], [order]);

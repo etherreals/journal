@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavigationPrompt from 'react-router-navigation-prompt';
@@ -10,31 +10,31 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
-import { isGameStartedSelector } from '../store/selectors';
 import { cancelGame } from '../store/actions';
 
 class GameBoard extends Component {
   static propTypes = {
-    isGameStarted: PropTypes.bool.isRequired,
-    dispatch: PropTypes.bool.isRequired,
+    dispatch: PropTypes.func.isRequired,
   }
 
-  onLeave = () => {
+  onLeave = dialogLeave => () => {
+    dialogLeave();
     this.props.dispatch(cancelGame());
-    this.props.dispatch(push('/cards'));
   }
 
   render() {
-    const { isGameStarted } = this.props;
     return (
       <div>
         <h1>GameBoard</h1>
-        <NavigationPrompt when={isGameStarted}>
-          {({ isActive, onCancel }) => (
+        <Button component={Link} to="/cards">To cards</Button>
+        <NavigationPrompt when={
+          (crntLocation, nextLocation) => !nextLocation.pathname.startsWith(crntLocation.pathname)
+          }
+        >
+          {({ isActive, onCancel, onConfirm }) => (
             isActive &&
             <Dialog
-              open={isGameStarted}
-              onClose={this.onLeave}
+              open
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
@@ -48,7 +48,7 @@ class GameBoard extends Component {
                 <Button onClick={onCancel} color="default" autoFocus>
                   Cancel
                 </Button>
-                <Button onClick={this.onLeave} color="secondary">
+                <Button onClick={this.onLeave(onConfirm)} color="secondary">
                   Leave
                 </Button>
               </DialogActions>
@@ -60,8 +60,4 @@ class GameBoard extends Component {
   }
 }
 
-const mapStoreToProps = store => ({
-  isGameStarted: isGameStartedSelector(store),
-});
-
-export default connect(mapStoreToProps)(GameBoard);
+export default connect()(GameBoard);
