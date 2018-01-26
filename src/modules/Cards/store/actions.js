@@ -2,6 +2,9 @@ const CardsActionTypes = {
   GET_ALL_CARDS_REQUEST: 'GET_ALL_CARDS_REQUEST',
   ALL_CARDS_UPDATED_SUCCESS: 'ALL_CARDS_UPDATED_SUCCESS',
   ALL_CARDS_UPDATED_FAILURE: 'ALL_CARDS_UPDATED_FAILURE',
+  GET_MY_CARDS_REQUEST: 'GET_MY_CARDS_REQUEST',
+  MY_CARDS_UPDATED_SUCCESS: 'MY_CARDS_UPDATED_SUCCESS',
+  MY_CARDS_UPDATED_FAILURE: 'MY_CARDS_UPDATED_FAILURE',
   SORT_CARDS: 'SORT_CARDS',
   ADD_CARD_REQUEST: 'ADD_CARD_REQUEST',
   ADD_CARD_SUCCESS: 'ADD_CARD_SUCCESS',
@@ -20,6 +23,21 @@ export const allCardsUpdatedSuccess = cards => ({
   type: CardsActionTypes.ALL_CARDS_UPDATED_SUCCESS,
   payload: {
     cards,
+    isLoading: false,
+  },
+});
+
+export const getMyCardsRequest = () => ({
+  type: CardsActionTypes.GET_MY_CARDS_REQUEST,
+  payload: {
+    isLoading: true,
+  },
+});
+
+export const myCardsUpdatedSuccess = myCards => ({
+  type: CardsActionTypes.MY_CARDS_UPDATED_SUCCESS,
+  payload: {
+    myCards,
     isLoading: false,
   },
 });

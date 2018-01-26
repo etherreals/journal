@@ -11,8 +11,8 @@ import CardItem from '../CardItem/CardItem';
 import styles from './CardList.styles';
 import CardListHeader from '../CardListHeader/CardListHeader';
 import LoadingSpinner from '../../../Common/LoadingSpinner';
-import { visibleCardsSelector, orderSelector, orderBySelector, isLoadingSelector } from '../../store/selectors';
-import { getAllCardsRequest, sortCards } from '../../store/actions';
+import { orderSelector, orderBySelector, isLoadingSelector } from '../../store/selectors';
+import { sortCards } from '../../store/actions';
 
 class CardList extends Component {
   static propTypes = {
@@ -31,9 +31,6 @@ class CardList extends Component {
     cards: [],
     order: '',
     orderBy: '',
-  }
-  componentDidMount() {
-    this.props.dispatch(getAllCardsRequest());
   }
 
   handleRequestSort = (event, orderingField) => {
@@ -84,14 +81,13 @@ class CardList extends Component {
             </TableBody>
           </Table>
         </div>
-        {isLoading && <LoadingSpinner text="Updating Pupils List" />}
+        {isLoading && <LoadingSpinner text="Updating cards list" />}
       </Paper>
     );
   }
 }
 
 const mapStoreToProps = store => ({
-  cards: visibleCardsSelector(store),
   isLoading: isLoadingSelector(store),
   order: orderSelector(store),
   orderBy: orderBySelector(store),

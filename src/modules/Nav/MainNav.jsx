@@ -41,17 +41,17 @@ const MainNav = ({
         <ListItemText
           inset
           classes={{ primary: classes.text }}
-          primary="Cards"
+          primary="All cards"
         />
       </ListItem>
-      <ListItem component={Link} to="/teachers" button>
+      <ListItem component={Link} to="/my-cards" button>
         <ListItemIcon className={classes.icon}>
           <Group />
         </ListItemIcon>
         <ListItemText
           inset
           classes={{ primary: classes.text }}
-          primary="Something"
+          primary="My cards"
         />
       </ListItem>
       <ListItem button onClick={() => toggleGradesSubmenu(!isGradesSubmenuOpen)}>

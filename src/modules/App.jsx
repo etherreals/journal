@@ -7,10 +7,12 @@ import Grid from 'material-ui/Grid';
 import MainNav from './Nav/MainNav';
 import TeachersBoard from './Teachers/TeachersBoard';
 import CardBoard from './Cards/components/CardBoard';
+import MyCardBoard from './Cards/components/MyCardBoard';
 import ScheduleBoard from './Schedule/ScheduleBoard';
 import CardDetail from './Cards/components/CardDetail/CardDetail';
 import styles from './App.styles';
 import InfoTip from './InfoTips/components/InfoTip';
+
 
 const App = ({ classes }) => (
   <Grid container spacing={0} className={classes.root}>
@@ -22,6 +24,7 @@ const App = ({ classes }) => (
         <Route path="/teachers" component={TeachersBoard} />
         <Route path="/cards/:id" component={CardDetail} />
         <Route path="/cards" component={CardBoard} />
+        <Route path="/my-cards" component={MyCardBoard} />
         <Route path="/schedule" component={ScheduleBoard} />
       </Switch>
     </Grid>

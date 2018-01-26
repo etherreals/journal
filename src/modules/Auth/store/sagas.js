@@ -39,7 +39,7 @@ function* loginWithGoogle() {
 function* loginWithEmailAndPassword(action) {
   const { email, password } = action.payload.credentials;
   try {
-    const userData = yield AuthenticationService.signInWithEmailAndPassword(email, password);
+    const userData = yield call(AuthenticationService.signInWithEmailAndPassword, email, password);
     yield call(saveUser, userData);
   } catch (error) {
     yield put(loginFailure(error));

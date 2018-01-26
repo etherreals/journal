@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect, Switch } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import App from '../App';
 import Login from '../Auth/Login';

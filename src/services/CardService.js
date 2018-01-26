@@ -1,5 +1,6 @@
 import { firebaseDB } from '../store/firebase';
 
+
 /* eslint no-param-reassign: "error" */
 const addDefaultPropsToCard = card => ({
   ...card,

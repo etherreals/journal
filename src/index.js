@@ -12,7 +12,9 @@ import history from './browserHistory';
 import LoadingSpinner from './modules/Common/LoadingSpinner';
 import AuthActionsTypes from './modules/Auth/store/actions';
 
+
 const { store, persistor } = configureReduxStore();
+store.dispatch({ type: AuthActionsTypes.AUTH_FLOW_START });
 
 const MountPoint = () => (
   <Provider store={store}>
@@ -27,15 +29,7 @@ const MountPoint = () => (
   </Provider>
 );
 
-store.dispatch({ type: AuthActionsTypes.AUTH_FLOW_START });
-
-// firebaseAuth.onAuthStateChanged((user) => {
-//   if (user) {
-//   } else {
-//     store.dispatch(logout());
-//   }
-// });
-
 /* global document */
 ReactDOM.render(<MountPoint />, document.getElementById('mount-point'));
 registerServiceWorker();
+export default store;

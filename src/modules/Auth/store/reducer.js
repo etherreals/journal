@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   isLoggedIn: false,
   error: null,
+  user: null,
 };
 
 const handleGoogleLoginRequest = (state, action) => ({
@@ -22,6 +23,7 @@ const handleLoginSuccess = (state, action) => ({
   ...state,
   isLoading: action.payload.isLoading,
   isLoggedIn: action.payload.isLoggedIn,
+  user: action.payload.user,
   error: null,
 });
 
