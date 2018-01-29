@@ -6,7 +6,7 @@ import AuthActionsTypes, { loginSuccess, loginFailure, logoutSuccess } from './a
 
 function* logout() {
   try {
-    yield AuthenticationService.signOut();
+    yield call(AuthenticationService.signOut);
     yield put(logoutSuccess());
   } catch (error) {
     yield put(logoutSuccess());
@@ -52,6 +52,6 @@ function* authFlow() {
   yield takeEvery(AuthActionsTypes.LOGOUT_REQUEST, logout);
 }
 
-export default function* authFlowStart() {
+export default function* watchAuth() {
   yield takeEvery(AuthActionsTypes.AUTH_FLOW_START, authFlow);
 }

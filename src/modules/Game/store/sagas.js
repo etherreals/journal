@@ -17,6 +17,6 @@ function* gameFlow() {
   yield takeEvery(GameActionsTypes.GAME_CANCELED, cancelGameFlow);
 }
 
-export default function* gameFlowStart() {
+export default function* watchGame() {
   yield takeEvery(GameActionsTypes.GAME_SAGA_STARTED, gameFlow);
 }

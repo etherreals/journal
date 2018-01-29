@@ -15,15 +15,14 @@ export function signInWithGoogle() {
 }
 
 export function getCurrentUser() {
-  return new Promise((resolve, reject) => {
-    return firebaseAuth.onAuthStateChanged((user) => {
+  return new Promise((resolve, reject) =>
+    firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         resolve(user);
       } else {
         reject(user);
       }
-    });
-  });
+    }));
 }
 
 export function checkIfUserExistInDb(id) {
