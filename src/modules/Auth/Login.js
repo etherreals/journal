@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
@@ -11,7 +12,8 @@ import { getAuthError } from './store/selectors';
 
 class Login extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    loginWithEmailAndPasswordRequest: PropTypes.func.isRequired,
+    googleLoginRequest: PropTypes.func.isRequired,
     authError: PropTypes.shape({
       message: PropTypes.string,
     }),
@@ -29,11 +31,11 @@ class Login extends Component {
   };
 
   loginHandler = () => {
-    this.props.dispatch(loginWithEmailAndPasswordRequest(this.state));
+    this.props.loginWithEmailAndPasswordRequest(this.state);
   }
 
   googleLoginHandler = () => {
-    this.props.dispatch(googleLoginRequest());
+    this.props.googleLoginRequest();
   }
 
   inputChangeHandler = (event) => {
@@ -100,4 +102,9 @@ const mapStoreToProps = store => ({
   authError: getAuthError(store),
 });
 
-export default connect(mapStoreToProps)(Login);
+const mapDispatchToProps = dispatch => ({
+  loginWithEmailAndPasswordRequest: bindActionCreators(loginWithEmailAndPasswordRequest, dispatch),
+  googleLoginRequest: bindActionCreators(googleLoginRequest, dispatch),
+});
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Login);

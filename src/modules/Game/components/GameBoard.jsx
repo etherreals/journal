@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import NavigationPrompt from 'react-router-navigation-prompt';
 import Button from 'material-ui/Button';
@@ -14,12 +15,12 @@ import { cancelGame } from '../store/actions';
 
 class GameBoard extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    cancelGame: PropTypes.func.isRequired,
   }
 
   onLeave = dialogLeave => () => {
     dialogLeave();
-    this.props.dispatch(cancelGame());
+    this.props.cancelGame();
   }
 
   render() {
@@ -60,4 +61,8 @@ class GameBoard extends Component {
   }
 }
 
-export default connect()(GameBoard);
+const mapDispatchToProps = dispatch => ({
+  cancelGame: bindActionCreators(cancelGame, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(GameBoard);

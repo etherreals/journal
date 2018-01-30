@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { lifecycle } from 'recompose';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -37,11 +37,15 @@ const mapStoreToProps = store => ({
   cards: visibleCardsSelector(store),
 });
 
+const mapDispatchToProps = dispatch => ({
+  getAllCardsRequest: bindActionCreators(getAllCardsRequest, dispatch),
+});
+
 export default compose(
-  connect(mapStoreToProps),
+  connect(mapStoreToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount() {
-      this.props.dispatch(getAllCardsRequest());
+      this.props.getAllCardsRequest();
     },
   }),
   withStyles(styles),

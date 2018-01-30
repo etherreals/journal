@@ -1,7 +1,7 @@
 import React from 'react';
-import { withState, withHandlers } from 'recompose';
+import { withState } from 'recompose';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -16,19 +16,19 @@ import School from 'material-ui-icons/School';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import styles from './MainNav.styles';
-import { logoutRequest } from '../Auth/store/actions';
-import { startGameSaga } from '../Game/store/actions';
+import { logoutRequest as logoutRequestAC } from '../Auth/store/actions';
+import { startGameSaga as startGameSagaAC } from '../Game/store/actions';
 
 
 const MainNav = ({
   isGradesSubmenuOpen,
   toggleGradesSubmenu,
   classes,
-  onLogoutClickHandler,
-  onGameStartedClickHandler,
+  logoutRequest,
+  startGameSaga,
 }) => (
   <Grid>
-    <button onClick={onLogoutClickHandler}>logout</button>
+    <button onClick={logoutRequest}>logout</button>
     <List>
       <ListItem
         component={Link}
@@ -103,7 +103,7 @@ const MainNav = ({
           raised
           color="default"
           className={classes.playButton}
-          onClick={onGameStartedClickHandler}
+          onClick={startGameSaga}
         >
           Play in mixed mode
         </Button>
@@ -112,27 +112,22 @@ const MainNav = ({
   </Grid >
 );
 
-
 MainNav.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   isGradesSubmenuOpen: PropTypes.bool.isRequired,
   toggleGradesSubmenu: PropTypes.func.isRequired,
-  onLogoutClickHandler: PropTypes.func.isRequired,
-  onGameStartedClickHandler: PropTypes.func.isRequired,
+  logoutRequest: PropTypes.func.isRequired,
+  startGameSaga: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = dispatch => ({
+  logoutRequest: bindActionCreators(logoutRequestAC, dispatch),
+  startGameSaga: bindActionCreators(startGameSagaAC, dispatch),
+});
 
 export default compose(
   withStyles(styles),
-  connect(null),
+  connect(null, mapDispatchToProps),
   withRouter,
   withState('isGradesSubmenuOpen', 'toggleGradesSubmenu', false),
-  withHandlers({
-    onLogoutClickHandler: props => (event) => {
-      event.preventDefault();
-      props.dispatch(logoutRequest());
-    },
-    onGameStartedClickHandler: props => () => {
-      props.dispatch(startGameSaga());
-    },
-  }),
 )(MainNav);

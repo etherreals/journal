@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import Table, { TableBody } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
@@ -19,7 +19,7 @@ class CardList extends Component {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     cards: PropTypes.arrayOf(PropTypes.object),
     isLoading: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    sortCards: PropTypes.func.isRequired,
     order: PropTypes.string,
     orderBy: PropTypes.string,
     history: PropTypes.shape({
@@ -35,7 +35,7 @@ class CardList extends Component {
 
   handleRequestSort = (event, orderingField) => {
     const { order } = this.props;
-    this.props.dispatch(sortCards(orderingField, order === 'asc' ? 'desc' : 'asc'));
+    this.props.sortCards(orderingField, order === 'asc' ? 'desc' : 'asc');
   };
 
   handleKeyDown = (event, id) => {
@@ -93,8 +93,12 @@ const mapStoreToProps = store => ({
   orderBy: orderBySelector(store),
 });
 
+const mapDispatchToProps = dispatch => ({
+  sortCards: bindActionCreators(sortCards, dispatch),
+});
+
 export default compose(
   withStyles(styles),
   withRouter,
-  connect(mapStoreToProps),
+  connect(mapStoreToProps, mapDispatchToProps),
 )(CardList);

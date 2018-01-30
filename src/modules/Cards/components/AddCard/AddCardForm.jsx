@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -22,7 +22,7 @@ import { addCardRequest } from '../../store/actions';
 class AddCardForm extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.objectOf).isRequired,
-    dispatch: PropTypes.func.isRequired,
+    addCardRequest: PropTypes.func.isRequired,
   }
   state = {
     title: '',
@@ -59,7 +59,7 @@ class AddCardForm extends Component {
   }
 
   createCard = () => {
-    this.props.dispatch(addCardRequest(this.state));
+    this.props.addCardRequest(this.state);
   }
 
   render() {
@@ -173,7 +173,11 @@ class AddCardForm extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  addCardRequest: bindActionCreators(addCardRequest, dispatch),
+});
+
 export default compose(
-  connect(null),
+  connect(null, mapDispatchToProps),
   withStyles(styles),
 )(AddCardForm);

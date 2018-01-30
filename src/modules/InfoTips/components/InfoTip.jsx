@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { withStyles } from 'material-ui/styles';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
@@ -14,7 +14,7 @@ import { isOpenSelector, messageSelector } from '../store/selectors';
 class InfoTip extends React.Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.objectOf).isRequired,
-    dispatch: PropTypes.func.isRequired,
+    closeInfoTipModal: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     message: PropTypes.string.isRequired,
   }
@@ -24,7 +24,7 @@ class InfoTip extends React.Component {
       return;
     }
 
-    this.props.dispatch(closeInfoTipModal());
+    this.props.closeInfoTipModal();
   };
 
   render() {
@@ -67,7 +67,11 @@ const mapStoreToProps = store => ({
   message: messageSelector(store),
 });
 
+const mapDispatchToProps = dispatch => ({
+  closeInfoTipModal: bindActionCreators(closeInfoTipModal, dispatch),
+});
+
 export default compose(
-  connect(mapStoreToProps),
+  connect(mapStoreToProps, mapDispatchToProps),
   withStyles(styles),
 )(InfoTip);

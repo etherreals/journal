@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Modal from 'material-ui/Modal';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { closeAddCardModal } from '../../store/actions';
 import styles from './AddCardModal.styles';
 import { isAddCardModalShownSelector } from '../../store/selectors';
 import AddCardForm from './AddCardForm';
 
-const AddCardModal = ({ isOpen, handleClose, classes }) => (
+const AddCardModal = ({ isOpen, classes, closeAddCardModal }) => (
   <div>
     <Modal
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       open={isOpen}
-      onClose={handleClose}
+      onClose={closeAddCardModal}
     >
       <div className={classes.modal}>
         <AddCardForm />
@@ -26,7 +26,7 @@ const AddCardModal = ({ isOpen, handleClose, classes }) => (
 
 AddCardModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  closeAddCardModal: PropTypes.func.isRequired,
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
@@ -35,9 +35,7 @@ const mapStoreToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleClose() {
-    dispatch(closeAddCardModal());
-  },
+  closeAddCardModal: bindActionCreators(closeAddCardModal, dispatch),
 });
 
 export default compose(
