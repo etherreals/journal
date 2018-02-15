@@ -7,8 +7,6 @@ import registerServiceWorker from './registerServiceWorker';
 import configureReduxStore from './store/configureReduxStore';
 import Root from './modules/Root';
 import history from './browserHistory';
-// import { firebaseAuth } from './store/firebase';
-// import { logout, setToLoggedInAndRedirectToHomepage } from './modules/Auth/store/authActions';
 import LoadingSpinner from './modules/Common/LoadingSpinner';
 import AuthActionsTypes from './modules/Auth/store/actions';
 

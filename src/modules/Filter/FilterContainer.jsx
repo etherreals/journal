@@ -11,12 +11,6 @@ import { MenuItem } from 'material-ui/Menu';
 import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';
 
-// const mockGrades = [
-//   'All',
-//   '5A',
-//   '6A',
-// ];
-
 class FilterContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
