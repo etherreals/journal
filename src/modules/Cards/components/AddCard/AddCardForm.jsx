@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import Button from 'material-ui/Button';
-import {
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-} from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
-import Select from 'material-ui/Select';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import Checkbox from '@material-ui/core/Checkbox';
+import Select from '@material-ui/core/Select';
 import styles from './AddCardForm.styles';
 import { addCardRequest } from '../../store/actions';
 
@@ -113,7 +112,7 @@ class AddCardForm extends Component {
         <Grid item>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormGroup>
-              <FormControlLabel
+              <FormLabel
                 control={
                   <Checkbox
                     checked={this.state.categories.category1}
@@ -123,7 +122,7 @@ class AddCardForm extends Component {
                 }
                 label="category1"
               />
-              <FormControlLabel
+              <FormLabel
                 control={
                   <Checkbox
                     checked={this.state.categories.category2}
@@ -133,7 +132,7 @@ class AddCardForm extends Component {
                 }
                 label="category2"
               />
-              <FormControlLabel
+              <FormLabel
                 control={
                   <Checkbox
                     checked={this.state.categories.category3}
@@ -143,7 +142,7 @@ class AddCardForm extends Component {
                 }
                 label="category3"
               />
-              <FormControlLabel
+              <FormLabel
                 control={
                   <Checkbox
                     checked={this.state.categories.category4}

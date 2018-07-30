@@ -1,4 +1,4 @@
-import { indigo } from 'material-ui/colors';
+import { indigo } from '@material-ui/core/colors';
 
 const styles = () => ({
   root: {

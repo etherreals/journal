@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import Send from 'material-ui-icons/Send';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Send from '@material-ui/icons/Send';
 import { loginWithEmailAndPasswordRequest, googleLoginRequest } from './store/actions';
 import { getAuthError } from './store/selectors';
 

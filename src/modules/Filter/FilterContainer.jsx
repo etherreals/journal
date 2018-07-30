@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import Select from 'material-ui/Select';
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form';
-import Clear from 'material-ui-icons/Clear';
-import { MenuItem } from 'material-ui/Menu';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/Input';
+import FormControl from '@material-ui/core/FormControl';
+import Clear from '@material-ui/icons/Clear';
+import MenuItem from '@material-ui/core/MenuItem';
 import { Field, reduxForm } from 'redux-form';
 import styles from './FilterContainer.styles';
 
@@ -82,7 +83,7 @@ class FilterContainer extends Component {
           </Field>
         </FormControl>
         <FormControl>
-          <Button className={classes.button} raised dense onClick={this.resetForm}>
+          <Button className={classes.button} variant='raised' size='small' onClick={this.resetForm}>
             Clear form
             <Clear className={classes.rightIcon} />
           </Button>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 import renderApp from './HOCs/renderApp';
 import { isLoggedInSelector, isLoadingSelector } from './Auth/store/selectors';
 import { isGameStartedSelector } from './Game/store/selectors';

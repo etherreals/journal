@@ -3,18 +3,21 @@ import { withState } from 'recompose';
 import PropTypes from 'prop-types';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import { Link, withRouter } from 'react-router-dom';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Button from 'material-ui/Button';
-import Collapse from 'material-ui/transitions/Collapse';
-import Grain from 'material-ui-icons/Grain';
-import Group from 'material-ui-icons/Group';
-import ViewComfy from 'material-ui-icons/ViewComfy';
-import School from 'material-ui-icons/School';
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+import Collapse from '@material-ui/core/Collapse';
+import Grain from '@material-ui/icons/Grain';
+import Group from '@material-ui/icons/Group';
+import ViewComfy from '@material-ui/icons/ViewComfy';
+import School from '@material-ui/icons/School';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import styles from './MainNav.styles';
 import { logoutRequest as logoutRequestAC } from '../Auth/store/actions';
 import { startGameSaga as startGameSagaAC } from '../Game/store/actions';
@@ -100,7 +103,7 @@ const MainNav = ({
       </Collapse>
       <ListItem>
         <Button
-          raised
+          variant='raised'
           color="default"
           className={classes.playButton}
           onClick={startGameSaga}
